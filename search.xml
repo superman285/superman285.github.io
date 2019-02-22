@@ -8,7 +8,7 @@
       <link href="/2019/02/22/%E6%B0%B8%E6%81%92%E3%81%AEOP/"/>
       <url>/2019/02/22/%E6%B0%B8%E6%81%92%E3%81%AEOP/</url>
       
-        <content type="html"><![CDATA[<h2 id="紫罗兰永恒花园OP"><a href="#紫罗兰永恒花园OP" class="headerlink" title="紫罗兰永恒花园OP"></a>紫罗兰永恒花园OP</h2><p>心中永恒不变的花园。</p><blockquote><p>我的眼睛虽被夜色这笔，夜空之中却闪耀着繁星。</p></blockquote><video controls src="violet.mp4" width="720" height="405"><br></video>]]></content>
+        <content type="html"><![CDATA[<h2 id="紫罗兰永恒花园OP"><a href="#紫罗兰永恒花园OP" class="headerlink" title="紫罗兰永恒花园OP"></a>紫罗兰永恒花园OP</h2><p>心中永恒不变的花园。</p><blockquote><p>我的眼睛虽被夜色遮蔽，夜空之中却闪耀着繁星。</p></blockquote><video controls src="violet.mp4" width="720" height="405"><br></video>]]></content>
       
       
       <categories>
@@ -56,19 +56,6 @@
             <tag> BlockChain </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>回到解放前</title>
-      <link href="/2019/02/22/%E5%9B%9E%E5%88%B0%E8%A7%A3%E6%94%BE%E5%89%8D/"/>
-      <url>/2019/02/22/%E5%9B%9E%E5%88%B0%E8%A7%A3%E6%94%BE%E5%89%8D/</url>
-      
-        <content type="html"><![CDATA[<p>真的是回到解放前</p>]]></content>
-      
-      
       
     </entry>
     
@@ -501,11 +488,11 @@
       
         <tags>
             
+            <tag> Web </tag>
+            
             <tag> HTTP </tag>
             
             <tag> 网络知识 </tag>
-            
-            <tag> Web </tag>
             
         </tags>
       
@@ -1061,6 +1048,33 @@
     
     
     <entry>
+      <title>CSS特性与优先级</title>
+      <link href="/2018/08/30/CSS%E7%89%B9%E6%80%A7%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7/"/>
+      <url>/2018/08/30/CSS%E7%89%B9%E6%80%A7%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7/</url>
+      
+        <content type="html"><![CDATA[<h3 id="层叠性，继承性，优先级"><a href="#层叠性，继承性，优先级" class="headerlink" title="层叠性，继承性，优先级"></a>层叠性，继承性，优先级</h3><p>浏览器窗口中样式表，出现横划线，代表出现层叠问题</p><h5 id="层叠性："><a href="#层叠性：" class="headerlink" title="层叠性："></a>层叠性：</h5><p>·同一类选择器(✔)，优先级相同时，后定义的覆盖之前定义的</p><h5 id="继承性："><a href="#继承性：" class="headerlink" title="继承性："></a>继承性：</h5><p>子元素没有设置样式，父元素设置了样式，子元素继承父元素的属性。<br>不光是儿子可以继承，后代都可以继承！<br>一系列font属性,color,text-align,!!line-htight!!(极容易忽略)<br>切记！！如果line-height带了单位，line-height继承来的是父亲计算出来的结果px值，如果父亲line-height为2，那继承给儿子是从父亲计算得到的结果，而不是继承过来之后再在儿子这儿算结果。行高出问题了看下是否是这个问题。line-height最好不要带单位，就儿子算儿子的了。<br>边距、位置、宽高、背景色不默认继承</p><p>a标签比较特殊，自带一个固定的颜色，所以不会从父元素默认继承。</p><p>···<br>由于line-height可以被继承，所以div设置height后同时设置相等的line-height，即可完成内容垂直居中表现。<br>实际上相当于div内部的子元素继承了div的line-height，如果为了清晰还是直接设置子元素更好。<br>···<br>所有text-\font-\line-属性都默认可继承</p><h5 id="优先级："><a href="#优先级：" class="headerlink" title="优先级："></a>优先级：</h5><p>继承&lt;&lt;标签选择器&lt;&lt;类选择器&lt;&lt;id选择器&lt;&lt;行内样式设置&lt;&lt;!important<br>继承权重为0，基本可以忽略，继承即使加上!important 还是不如其他选择器<br>每一类对应一定数值的权重，权重可以叠加</p><p>更加细分：<br>ID选择器&gt;类选择器=伪类选择器&gt;属性选择器&gt; (子选择器=后代选择=相邻选择器)</p><blockquote><p>标签选择器=伪元素选择器&gt;通配符选择器</p></blockquote><p>· 一般后代选择器、相邻选择器不应该与标签选择器比较！</p><p>注意：</p><p>######header a {}</p><h6 id="a-logo"><a href="#a-logo" class="headerlink" title="a#logo {}"></a>a#logo {}</h6><p>这两个选择器的权重一样！权重一样！ 写在后面的会层叠掉前面的！！所以并不一定是后代大于标签</p><p>属性选择器可以这样用<br>[class=”linear-gradient”]，不是必须在前面加上标签div[class=ori]<br>input[type=text]是交集选择器，标签*属性</p><p>读取选择器的原则是从右到左。因此，我们书写的右边的最后一个选择器，被称作关键选择器，对于效率有决定性影响。</p><h4 id="效率由高到低"><a href="#效率由高到低" class="headerlink" title="效率由高到低"></a>效率由高到低</h4><p>1.ID选择器<br>2.类选择器<br>3.标签选择器<br>4.相邻选择器<br>5.子选择器<br>6.后代选择器<br>7.通配符选择器<br>8.属性选择器<br>9.伪类选择器</p><p>选择器优先级与效率PK：<br><a href="https://segmentfault.com/a/1190000003064142" target="_blank" rel="noopener">https://segmentfault.com/a/1190000003064142</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> FrontEnd </category>
+          
+          <category> CSS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CSS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo博客个性域名设置</title>
       <link href="/2018/08/30/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%9F%9F%E5%90%8D%E8%AE%BE%E7%BD%AE/"/>
       <url>/2018/08/30/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%9F%9F%E5%90%8D%E8%AE%BE%E7%BD%AE/</url>
@@ -1110,33 +1124,6 @@
         <tags>
             
             <tag> Hexo Blog </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CSS特性与优先级</title>
-      <link href="/2018/08/22/CSS%E7%89%B9%E6%80%A7%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7/"/>
-      <url>/2018/08/22/CSS%E7%89%B9%E6%80%A7%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7/</url>
-      
-        <content type="html"><![CDATA[<h3 id="层叠性，继承性，优先级"><a href="#层叠性，继承性，优先级" class="headerlink" title="层叠性，继承性，优先级"></a>层叠性，继承性，优先级</h3><p>浏览器窗口中样式表，出现横划线，代表出现层叠问题</p><h5 id="层叠性："><a href="#层叠性：" class="headerlink" title="层叠性："></a>层叠性：</h5><p>·同一类选择器(✔)，优先级相同时，后定义的覆盖之前定义的</p><h5 id="继承性："><a href="#继承性：" class="headerlink" title="继承性："></a>继承性：</h5><p>子元素没有设置样式，父元素设置了样式，子元素继承父元素的属性。<br>不光是儿子可以继承，后代都可以继承！<br>一系列font属性,color,text-align,!!line-htight!!(极容易忽略)<br>切记！！如果line-height带了单位，line-height继承来的是父亲计算出来的结果px值，如果父亲line-height为2，那继承给儿子是从父亲计算得到的结果，而不是继承过来之后再在儿子这儿算结果。行高出问题了看下是否是这个问题。line-height最好不要带单位，就儿子算儿子的了。<br>边距、位置、宽高、背景色不默认继承</p><p>a标签比较特殊，自带一个固定的颜色，所以不会从父元素默认继承。</p><p>···<br>由于line-height可以被继承，所以div设置height后同时设置相等的line-height，即可完成内容垂直居中表现。<br>实际上相当于div内部的子元素继承了div的line-height，如果为了清晰还是直接设置子元素更好。<br>···<br>所有text-\font-\line-属性都默认可继承</p><h5 id="优先级："><a href="#优先级：" class="headerlink" title="优先级："></a>优先级：</h5><p>继承&lt;&lt;标签选择器&lt;&lt;类选择器&lt;&lt;id选择器&lt;&lt;行内样式设置&lt;&lt;!important<br>继承权重为0，基本可以忽略，继承即使加上!important 还是不如其他选择器<br>每一类对应一定数值的权重，权重可以叠加</p><p>更加细分：<br>ID选择器&gt;类选择器=伪类选择器&gt;属性选择器&gt; (子选择器=后代选择=相邻选择器)</p><blockquote><p>标签选择器=伪元素选择器&gt;通配符选择器</p></blockquote><p>· 一般后代选择器、相邻选择器不应该与标签选择器比较！</p><p>注意：</p><p>######header a {}</p><h6 id="a-logo"><a href="#a-logo" class="headerlink" title="a#logo {}"></a>a#logo {}</h6><p>这两个选择器的权重一样！权重一样！ 写在后面的会层叠掉前面的！！所以并不一定是后代大于标签</p><p>属性选择器可以这样用<br>[class=”linear-gradient”]，不是必须在前面加上标签div[class=ori]<br>input[type=text]是交集选择器，标签*属性</p><p>读取选择器的原则是从右到左。因此，我们书写的右边的最后一个选择器，被称作关键选择器，对于效率有决定性影响。</p><h4 id="效率由高到低"><a href="#效率由高到低" class="headerlink" title="效率由高到低"></a>效率由高到低</h4><p>1.ID选择器<br>2.类选择器<br>3.标签选择器<br>4.相邻选择器<br>5.子选择器<br>6.后代选择器<br>7.通配符选择器<br>8.属性选择器<br>9.伪类选择器</p><p>选择器优先级与效率PK：<br><a href="https://segmentfault.com/a/1190000003064142" target="_blank" rel="noopener">https://segmentfault.com/a/1190000003064142</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> FrontEnd </category>
-          
-          <category> CSS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CSS </tag>
             
         </tags>
       
