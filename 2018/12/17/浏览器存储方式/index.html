@@ -1,0 +1,104 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="浏览器存储方式"><meta name="keywords" content="JavaScript,浏览器相关"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>浏览器存储方式 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#localStorage"><span class="toc-number">1.</span> <span class="toc-text">localStorage</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sessionStorage"><span class="toc-number">2.</span> <span class="toc-text">sessionStorage</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie"><span class="toc-number">3.</span> <span class="toc-text">cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#cookie配置项"><span class="toc-number">3.1.</span> <span class="toc-text">cookie配置项</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">浏览器存储方式</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-17</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h5><ul>
+<li><p>(同域)同源策略限制</p>
+<p>请求与相应的协议、域名、端口都相同 </p>
+<p>不同的域存储的内容不能互相访问(例如存在qq.com的不能访问存在baidu.com的)</p>
+</li>
+</ul>
+<ul>
+<li><p>存储的内容都是字符串格式，</p>
+<p>注意对象转字符串时可能会变object Object，所以要借助JSON.stringfy和parse方法，数组为了安全也借助JSON的方法。</p>
+</li>
+<li><p>有一个全局事件，storage事件，当storage数据发生改变的时候(增删改等)就会触发</p>
+<p>当前页面触发的storage事件只能由其他页面监听</p>
+<p>当前页面自己对storage进行操作不会触发storage事件，是一种广播特性事件</p>
+<p>用于实现页面间的一些通信或交互效果</p>
+<p>要通过window.addEventListener(‘storage’,()=&gt;{})调用</p>
+<p>💡 注意这个事件可能不支持本地file协议，可能要用服务器环境才行</p>
+</li>
+</ul>
+<ul>
+<li>生命周期：存储的数据永久存在(其实在硬盘里)，刷新页面并不会丢失，除非你强制删除他们</li>
+</ul>
+<h5 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h5><p>除了生命周期以外，其他特性和使用方法一致</p>
+<p>==sessionStorage和localStorage区别==</p>
+<ul>
+<li>同源访问区别</li>
+</ul>
+<p>localStorage同一个域下多个页面文件可互通(e.g baidu.com/a.html和baidu.com/b.html)，但是sessionStorage同一个域下多个页面文件不可互通(localhost/a.html和localhost/b.html不可互通)</p>
+<ul>
+<li>storage事件区别</li>
+</ul>
+<p>sessionStorage不支持storage事件</p>
+<ul>
+<li>生命周期区别</li>
+</ul>
+<p>localStorage永久保存,sessionStorage临时保存(浏览器关闭或者页签关闭又再开后就没掉了)</p>
+<h5 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h5><p>cookie和storage==最大最大的区别==: cookie用于前后端交互,storage更多地用作纯前端存储 cookie用于用户状态存储</p>
+<p>cookie会主动在http请求中进行传输(自动) 这是<strong>特性</strong></p>
+<p>服务器端可以把一些非正文数据通过头信息中的cookie字段传给客户端(浏览器)</p>
+<p>浏览器每次发送请求时会主动把请求相同域下的cookie数据通过头信息发给服务器</p>
+<p>storage也可以在http请求中传输，但是需要手动传给服务器</p>
+<p>cookie使用场景: 用户的登录状态</p>
+<p>http协议的特点:无状态协议，多次请求之间不会有任何关联，即每次请求都是独立的</p>
+<p>对服务器来说,第二次请求并不知道你第一次请求过啥,并不知道客户端干过啥</p>
+<p>举个🌰 </p>
+<p>/login - 服务器验证通过了</p>
+<p>/ 再次发请求 服务器并不认为你已经登录过</p>
+<p>用户登录系统，其实就是希望在多次服务器请求之间能共享一种状态(登录成功的数据)(就像前端的localStorage那样共享)</p>
+<p>服务器验证通过后，需要保存当前登录的该用户的状态数据，这个数据不能只保存在服务器</p>
+<p>我们需要把这样的凭证信息保存到当前发请求的客户端上，这个数据很多时候都不在正文(body)里，我们会把这个数据通过头信息发给客户端(而不是body) -&gt; Set-Cookie (服务器给客户端)</p>
+<p>当浏览器从头信息中获取到Set-Cookie时就会主动存储在浏览器cookie中，以后的同域请求也会主动把cookie中的数据通过头信息发送给服务器 -&gt;cookie (客户端给服务器)</p>
+<p>通常会把比较敏感的数据cookie(例如密码和一些用户资料等)进行加密,和设置当前cookie的http-only属性为true,表示这个cookie只能用于http传输,不能通过js更改(浏览器中可以直接改)</p>
+<p>一级域名指一个点，二级域名二个点，三级域名三个点</p>
+<p>baidu.com  一级域名</p>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 二级域名</p>
+<p>a.super.baidu.com 三级域名</p>
+<h6 id="cookie配置项"><a href="#cookie配置项" class="headerlink" title="cookie配置项"></a>cookie配置项</h6><p>==path==</p>
+<p>cookie可以设置域，cookie除了按照域名进行存储外(如baidu.com和qq.com)，还可以按路径进行存储(如baidu.com/a )，子域即斜线后带东西</p>
+<p>子域(路径)的访问类似js作用域，比如cookieA设定了baidu.com/a，那么baidu.com访问不到,baidu.com/a才访问得到；cookieB设定了baidu.com，那么baidu.com和baidu.com/a都可以访问到。</p>
+<p>==expires/max-age==</p>
+<p>expires设置cookie到期时间 值为Date对象格式</p>
+<p>max-age设置cookie有效期，值为number单位秒</p>
+<p>expires过时了，现在推荐使用max-age</p>
+<p>ctx.cookies.set(‘username’,‘myname’,{</p>
+<p>​    domain: “baidu.com”,</p>
+<p>​    path: ‘/a’,</p>
+<p>​    maxAge: 3600,</p>
+<p>​    httpOnly: false</p>
+<p>})</p>
+<p>==httpOnly==</p>
+<p>默认为true,无法通过js去操作cookies,只有浏览器自己可以操作cookies</p>
+<p>cookie的格式 不太方便使用 可以借助别人的插件或者自己封装下格式和方法</p>
+<p>==cookie的删除==</p>
+<p>前端没有直接删除方法，将max-age设置为0或-1</p>
+<p>后端koa可以 ctx.cookies.set(‘usname’,null)</p>
+<p>a链接无法发出post请求，需要表单form</p>
+<p>a链接可以发get请求</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/17/浏览器存储方式/">https://skr.dog/2018/12/17/浏览器存储方式/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/浏览器相关/">浏览器相关</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/18/跨域方案浅析/"><i class="fa fa-chevron-left">  </i><span>跨域方案浅析</span></a></div><div class="next-post pull-right"><a href="/2018/12/16/正则表达式必备/"><span>正则表达式必备</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

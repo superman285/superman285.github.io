@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="网络与IP基础"><meta name="keywords" content="基础,HTTP"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>网络与IP基础 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络与IP"><span class="toc-number">1.</span> <span class="toc-text">网络与IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#端口"><span class="toc-number">2.</span> <span class="toc-text">端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器地址栏输入网址按回车"><span class="toc-number">3.</span> <span class="toc-text">浏览器地址栏输入网址按回车</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">网络与IP基础</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-02</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="网络与IP"><a href="#网络与IP" class="headerlink" title="网络与IP"></a>网络与IP</h3><hr>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">HTTP协议规定了内容组织形式(请求4部分、响应4部分)</font>
+
+<p>但没规定怎么传(传输方式)</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">TCP协议规定如何传输</font>
+
+<p>传输控制协议 Transmission Control Protocol</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">IP协议规定如何联网</font>
+
+<p>网络协议 Internet Protocol，有ip才能访问网站</p>
+<p>常见面试题：</p>
+<ol>
+<li><strong>TCP和UDP区别</strong></li>
+</ol>
+<p>TCP可靠、面向链接、相对UDP较慢；</p>
+<p>UDP不可靠、不面向连接、相对TCP较快。</p>
+<ol>
+<li><p><strong>TCP的三次握手</strong></p>
+<p>每次建立连接前，客户端和服务器端之间都要进行三次对话才开始正式传输内容。</p>
+<blockquote>
+<p>客户端：我要连接你了，可以么？</p>
+<p>服务端：我准备好了，连接我吧</p>
+<p>客户端：那我连接你咯</p>
+<p>开始传输内容</p>
+</blockquote>
+</li>
+</ol>
+<p>网络相关知识：</p>
+<p>路由器连上电信服务器，路由器就有了一个外网IP，是在互联网上的地址。</p>
+<p>一般外网IP都不是恒定不变的，固定的外网IP需要花钱租用，例如BAT官网的IP。</p>
+<p>路由器创建内网，家里连路由的设备使用内网，一般ip格式都是192.168.xxx.xxx</p>
+<p>路由器有外网ip(电信给分配的)和内网IP(192.168.1.1即路由配置页地址)</p>
+<p>路由-必经之路，联通了内外网，有时也被叫网关。</p>
+<p>若路由器到电信连接中断了，那内网设备就无法上外网了。 </p>
+<p>路由作用：交通警察，分发内容，转发内容。</p>
+<p>内网中的设备想访问外网必须经过路由器中转</p>
+<p>外网中的设备可以互相访问，外网中的设备无法访问你的内网设备。</p>
+<p>重要IP：</p>
+<ul>
+<li><p>本地(当前设备自己):127.0.0.1,每个设备都有这个ip</p>
+<p>hosts文件有一行：127.0.0.1 localhost，即localhost指向127.0.0.1</p>
+</li>
+<li><p>0.0.0.0 不表示任何设备，不同地方含义不同。</p>
+</li>
+</ul>
+<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><hr>
+<p>想要访问一个设备(使用tcp或udp协议，http就使用了tcp)，只指定ip不够，还必须指定端口Port。</p>
+<p>一个服务器可能提供不止一种服务，例如既提供HTTP服务、又提供FTP服务、还提供SMTP邮件服务，只用一个IP无法告诉服务器想使用哪种服务，所以需要端口。（如果不用端口那就一个个排队，效率极低)</p>
+<blockquote>
+<p><strong>重要原则：一个端口对应一个服务。</strong></p>
+</blockquote>
+<p>http服务最好使用80端口(可以使用别的端口，但不建议违反约定)</p>
+<p>https服务最好使用443端口</p>
+<p>FTP服务最好使用21端口</p>
+<ul>
+<li>0~1023端口留给系统使用，拥有管理员权限后才可使用这1024个端口。</li>
+<li>其他端口可以给普通用户使用。</li>
+<li>如果一个端口正在提供服务，被占用了，那就不能再使用这个端口，除非停掉正在占用这个端口的服务。</li>
+</ul>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">使用HTTP协议访问另一个IP时，必须同时提供IP和端口号，缺一不可。==<br><br><br><br><font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">如果不写端口号，浏览器默认帮你加上端口80。</font>
+
+<p>http协议，浏览器默认加上:80</p>
+<p>https协议，浏览器默认加上:443</p>
+<p>补充：//判断是http或https 或file(看本地时)</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/jimbowong/article/details/54960244" target="_blank" rel="noopener">//协议</a></p>
+</blockquote>
+<h3 id="浏览器地址栏输入网址按回车"><a href="#浏览器地址栏输入网址按回车" class="headerlink" title="浏览器地址栏输入网址按回车"></a>浏览器地址栏输入网址按回车</h3><hr>
+<p>发生了以下事情：</p>
+<p>浏览器先帮你补全协议、端口、路径/等</p>
+<p>向DNS发起询问，电信给一个真实IP</p>
+<p>浏览器向IP发起HTTP请求</p>
+<p>百度服务器接受请求，根据路径不同情况返回不同内容(html或css或js)</p>
+<p>下载到html内容后 浏览器解析和渲染html内容呈现在你面前</p>
+<p>HTTP响应第四部分（消息体）的格式是由什么确定</p>
+<p>❌ 由请求的路径的后缀确定的，如 /index.html 对应的响应就一定是 HTML 文件</p>
+<p>✅ 由响应第二部分中的 Content-Type 确定的，如 Content-Type: text/html 表示 HTML 文件</p>
+<p>保证内容格式需要确保HTTP头的 Content-Type，后缀真的无所谓。</p>
+<p>HTTP路径不是文件路径！！</p>
+<p>Node.js设置响应各部分内容API:</p>
+<ul>
+<li>第一部分: response.statusCode = 200</li>
+<li>第二部分: response.setHeader</li>
+<li>第四部分(消息体): response.write(‘Hi’)</li>
+</ul>
+<p>若启动了http-server但 浏览器无法访问localhost:端口号/</p>
+<p>可以检查下hosts文件配置是否有问题</p>
+</font></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/09/02/网络与IP基础/">https://skr.dog/2018/09/02/网络与IP基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/基础/">基础</a><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/09/05/HTML标签那些事儿(下)/"><i class="fa fa-chevron-left">  </i><span>HTML标签那些事儿(下)</span></a></div><div class="next-post pull-right"><a href="/2018/08/31/常用命令学习/"><span>常用命令学习</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="面向对象"><meta name="keywords" content="JavaScript,编程思想"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>面向对象 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#this指向"><span class="toc-number">1.</span> <span class="toc-text">this指向</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基本功"><span class="toc-number">2.</span> <span class="toc-text">基本功</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#面向过程与面向对象"><span class="toc-number">3.</span> <span class="toc-text">面向过程与面向对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#面向对象特征"><span class="toc-number">4.</span> <span class="toc-text">面向对象特征</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#抽象"><span class="toc-number">4.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#封装"><span class="toc-number">4.2.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#继承-一般子类不允许修改父类，-先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。"><span class="toc-number">4.3.</span> <span class="toc-text">继承(一般子类不允许修改父类，) 先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构造函数"><span class="toc-number">5.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#包装对象"><span class="toc-number">6.</span> <span class="toc-text">包装对象</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">面向对象</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-14</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h5><p>1.默认绑定规则 指向window或global</p>
+<p>2.隐式绑定规则，谁调用 this指谁 (fn()相当于window调用;xx.fn()相当于xx调用,this指向xx)</p>
+<p>3.显示绑定规则，call/apply |bind</p>
+<p>  显示指定了this</p>
+<p>  call(obj,a,b) apply(obj,[a,b]) bind(this,a,b)</p>
+<p>4.new, this指向了new出来的实例 new最大 优先级最高</p>
+<blockquote>
+<p>优先级: new&gt;显示绑定&gt;隐式绑定&gt;默认绑定</p>
+</blockquote>
+<p>this是无法==直接赋值==的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Modal</span></span>&#123;</span><br><span class="line">render()&#123;</span><br><span class="line">    button.onclick = <span class="keyword">this</span>.close.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">close()&#123;<span class="keyword">this</span>.xxxx.remove()<span class="comment">//关闭&#125;;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>bind的作用是修改&amp;绑定this指向(bind是作用于函数上的方法)。上述代码，this原本指向button，但是bind(this)中的this指的是当前上下文的this(即Modal创建的对象实例),所以this.close.bind(this)中两个this都被指向了Modal创建的对象实例。</p>
+<h5 id="基本功"><a href="#基本功" class="headerlink" title="基本功"></a>基本功</h5><blockquote>
+<p>某种类型的 字面量形式创建和new+构造函数创建的区别</p>
+<p>1.字面量形式创建，出来就是那种类型；new 构造函数创建，出来时为object对象类型！</p>
+<p>2.new方式会划出新的一片内存空间，而且因为是对象，存在堆内存中；</p>
+<p>  字面量方式是看以前有没同样的值，有就直接引用，没有才创建(设计模式Flyweight)</p>
+<p>但是:例如st=new String(“st”)创建出来的内容类型为object，</p>
+<p>结果st.__proto__ === String.prototype | st.__proto__!\=\=Object.prototype</p>
+<p>资料：参考学习</p>
+<p><a href="https://blog.csdn.net/duansale/article/details/74951091?utm_source=blogxgwz8" target="_blank" rel="noopener">https://blog.csdn.net/duansale/article/details/74951091?utm_source=blogxgwz8</a></p>
+<p>构造函数与字面量形式创建区别</p>
+<p><a href="https://www.jb51.net/article/133346.htm" target="_blank" rel="noopener">https://www.jb51.net/article/133346.htm</a> 函数带new不带new</p>
+</blockquote>
+<p>function Person(x,y){this.x = x;this.y=y;}</p>
+<p>var personA = Person(1,2); 这个personA相当于执行Person(x,y)后的返回值</p>
+<p>var personB = new Person(1,2); 相当于用Person构造函数构造了一个Person类型(实际上没Person类型，而是万能的Object类型)</p>
+<p>personB为 =&gt; Person {x: 1, y: 2} </p>
+<h5 id="面向过程与面向对象"><a href="#面向过程与面向对象" class="headerlink" title="面向过程与面向对象"></a>面向过程与面向对象</h5><p>面向过程-考虑点:这个事情怎么？步骤如何？过程是怎么样的？</p>
+<p>面向对象-考虑面:这个事情有什么特点？涉及哪些方面？该如何划分？</p>
+<h5 id="面向对象特征"><a href="#面向对象特征" class="headerlink" title="面向对象特征"></a>面向对象特征</h5><ul>
+<li>抽象-抽取事物的共性部分，是面向对象设计的一个重要步骤</li>
+<li>封装-通过类的形式对抽象内容进行实现的过程</li>
+<li>继承-子类可以直接使用父类的部分数据和方法，同时可以有选择地扩展</li>
+<li>多态-同一类对象调用相同方法可表现出不同行为或不同形态</li>
+</ul>
+<h6 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h6><p>==共性==</p>
+<ul>
+<li>外观-属性(名词或形容词)</li>
+<li>功能-方法(动词)</li>
+</ul>
+<h6 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h6><p>通过类型构造出来的一个具体实例</p>
+<p>类相当于图纸，对象是图纸做出来的一个实际物件</p>
+<h6 id="继承-一般子类不允许修改父类，-先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。"><a href="#继承-一般子类不允许修改父类，-先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。" class="headerlink" title="继承(一般子类不允许修改父类，) 先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。"></a>继承(一般子类不允许修改父类，) 先抽象成对象A和对象B，对比对象A和对象B，他们想死的部分又可以抽象出来，成为父亲，这就是继承。</h6><p>模态框</p>
+<p>通过继承的方式得到父类的所有特性，子类可以使用父级的部分属性和方法，而且可以扩展。</p>
+<p>extends</p>
+<p>当一个子类重写了构造函数，name子类构造函数中必须通过super调用父类构造函数，否则报错。</p>
+<p>如果子类没重写构造函数(不去改动constructor)，则不需要调用</p>
+<p>继承了父类特性以后，可以加上子类自己的一些逻辑(属性和方法)</p>
+<p>super代表父类</p>
+<p>设计模式</p>
+<p>单例，工厂，订阅者，</p>
+<h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><p>js中面向对象并不是基于类的，es6的class只是语法糖，引擎在解析的时候还是会把class解析成es6之前的构造函数。typeof一个class就可以看出来，实际上是function</p>
+<p>class Person =&gt; function Person</p>
+<p>class Person中的constructor函数 =&gt; 转换后的function Person</p>
+<p>class Person{constructor(){console.log(111)}}</p>
+<p>function Person(){console.log(111)}</p>
+<p>以上两者是同义的</p>
+<p>() 放在末尾为函数调用运算符</p>
+<p>==new 一元运算符== 核心作用：实例化对象</p>
+<p>new的运算数是一个函数</p>
+<p>function Person()</p>
+<p>var p1 = new Person | var p2 = new Person()</p>
+<p>当函数没有参数时，这两种写法是一毛一样的！</p>
+<p>构造器是用来创建对象的函数，如果一个函数返回的是对象，他就是一个构造函数。</p>
+<p>💡</p>
+<blockquote>
+<p>用new+函数方式赋值给变量，会隐式返回一个对象，不需要刻意写return，</p>
+<ul>
+<li>如果没有return或刻意写的return不是一个对象的时候，返回一个默认对象</li>
+<li>显式return的是一个对象的时候，返回你刻意写的return</li>
+</ul>
+<p>通过new执行的函数，函数内的this即执行这个函数完成后返回的对象。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _this;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    _this = <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> f1 = <span class="keyword">new</span> fn()</span><br><span class="line"><span class="built_in">console</span>.log(f1==_this) <span class="comment">//这两个其实是相等的，可以试试</span></span><br></pre></td></tr></table></figure>
+<p>==有的函数不能new，例如Symbol，无法new Symbol== 或者静态方法(直接用类型调用的,例如Object.keys)都无法new</p>
+<h5 id="包装对象"><a href="#包装对象" class="headerlink" title="包装对象"></a>包装对象</h5><p>数据类型：基础数据类型 | 复合数据类型</p>
+<p>对象是由其他简单数据类型综合而成的一种复合数据。</p>
+<p>对象这样的数据才有属性和方法；虽然简单数据类型没有属性和方法，但对这些数据进行的操作是很常见的需求，例如“abc”.length</p>
+<p>三个构造函数 Number String Boolean,通过这三个构造函数创建出来与三种简单类型数据相似的包装对象，类型为object</p>
+<p>字面量形式创建的简单类型，为了能使它们也能通过调用属性和方法的方式来操作(像对象这样),</p>
+<p>当我们调用一个普通数据类型的某个属性或方法时，js会根据这个普通数据所拥有的类型对实例化对应的构造函数，并以这个普通数据值作为参数，实例化一个与之对应的对象，再调用这个对象对应的属性或方法，且返回这个属性或方法的值。</p>
+<p>str = ‘abc’</p>
+<p>str.length =&gt; string类型 =&gt; (new String(str)).length</p>
+<p>let str3 = “abc” | let str4 = new String(“abc”)</p>
+<p>str3.a = 10; str4.a = 10;</p>
+<p>打印str3.a和str4.a 结果是啥？</p>
+<p>str3.a 根本无法添加属性，打印str3.a 其实是打印一个临时创建的对象的a (new String(str3)).a</p>
+<p>那肯定是 嗯 你懂的</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/14/面向对象/">https://skr.dog/2018/12/14/面向对象/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/编程思想/">编程思想</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/15/jQuery初步/"><i class="fa fa-chevron-left">  </i><span>jQuery初步</span></a></div><div class="next-post pull-right"><a href="/2018/12/13/原型-原型链简记/"><span>原型&amp;原型链简记</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

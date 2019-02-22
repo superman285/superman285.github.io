@@ -1,0 +1,160 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="流行的Koa框架"><meta name="keywords" content="Node.js,Koa"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>流行的Koa框架 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Koa框架-一个http框架"><span class="toc-number">1.</span> <span class="toc-text">Koa框架 一个http框架</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">hello</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#中间件的内涵"><span class="toc-number">0.1.</span> <span class="toc-text">中间件的内涵</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Koa框架应用"><span class="toc-number">1.</span> <span class="toc-text">Koa框架应用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#静态资源代理-koa-static-cache"><span class="toc-number">1.1.</span> <span class="toc-text">静态资源代理 koa-static-cache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#路由-koa-router"><span class="toc-number">1.2.</span> <span class="toc-text">路由 koa-router</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#nunjucks-模板引擎"><span class="toc-number">1.3.</span> <span class="toc-text">nunjucks 模板引擎</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">Hello </span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#文件上传模块-koa-multer"><span class="toc-number">1.</span> <span class="toc-text">文件上传模块 koa-multer</span></a></li></ol></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">流行的Koa框架</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-14</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BackEnd/">BackEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BackEnd/Koa/">Koa</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="Koa框架-一个http框架"><a href="#Koa框架-一个http框架" class="headerlink" title="Koa框架 一个http框架"></a>Koa框架 一个http框架</h5><p>Koa其实就是对node原生http对象的二次包装，提供了更好的接口和结构，方便使用和维护。</p>
+<p>具体API <a href="https://koa.bootcss.com/" target="_blank" rel="noopener">https://koa.bootcss.com/</a></p>
+<p>Koa本身超级简单，也没自带路由，可以借助别人实现的第三方中间件，来配合使用。</p>
+<p>例如路由 : koa-router</p>
+<p>第三方中间件大全：<a href="https://github.com/koajs/koa/wiki" target="_blank" rel="noopener">https://github.com/koajs/koa/wiki</a></p>
+<p>常用：</p>
+<p>koa-static-cache 静态资源代理</p>
+<p>koa-router 路由</p>
+<p>nunjucks 模板引擎</p>
+<p>koa2-cors 解决跨域问题</p>
+<p>在服务器端app.js</p>
+<p>const cors = require(‘koa2-cors’);</p>
+<p>app.use(cors()); //放在route前</p>
+<p>app.use(router.routes());</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);<span class="comment">//可确认下koa版本是否是2</span></span><br><span class="line"><span class="comment">//相当于const http = require('http');</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个经过Koa包装的http服务器</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">//相当于 const app = new http.Server();| 或 http.createServer();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//监听指定端口</span></span><br><span class="line">app.listen(<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
+<p>Koa帮我们重新包装了http对象(包成app对象)，并处理了很多通用数据和方法，并把这些数据和方法挂到了app的一个属性下面==app.context== context为了方便一般可简写为ctx</p>
+<p>没有请求的时候打印(直接打印只能用dir)app.context 是空对象，还没有数据过来</p>
+<p>==一般不会直接调用app.context，因为该对象没有经过处理，而是要通过中间件函数的第一个参数去掉用==</p>
+<p>有请求的时候，中间件函数就会执行，同时Koa会解析数据并赋值给app.context，把它作为当前执行的中间件的第一个参数传入进来</p>
+<p>这样使用：</p>
+<p>app.use(ctx=&gt;{console.log(ctx)})</p>
+<p>context下包含的对象，请求响应两大对象 就同http一样</p>
+<ul>
+<li>request对象</li>
+<li>response对象  |响应(输出)|</li>
+<li>app对象</li>
+</ul>
+<p>context对象下还有一些属性是request和response的映射</p>
+<p>e.g </p>
+<p>context.response.body === context.body</p>
+<p>context.request.header === context.header</p>
+<p>为了写起来简便，很多request和response下的对象都直接挂在了context下。</p>
+<p>==注意==</p>
+<p>ctx.body是ctx.response.body 是响应的正文，是服务器发给客户端的！</p>
+<p>ctx.request.body 并不一样 这是请求的正文，是客户端发给服务器的！</p>
+<p>context.request.url</p>
+<p>context.response.body = “</p><h1>hello</h1>”|“{a:1,b:2}”|“hello world”<p></p>
+<p>帮你自动辨别你提供的数据，智能地设置content-type为html/json/plain (相当于MIME)，不用麻烦你自己再判断</p>
+<h6 id="中间件的内涵"><a href="#中间件的内涵" class="headerlink" title="中间件的内涵"></a>中间件的内涵</h6><p>一个http服务器主要做的事情流程是如何的？</p>
+<ul>
+<li>解析请求 -&gt; 处理数据 -&gt; 返回数据</li>
+</ul>
+<p>Koa框架帮助我们处理第一步的请求解析并封装到app对象里面以供后续使用且同时帮我们处理数据的返回，比如根据处理好的数据返回不一样的Content-Type</p>
+<p>中间的步骤是数据处理，数据的处理就和业务是相关的(你有什么具体需求Koa肯定不知道的)，Koa就无能为力了</p>
+<blockquote>
+<p>中间件</p>
+<p>==中间件可以理解为对用户请求进行处理(或过滤等)的一个东西，不会直接对前端进行响应，而是将处理结果往下传递，就是中间处理数据的一个部件==</p>
+<p>需要我们处理的步骤在中间(处理数据这个步骤)，那么我们只需要通过某种方式把我们需要的事情注册到Koa中间件的列表中，当Koa处理完成解析请求后，就会自动的执行我们注册的中间件，执行完中间件后就会自动调用返回数据的代码</p>
+</blockquote>
+<p>深度理解中间件的执行顺序，next的作用</p>
+<p><a href="https://segmentfault.com/q/1010000011033764" target="_blank" rel="noopener">https://segmentfault.com/q/1010000011033764</a></p>
+<p>洋葱圈模型，这个也可以适用于事件冒泡机制啊哈哈</p>
+<p>一个js文件里头 不是所有有use的地方 都需要看到next 没有next就影响其他use了 ==并不是!==</p>
+<p>这个函数得是中间件 你才需要next! 比如访问静态页面或访问路由 不需要向下next了 就不算中间件？</p>
+<p>中间件本质就是一个函数</p>
+<p>注册中间件</p>
+<p>app.use(function(){</p>
+<p>}); </p>
+<p>//可以处理代理、跨域、负载等各种各样的问题 ssr服务器端渲染</p>
+<p>中间件的next方法是异步的，需要加上await</p>
+<p>Koa解决跨域简单写法</p>
+<p>app.use( async (ctx,next) =&gt; {</p>
+<p>ctx.set(‘Access-Control-Allow-Origin’,‘*’); await next();</p>
+<p>})</p>
+<p>中间件模拟 深度</p>
+<p><a href="https://segmentfault.com/a/1190000016707059" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016707059</a></p>
+<h5 id="Koa框架应用"><a href="#Koa框架应用" class="headerlink" title="Koa框架应用"></a>Koa框架应用</h5><p>==路径开头的斜线非常非常重要==</p>
+<h6 id="静态资源代理-koa-static-cache"><a href="#静态资源代理-koa-static-cache" class="headerlink" title="静态资源代理 koa-static-cache"></a>静态资源代理 koa-static-cache</h6><p>某些特定路径 走静态资源代理</p>
+<p>其他路径 走服务器路由逻辑</p>
+<blockquote>
+<p>需要访问静态资源时(例如html啊 图片啊之类)使用静态资源代理 否则打开服务器它不知道读哪个目录 想把目录当成一个服务器 访问里头的静态资源 就需要做这一步</p>
+<p>否则读不到静态资源</p>
+<p>切记: 访问时要正确路径/xxx.html 千万别漏了(动态路由不需要，这儿静态的千万别弄错)</p>
+<p>dir设置静态资源所在目录 要加.</p>
+<p>prefix设置你想要加的前缀 不设置也行的 不加.</p>
+<p>访问动态资源可使用路由koa-router 配合前端的get请求的url</p>
+</blockquote>
+<p>KoaStaticCache(dir[,options][,files]) 包装函数写法 返回一个函数</p>
+<p>dir:指定要处理的静态文件(html)存放目录，当用户访问某个url时</p>
+<p>options为对象，可以修改</p>
+<p>max-age 最长缓存时间| 是否压缩(gzip) | 前缀(prefix,设置url前缀) | dynamic(是否动态读取)</p>
+<p>例如prefix:/public 则需要请求/public/index.html才可以访问</p>
+<p>prefix的作用是 可以区分开静态资源和需要动态处理的资源 加上前缀才可以正常访问</p>
+<p>dynamic 是否动态读取，默认为false</p>
+<p>accept-encoding为支持的编码(gzip更常用)</p>
+<p>访问同一个url时</p>
+<ul>
+<li><p>静态资源: 如果资源内容不改变，那么访问这个url得到的内容不会有任何变化</p>
+<p>例如css啊 图片啊 部分js代码(特效之类)等</p>
+</li>
+<li><p>动态资源: 同一个url可能会根据不同的处理得到==不一样==的内容 </p>
+<p>举个栗子🌰 ctx.body = “”+Math.random() 每次访问同一个url得到的内容可能都不一样</p>
+</li>
+</ul>
+<p>静态资源可以利用直接读取文件并返回的方式处理，例如利用koa-static-cache</p>
+<p>动态资源需要具体的处理逻辑，根据不同的url返回不一样的内容</p>
+<p>动态资源的url可能量也很大，为了更好地处理这些动态资源url，我们需要使用==路由==，例如koa-router</p>
+<p>==Koa框架帮我们处理了请求，处理了输出==</p>
+<p>向客户端返回数据是通过 http=&gt; end()方法来实现的</p>
+<p>把ctx.body作为返回值， 相当于.end(ctx.body)</p>
+<p>所以不需要在中间件中手动调用end方法，只需要给ctx.body赋值</p>
+<p>然而中间件很多都是异步操作，如果不做特殊操作 .end方法不会等异步操作完成才调用，所以那时调用会是 not found (那时ctx.body是undefined)</p>
+<p>如果 await fn(); .end(ctx.body);  这样就会等fn执行有结果后 才会调end</p>
+<h6 id="路由-koa-router"><a href="#路由-koa-router" class="headerlink" title="路由 koa-router"></a>路由 koa-router</h6><p>路由：即映射，内容分发，一个url与某个函数的绑定 形成一种关系</p>
+<p>为我们的url 绑定对应的 处理函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">router.use(<span class="string">'/'</span>,ctx=&gt;&#123;&#125;)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*use不会处理请求方法,任何的请求method都会走use,不区分get|post,类似统一入口</span></span><br><span class="line"><span class="comment">*url部分也不是相等，而是包含，use判断的是是否包含'/',只要前缀为'/'都会走use</span></span><br><span class="line"><span class="comment">*get与use的区别是get时路径必须为相等关系，而use时路径包含即可</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//use的作用,例如可以做一个用户统一验证,要么给每个get的/user做个验证,要么在use给/user做验证即可。</span></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,ctx=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">"首页"</span>;</span><br><span class="line">&#125;)</span><br><span class="line">router.get(<span class="string">'/user'</span>,ctx=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">"用户"</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*把设置好的路由对象挂到指定的app对象上,app接收到请求后会把请求转发给router.routes()中间件</span></span><br><span class="line"><span class="comment">* app -&gt; router -&gt; 根据不同url执行不同的绑定函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">app.use(router.routes())</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡注意</p>
+<p>多个中间件函数只会默认执行第一个，后续的中间件函数需要我们手动调用</p>
+<p>中间件函数的第二个参数是一个next方法，调用该方法就可以执行下一个匹配的中间件</p>
+<p>d</p>
+<p>router.use(‘/user’,(ctx,next)=&gt;{</p>
+<p>​    //判断</p>
+<p>​    next();</p>
+<p>})</p>
+</blockquote>
+<p>redirect方法 重定向(不设置默认为302) | 重定向分为 301永久重定向 , 302临时重定向</p>
+<p>router.redirect(‘/login’,‘/login1’,302); //临时设置login重定向到login1，参数也可以设置为301</p>
+<p>prefix设置前缀，省去后面重复写的时候麻烦</p>
+<p>const router = new KoaRouter({</p>
+<p>​    prefix: “/user”</p>
+<p>});</p>
+<p>==path-to-regexp==</p>
+<p>/:id 表示/后面面的值是不固定的，所有符合</p>
+<p>温习下2小时处视频内容，模板字符串，对象解构，find用法等知识点，</p>
+<p>模板字符串支持表达式，不支持语句</p>
+<p>可以这么写${users.map(user=&gt;\<li>\</li>).join(‘’)}</p>
+<h6 id="nunjucks-模板引擎"><a href="#nunjucks-模板引擎" class="headerlink" title="nunjucks 模板引擎"></a>nunjucks 模板引擎</h6><p>渲染工作是在后端进行的</p>
+<p>let str = tpl.renderString(‘</p><h1>Hello </h1>’,{username:xxxx})<p></p>
+代表变量 类似es6中的${var}<br><br><br><br>管道符|  管道符前的内容作为参数传给管道符后的函数 例如
+<h5 id="文件上传模块-koa-multer"><a href="#文件上传模块-koa-multer" class="headerlink" title="文件上传模块 koa-multer"></a>文件上传模块 koa-multer</h5><p>storage配置</p>
+<p>封装的file属性 fieldname | originalname | encoding | mimetype</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/14/流行的Koa框架/">https://skr.dog/2019/01/14/流行的Koa框架/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Node-js/">Node.js</a><a class="post-meta__tags" href="/tags/Koa/">Koa</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/15/node简单基础/"><i class="fa fa-chevron-left">  </i><span>node简单基础</span></a></div><div class="next-post pull-right"><a href="/2019/01/12/Vuex和VueRouter/"><span>Vuex和VueRouter</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="跨域方案浅析"><meta name="keywords" content="跨域"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>跨域方案浅析 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#跨域"><span class="toc-number">1.</span> <span class="toc-text">跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#JSONP-json-with-pending"><span class="toc-number">1.1.</span> <span class="toc-text">JSONP json with pending</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#后端代理-这个是最强的-后端发请求-不涉及跨域问题-后端无同源策略"><span class="toc-number">1.2.</span> <span class="toc-text">后端代理 这个是最强的 (后端发请求 不涉及跨域问题 后端无同源策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CORS"><span class="toc-number">1.3.</span> <span class="toc-text">CORS</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">跨域方案浅析</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-18</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h4 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h4><p>后续过来补充</p>
+<p>http</p>
+<p>协议域名端口</p>
+<p>当一个源 请求另一个源的数据 请求是没问题的</p>
+<p>但是响应以后 浏览器会做同源验证 如果浏览器发现请求的源于当前接收数据的源不一致</p>
+<p>那浏览器就会拒绝接收数据</p>
+<p>服务端响应头 该响应的资源是否被允许被给定的origin共享</p>
+<p>Access-Control-Allow-Origin</p>
+<p>服务器端设置响应头的这个字段 可以被前端某些源访问</p>
+<p>找一个东西替代ajax发送跨域请求</p>
+<ul>
+<li>能发http请求</li>
+<li>不受跨域影响</li>
+<li>能够处理接收到的数据</li>
+</ul>
+<p>例如img link script</p>
+<p>script是最优选择</p>
+<p>script加载后 会被浏览器js引擎自动执行里头的代码    </p>
+<p>script两种加载方式</p>
+<ol>
+<li>\<script src="1.js">\</script></li>
+</ol>
+<p>这种加载方式是同步的，加载完成才执行后面的代码</p>
+<ol>
+<li><p>let scriptEle = document.createElement(‘script’)</p>
+<p>scriptEle.src = “xxx.api”</p>
+<p>document.body.appendChild(scriptEle)</p>
+<p>console.log(1)</p>
+</li>
+</ol>
+<p>这种动态加载方式是异步的，没加载完就会执行后续代码，解决方式：加载完成后再调</p>
+<p>scriptEle.onload = ()=&gt;{console.log(1)}</p>
+<h5 id="JSONP-json-with-pending"><a href="#JSONP-json-with-pending" class="headerlink" title="JSONP json with pending"></a>JSONP json with pending</h5><p>JSONP 是一种<br>【请求一段 JS 脚本，把执行这段脚本的结果当做数据】</p>
+<p>jsonp是通过script发送的请求，只能是get，不可能带其他字段不可能带正文呀，因为script标签只有src源</p>
+<h5 id="后端代理-这个是最强的-后端发请求-不涉及跨域问题-后端无同源策略"><a href="#后端代理-这个是最强的-后端发请求-不涉及跨域问题-后端无同源策略" class="headerlink" title="后端代理 这个是最强的 (后端发请求 不涉及跨域问题 后端无同源策略"></a>后端代理 这个是最强的 (后端发请求 不涉及跨域问题 后端无同源策略</h5><p>服务端也可以发送http请求 例如node的http模块 </p>
+<p>const req = http.request(‘<a href="http://localhost:8080/getdata’,res=&gt;{" target="_blank" rel="noopener">http://localhost:8080/getdata’,res=&gt;{</a></p>
+<p>res.on(‘data’,chunk=&gt;{console.log(chunk)})</p>
+<p>res.on(‘end’,chunk-&gt;{console.log(‘数据接收完成’)})</p>
+<p>})</p>
+<p>//发送</p>
+<p>req.write(‘’);</p>
+<p>req.end();</p>
+<p>vue-proxyTable 简单配置 changeOrigin: true</p>
+<p>最新的vue-cli3.0 配置好像是proxy而不是proxyTable?</p>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h5><p>Cross-Origin Resource Sharing 跨来源资源共享</p>
+<hr>
+<p>koa使用第三方模块 koa2-cors</p>
+<p><a href="https://www.jianshu.com/p/5b3acded5182" target="_blank" rel="noopener">https://www.jianshu.com/p/5b3acded5182</a></p>
+<p>其实自己手动配置也可以</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/18/跨域方案浅析/">https://skr.dog/2018/12/18/跨域方案浅析/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/跨域/">跨域</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/18/网络请求相关知识点/"><i class="fa fa-chevron-left">  </i><span>网络请求相关知识点</span></a></div><div class="next-post pull-right"><a href="/2018/12/17/浏览器存储方式/"><span>浏览器存储方式</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

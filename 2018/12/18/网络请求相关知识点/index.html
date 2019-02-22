@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="网络请求相关知识点"><meta name="keywords" content="HTTP,网络知识,Web"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>网络请求相关知识点 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#不刷新的请求方式"><span class="toc-number">1.</span> <span class="toc-text">不刷新的请求方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#发请求"><span class="toc-number">2.</span> <span class="toc-text">发请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#queryString"><span class="toc-number">3.</span> <span class="toc-text">queryString</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#form表单"><span class="toc-number">4.</span> <span class="toc-text">form表单</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#请求方式"><span class="toc-number">5.</span> <span class="toc-text">请求方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#FormData"><span class="toc-number">6.</span> <span class="toc-text">FormData</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">网络请求相关知识点</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-18</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="不刷新的请求方式"><a href="#不刷新的请求方式" class="headerlink" title="不刷新的请求方式"></a>不刷新的请求方式</h5><ul>
+<li>SRJ 无刷新局部更新页面 server render javascript</li>
+<li>大名鼎鼎的AJAX</li>
+<li>iframe 在iframe里刷新 不影响当前页面</li>
+<li>image也可以发请求 只能发get请求 不需要刻意将image appendChild到body中</li>
+<li>script可以发请求 只能发get请求 一定要 appendChild到body中</li>
+</ul>
+<p>黑科技 iframe|script|image发请求 <a href="https://xiedaimala.com/tasks/d282131e-2ef0-4789-88d7-bba63496876b/video_tutorials/ca0b38c7-41fd-46a9-9780-be6067272e6e" target="_blank" rel="noopener">https://xiedaimala.com/tasks/d282131e-2ef0-4789-88d7-bba63496876b/video_tutorials/ca0b38c7-41fd-46a9-9780-be6067272e6e</a></p>
+<h5 id="发请求"><a href="#发请求" class="headerlink" title="发请求"></a>发请求</h5><p>form发请求 会刷新或新开页面</p>
+<p>a发get请求 会刷新或新开页面</p>
+<p>img发get请求 只能以图片形式展示</p>
+<p>link发get请求 只能以css、favicon形式展示</p>
+<p>script发get请求 只能以脚本形式运行</p>
+<blockquote>
+<p>iframe代码示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/pay"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">target</span>=<span class="string">"result"</span>&gt;</span></span><br><span class="line">&gt;     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"付款"</span>&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"about:blank"</span> <span class="attr">name</span>=<span class="string">"result"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>这时是在iframe中刷新，不会影响原页面体验</p>
+</blockquote>
+<blockquote>
+<p>image发请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">&gt; image.src = <span class="string">'/pay'</span></span><br><span class="line">&gt; image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//请求成功&#125;</span></span><br><span class="line">&gt; image.onerror=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//请求失败&#125;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>//请求用状态码 response.statusCode来判断 2开头成功 4开头失败</p>
+<p>//浏览器比较聪明 只是设置200状态码还不认为成功</p>
+<p>必须response.write(fs.readFileSync（‘./真图.jpg’)) </p>
+<p>Content-Type设为image/jpg 才可以onload成功</p>
+</blockquote>
+<blockquote>
+<p>script发请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">&gt; script.src = <span class="string">'/pay'</span></span><br><span class="line">&gt; script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.currentTarget.remove()<span class="comment">//请求成功&#125;</span></span><br><span class="line">&gt; script.onerror=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.currentTarget.remove()<span class="comment">//请求失败&#125;</span></span><br><span class="line">&gt; <span class="comment">//清除标签以免每次请求都多生成一个 浪费性能</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>服务器端写</p>
+<p>response.setHeader(‘Content-Type’,‘application/javascript’)</p>
+<p>response.statusCode=200</p>
+<p>response.write(‘amount.innerText-=1’)//直接写js代码传回给前端加载</p>
+<p>这个技术SRJ 无刷新局部更新页面 server render javascript</p>
+</blockquote>
+<h5 id="queryString"><a href="#queryString" class="headerlink" title="queryString"></a>queryString</h5><p>查询字符串</p>
+<p>url问号❓后的数据为queryString  查询参数</p>
+<p>queryString内容是key=value形式组成的数据,多个key=value使用&amp;拼接</p>
+<p>queryString传输的内容是有限制的,会把内容转成urlencode编码进行传输</p>
+<blockquote>
+<p>queryString和http的请求方式没有任何关系，他只是url中的一部分！</p>
+</blockquote>
+<p>所以get和post都可以用queryString，post使用queryString后端也可以读到！ctx.query可以读到</p>
+<p>任何请求都可以带queryString 查询参数</p>
+<p>get也可以提交 不过语义化最好只是用来查询</p>
+<h5 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h5><p>form action填服务器请求地址</p>
+<p>表单会根据action、method、enctype属性拼接请求的url，同时会自动根据表单内容拼接queryString部分</p>
+<p>queryString传输的内容有限制，会把内容转成urlencode编码格式进行传输</p>
+<p>urlencode</p>
+<p>url长度有限制，大的数据不推荐使用queryString来传输，较大的数据(比如几千个字符)推荐使用http正文进行传输</p>
+<p>Koa的ctx.query可以查出queryString</p>
+<h5 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h5><p>get | post | put | delete | patch | head 等</p>
+<p>不同的请求方法有不同的传输方式和响应规则</p>
+<blockquote>
+<p>MDN资料:<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods</a></p>
+</blockquote>
+<blockquote>
+<p>精华笔记:/Users/superman285/Programmer/饥人谷前端/前端学前基础/HTTP相关姿势.md</p>
+</blockquote>
+<p>请求：请求行 请求头 请求体</p>
+<p>响应：状态行 响应头 响应体</p>
+<p>head只有响应头，没有响应体</p>
+<p>get方法:不支持正文数据传输(没有主体)，应该只被用于获取数据</p>
+<p>这个方法对服务器来说是安全的，因为不会修改服务器的数据和状态，一般为读，</p>
+<p>但对用户来说可能不安全，查询参数可能会明文暴露密码。</p>
+<p>get方法通过koa-router的get方法中ctx.query可以查queryString</p>
+<p>post方法:应该被用于提交数据</p>
+<p>提交的数据会放在正文中，正文中的数据格式依赖</p>
+<p>post方法通过koa-router的post方法中ctx.request.body(ctx.body)可以查</p>
+<p>需要解析正文的话要安装 koa-body-parser</p>
+<h5 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h5><p>多媒体 图片音乐视频等文件的上传 使用二进制格式 使用FormData</p>
+<p>如果有formData对象 不需要手动设置请求头的content-type</p>
+<p>let fd = new FormData();</p>
+<p>//fd.append(‘username’,30); 普通数据</p>
+<p>重要💡 input.value值并不是文件二进制数据，只是路径和文件名</p>
+<p>//fd.append(‘file1’,input.files[0])  //提交文件数据</p>
+<p>//input为取到的input元素 当input加上行内属性multiple时 可以多选文件上传</p>
+<p>input.files 为类数组 数字索引对应相应文件</p>
+<p>input.files[0]才是真正要提交的文件数据</p>
+<p>content-type: multipart/form-data</p>
+<p>xhr的upload对象 有事件 可以监听上传相关事件 例如进度</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/18/网络请求相关知识点/">https://skr.dog/2018/12/18/网络请求相关知识点/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a><a class="post-meta__tags" href="/tags/网络知识/">网络知识</a><a class="post-meta__tags" href="/tags/Web/">Web</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/22/ES6务必掌握内容/"><i class="fa fa-chevron-left">  </i><span>ES6务必掌握内容</span></a></div><div class="next-post pull-right"><a href="/2018/12/18/跨域方案浅析/"><span>跨域方案浅析</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

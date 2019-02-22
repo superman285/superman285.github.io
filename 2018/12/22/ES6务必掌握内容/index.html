@@ -1,0 +1,138 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ES6务必掌握内容"><meta name="keywords" content="JavaScript,ES6"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>ES6务必掌握内容 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#class类"><span class="toc-number">1.</span> <span class="toc-text">class类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#模板字符串"><span class="toc-number">2.</span> <span class="toc-text">模板字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解构赋值"><span class="toc-number">3.</span> <span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#对象的增强"><span class="toc-number">4.</span> <span class="toc-text">对象的增强</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#对象展开运算符…"><span class="toc-number">4.1.</span> <span class="toc-text">对象展开运算符…</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forEach循环-其实是es5的"><span class="toc-number">5.</span> <span class="toc-text">forEach循环 (其实是es5的)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forEach引申出的-数组和遍历相关的方法"><span class="toc-number">6.</span> <span class="toc-text">forEach引申出的 数组和遍历相关的方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#各种循环"><span class="toc-number">7.</span> <span class="toc-text">各种循环</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Object-assign"><span class="toc-number">8.</span> <span class="toc-text">Object.assign</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find方法"><span class="toc-number">9.</span> <span class="toc-text">find方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#伪数组改造为真数组方法"><span class="toc-number">10.</span> <span class="toc-text">伪数组改造为真数组方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#import和export"><span class="toc-number">11.</span> <span class="toc-text">import和export</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#箭头函数"><span class="toc-number">12.</span> <span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#set-键不重复"><span class="toc-number">13.</span> <span class="toc-text">set 键不重复</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Array-of"><span class="toc-number">14.</span> <span class="toc-text">Array.of</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">ES6务必掌握内容</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/JavaScript/">JavaScript</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="class类"><a href="#class类" class="headerlink" title="class类"></a>class类</h5><p>类中默认自带constructor</p>
+<p><code>constructor</code>方法默认返回实例对象（即<code>this</code>），完全可以指定返回另外一个对象。</p>
+<p>实例属性写法 以下两种写法等价</p>
+<p>class A {</p>
+<p>​    prop1 = 1;</p>
+<p>constructor(){</p>
+<p>​    this.prop2 = 2;</p>
+<p>}</p>
+<p>}</p>
+<p>静态属性 两种写法 static目前能用不？</p>
+<ul>
+<li>class A{static pro = 1;} 好像用不了</li>
+<li>类外面 A.pro = 1; 可用</li>
+</ul>
+<p>类的私有属性 属性前加#</p>
+<h5 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h5><p>`我的天我是${god}`   god为变量</p>
+<h5 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h5><p>用于数组或对象，等号左边一个变量时默认取等号右边数组或对象中的第一个</p>
+<p>var [[a]] =  [[1],2] //a=1 ,等同于 写法[[a],]</p>
+<p>var {x} = {x:1,y:2} //x=1 对象无序,不同于数组,没有占位符写法,对应上属性名即可</p>
+<p>var [a] = [[1],2] //a=[1]</p>
+<p>var [,a] = [[1],2] //a=2</p>
+<p>var {,y} = {x:1,y:2} //报错</p>
+<p>var {y} = {x:1,y:2} //y=2</p>
+<h5 id="对象的增强"><a href="#对象的增强" class="headerlink" title="对象的增强"></a>对象的增强</h5><ul>
+<li>对象中的属性简写</li>
+<li>对象中的方法简写</li>
+<li>对象属性名可使用表达式 e.g. obj[‘my’+‘name’]</li>
+</ul>
+<p>简写举🌰</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'miaomiao'</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name,	<span class="comment">//相当于name:name</span></span><br><span class="line">    getName()&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line">    <span class="comment">//相当于</span></span><br><span class="line">    <span class="comment">//getName: function()&#123;console.log(this.name)&#125;</span></span><br><span class="line">    <span class="comment">//或getName: function getName()&#123;console.log(this.name)&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="对象展开运算符…"><a href="#对象展开运算符…" class="headerlink" title="对象展开运算符…"></a>对象展开运算符…</h6><p>…obj 相当于把obj展开 去掉花括号 =&gt; a:1,b:2</p>
+<p>var obj = {a:1,b:2}</p>
+<p>let a={x:1,y:2};<br>let b={z:3};<br>let ab={…a,…b};<br>ab //{x:1,y:2,z:3}</p>
+<p>一个很容易懵的操作</p>
+<p>…func({xxx})</p>
+<p>func是函数名 意思是拿到func({xxx})的执行结果返回值 再用…展开!</p>
+<p>超级详细解读:</p>
+<p><a href="https://segmentfault.com/a/1190000016571785" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016571785</a></p>
+<h5 id="forEach循环-其实是es5的"><a href="#forEach循环-其实是es5的" class="headerlink" title="forEach循环 (其实是es5的)"></a>forEach循环 (其实是es5的)</h5><p>arr.forEach(val=&gt;{//do something}) 循环的结果是值而非索引</p>
+<p>💡tips: 遍历对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="string">'0'</span>:<span class="string">'a'</span>,<span class="string">'1'</span>:<span class="string">'b'</span>,<span class="string">'2'</span>:<span class="string">'c'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(key,obj[key])&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="forEach引申出的-数组和遍历相关的方法"><a href="#forEach引申出的-数组和遍历相关的方法" class="headerlink" title="forEach引申出的 数组和遍历相关的方法"></a>forEach引申出的 数组和遍历相关的方法</h5><p>forEach map filter find findIndex</p>
+<p>some every</p>
+<p>==共同点==</p>
+<p>五个方法均把函数作为参数，然后这个函数的第一个param为元素值，第二个param为元素索引</p>
+<p>arr.method((value,index)=&gt;{});</p>
+<p>==差异点==</p>
+<p>forEach无返回值 一般是根据需要进行循环操作 其他四项均有返回值</p>
+<p>map的函数 return后的语句作为返回值塞入新结果数组中 生成新数组</p>
+<p>filter的函数 return后的语句作为判断条件 满足条件的原数组元素 塞入新结果数组中</p>
+<p>find的函数 return后的语句作为判断条件 满足条件的原数组第一个元素 为新返回结果</p>
+<p>findIndex的函数 return后的语句作为判断条件 满足条件的原数组第一个元素的索引 为新返回结果</p>
+<p>some和every return后跟的是判断条件 返回值是true或false </p>
+<p>every需要数组每个值都满足条件</p>
+<p>some需要数组中至少一个值满足条件</p>
+<p><strong>举个</strong>🌰</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> nr1 = arr.forEach(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x+y&#125;) <span class="comment">//nr1 = undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nr2 = arr.map(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x+y&#125;) <span class="comment">// nr2 = [1,3,5,7,9]</span></span><br><span class="line"><span class="keyword">var</span> nr2_2 = arr.map(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x&gt;<span class="number">2</span>&#125;) <span class="comment">//nr2_2 = [false,false,true,true,true] 把x&gt;2的判断结果布尔值塞进了新结果数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nr3 = arr.filter(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x+y&#125;) <span class="comment">// nr3 = [1,2,3,4,5] x+y这个语句肯定是真 全都满足</span></span><br><span class="line"><span class="keyword">var</span> nr3_2 = arr.map(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x&gt;<span class="number">2</span>&#125;) <span class="comment">// nr3_2 = [3,4,5] 只有3、4、5满足x&gt;2为true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nr4 = arr.find(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x+y&#125;) <span class="comment">//nr4 = 1 x+y这个语句肯定是真 全都满足 取第一个为1</span></span><br><span class="line"><span class="keyword">var</span> nr4_2 = arr.find(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x&gt;<span class="number">2</span>&#125;) <span class="comment">//nr4_2 = 3 只有3、4、5满足，取第一个为3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nr5 = arr.findIndex(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x+y&#125;) <span class="comment">//nr5 = 0 x+y这个语句肯定是真 全都满足 取第一个的索引</span></span><br><span class="line"><span class="keyword">var</span> nr5_2 = arr.findIndex(<span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;<span class="keyword">return</span> x&gt;<span class="number">2</span>&#125;) <span class="comment">//nr5_2 = 2 只有3、4、5满足，取第三个的索引</span></span><br></pre></td></tr></table></figure>
+<h5 id="各种循环"><a href="#各种循环" class="headerlink" title="各种循环"></a>各种循环</h5><p>forEach 用于数组,不可直接用于对象/字符串</p>
+<p>arr.forEach((value,index)=&gt;{}) 函数中的参数第一个为值，第二个为索引</p>
+<p>for…in… 取到的是索引 可用于数组/字符串，==可直接用于对象==</p>
+<p>for(let index in arr){console.log(index)}</p>
+<p>vue中的for in取到的是值</p>
+<p>for…of… 取到的是值 可用于数组/字符串，不直接用于对象</p>
+<p>for(let val of str){console.log(val)}</p>
+<p>不能直接作用于对象，但是对象有返回数组的方法呀，返回key或value的数组</p>
+<p>Object.keys(obj) | Object.values(obj)</p>
+<p>然后再对这俩数组使用for即可</p>
+<p>for…of… 是比较新的方法</p>
+<h5 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h5><p>Object.assign(目标对象,源对象1,源对象2…)</p>
+<p>把源对象塞进目标对象中，key不同名则添加，有同名key则覆盖，后面的覆盖前面的</p>
+<p>有一个黑科技用法</p>
+<p>Object.assign({},源1,源2…)</p>
+<h5 id="find方法"><a href="#find方法" class="headerlink" title="find方法"></a>find方法</h5><p>返回==符合判断条件的第一个==数组元素的值,只返回一个</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> ar = arr.find(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> elem&gt;<span class="number">5</span>;</span><br><span class="line"> &#125;);</span><br><span class="line"><span class="comment">//更优美的写法</span></span><br><span class="line"><span class="keyword">var</span> ar = arr.find(<span class="function"><span class="params">elem</span>=&gt;</span>elem&gt;<span class="number">5</span>)</span><br><span class="line"><span class="comment">//同样结果的 var ar = arr.find(elem=&gt;elem==5)</span></span><br><span class="line"> <span class="built_in">console</span>.log(ar);<span class="comment">//6 ,注意是6 而不是true 找不到则返回undefined</span></span><br></pre></td></tr></table></figure>
+<p>还有附送的findIndex方法 返回的第一个符合判断条件的元素的索引</p>
+<p>注意💡</p>
+<p>符合判断条件的第一个是从左到右开始判断 即从索引0开始</p>
+<h5 id="伪数组改造为真数组方法"><a href="#伪数组改造为真数组方法" class="headerlink" title="伪数组改造为真数组方法"></a>伪数组改造为真数组方法</h5><p>很多js获取到的内容为伪数组，例如arguments、HTMLCollection、NodeList等</p>
+<p>Array.prototype.slice.call(arguments|HTMLCollection|NodeList)返回一个真数组</p>
+<p>即可改造成功,相当于获取到伪数组中所有带数字索引的项 </p>
+<p>相当于xxxxx.slice.call(arg,0)</p>
+<p>更绝的方法:</p>
+<p>var arr = […NodeList|HTMLCollection|arguments] 可以试试 记得加[]</p>
+<p>或var arr = Array.from(arguments)</p>
+<h5 id="import和export"><a href="#import和export" class="headerlink" title="import和export"></a>import和export</h5><p>import {A} from ‘./xxx’</p>
+<p>import C from ‘./yyy’</p>
+<p>export {A,B} 或 export default C</p>
+<h5 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h5><p>是匿名的</p>
+<p>一个参数,有返回值时的简写</p>
+<p>name=&gt;result</p>
+<p><strong>注意💡</strong></p>
+<p>返回值为对象时，如果不写return，要加个小括号以区分</p>
+<p>因为花括号一般指函数体开始和函数体结束，加个括号相当于转义，说明这个是对象而不是函数体</p>
+<p>以下两种写法是一样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name =&gt; ( &#123; <span class="string">'user'</span> : name &#125; );</span><br><span class="line">name =&gt; &#123;<span class="keyword">return</span> &#123; <span class="string">'user'</span> : name &#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>对象中定义方法</p>
+<p>data(){return {user:name}}</p>
+<p>data: ()=&gt;({user:name})</p>
+<p>data: ()=&gt;{return {user:name}}</p>
+<p>==这几种写法是一样的==</p>
+<h5 id="set-键不重复"><a href="#set-键不重复" class="headerlink" title="set 键不重复"></a>set 键不重复</h5><p>超速去重</p>
+<p>let newArr = Array.from(new Set(oldArr));</p>
+<p>Set构造函数返回一个对象，且key不重复</p>
+<p>Array.from将类数组对象、可迭代对象转为数组</p>
+<h5 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of"></a>Array.of</h5><p>以前有个坑</p>
+<p>var arr = new Array(4) | 与 Array(4) 含义一模一样</p>
+<p>讲道理 应该生成[4]，结果生成[empty✖️4]</p>
+<p>所以多了Array.of</p>
+<p>var arr = Array.of(4) //终于生成 [4]了</p>
+<p>此处不能用new 因为Array.of不是构造函数</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/22/ES6务必掌握内容/">https://skr.dog/2018/12/22/ES6务必掌握内容/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/ES6/">ES6</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/23/AJAX笔记/"><i class="fa fa-chevron-left">  </i><span>AJAX笔记</span></a></div><div class="next-post pull-right"><a href="/2018/12/18/网络请求相关知识点/"><span>网络请求相关知识点</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

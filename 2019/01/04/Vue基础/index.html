@@ -1,0 +1,186 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Vue基础"><meta name="keywords" content="JavaScript,基础,Vue"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>Vue基础 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#设计模式-mvvm"><span class="toc-number">1.</span> <span class="toc-text">设计模式 mvvm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#模板语法"><span class="toc-number">2.</span> <span class="toc-text">模板语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vue指令"><span class="toc-number">3.</span> <span class="toc-text">vue指令</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#自定义指令"><span class="toc-number">3.1.</span> <span class="toc-text">自定义指令</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#data中的数据"><span class="toc-number">4.</span> <span class="toc-text">data中的数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#侦听器"><span class="toc-number">5.</span> <span class="toc-text">侦听器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vue-router-前端路由"><span class="toc-number">6.</span> <span class="toc-text">vue-router 前端路由</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">Vue基础</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-04</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/Vue/">Vue</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="设计模式-mvvm"><a href="#设计模式-mvvm" class="headerlink" title="设计模式 mvvm"></a>设计模式 mvvm</h5><p>m: model 数据 界面中展示的或应用中使用的数据</p>
+<p>v: view 视图 用户看到的界面</p>
+<p>vm: view-model 中间人 处理数据与界面之间的相关逻辑(处理v和m的交互)</p>
+<p>new Vue得到一个vue对象 后续的数据管理和视图的渲染更新这些操作都是通过这个Vue对象来完成的</p>
+<p>初始化Vue中的属性<br>el:指定当前vue对象处理的范围，通过el指定的内容将被当前Vue对象管理，</p>
+<p>可使用选择器指定，要在这个范围内才能管理和使用data的数据</p>
+<p>data:存放当前Vue实例管理的应用中的所有数据</p>
+<h5 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h5><p>插值语法 <code>双花括号-插值**表达式**-双花括号</code> Mustache写法双大括号</p>
+<p>表达式:能产生结果(值)的公式 ==变量|函数调用|数学运算==等</p>
+<p>语句: 一个行为，例如if for之类</p>
+<p><code>双花括号-val-双花括号</code> 如果val是对象 vue会默认将val转为JSON格式</p>
+<p>相当于<code>双花括号-JSON.stringfy(val)-双花括号</code></p>
+<h5 id="vue指令"><a href="#vue指令" class="headerlink" title="vue指令"></a>vue指令</h5><p>指令填充的是表达式</p>
+<p>v-开头的一种特殊属性 行间 vue内置了很多指令 我们还可以自定义指令</p>
+<p>v-for = “(val,idx) in array”</p>
+<p>v-show是改变display属性(存在于页面上) 需要频繁切换时使用</p>
+<p>v-if是是否渲染元素(不满足时这个元素直接不存在)</p>
+<blockquote>
+<p>v-text和v-html</p>
+</blockquote>
+<p>v-text=”title” 这个title代表的是变量(表达式) 是data中title的值</p>
+<p>如果想要title字符串 可以写为 v-text=“‘title’”</p>
+<p>v-html更新元素的innerHTML 危险 容易导致xss攻击 可以识别html语法</p>
+<p>v-html=“content” //data中content=“<code>\&lt;strong&gt;I am strong\&lt;/strong&gt;</code>”</p>
+<p>v-text相当于更新元素的innerText 纯文本</p>
+<blockquote>
+<p>v-bind </p>
+</blockquote>
+<p>想把数据作为标签的某个特定属性</p>
+<p>把表达式的值绑定到指定的参数属性中</p>
+<p>v-bind:value=“title” //title是表达式 是data中定义的变量</p>
+<p>==简写形式== 只有冒号 去掉v-bind</p>
+<p>:value=“title”</p>
+<p>当想传入一个对象而不是字符串时，用v-bind写法</p>
+<p>:value = “{title:‘super’}”</p>
+<p>针对class和style使用v-bind时又有特殊用法</p>
+<p>v-bind动态改变class 使用三目运算符</p>
+<p>或用对象写法 作用等同三目</p>
+<p>对于class和style还有特殊待遇，可用数组形式和对象形式</p>
+<p>v-bind:</p>
+<p>v-bind:class=“[class1,class2,class3]”</p>
+<p>v-bind:style=“{color:activeColor,background:bgColor}”</p>
+<p>或“[colorObject,bgObject]” colorObject和bgObject是定义在data中的对象</p>
+<blockquote>
+<p>v-on</p>
+</blockquote>
+<p>v-on:click= 简写 @click=</p>
+<p>vue中的click相当于js中的onclick 后面跟函数名 不带() 与原生html的onclick(带括号)区分</p>
+<p>vue中的函数默认都指向当前vue对象</p>
+<p>原因是在函数中用this可以很方便的去调用vue实例对象下的其他数据，例如data中的数据</p>
+<p>data中的数据和methods中的函数，都可以通过实例对象进行直接访问</p>
+<p>Vue在初始化时把data、methods中的属性和方法都直接挂载到了实例对象上</p>
+<p>把data中的methods中的数据直接挂在了实例对象上</p>
+<p>this.dataProp1(不用this.data.dataProp1)</p>
+<p>this.methodFn1()(不用this.methods.methodFn1())</p>
+<p>想拿到事件元素event怎么拿?通过第一个参数</p>
+<p>methods中的方法的第一个参数就是事件对象</p>
+<p>==特殊地==</p>
+<p>v-on:click=“fn4()” 并不会立即调用 vue会智能地判断 还是会等到点击时才触发</p>
+<p>如果在v-on处用了带括号的写法，必须显式地声明事件参数 否则不会获取到事件对象</p>
+<p>v-on:click=“fn4($event)”</p>
+<p>假设Vue对象中methods:function click(p1,p2){console.log(p1,p2)};</p>
+<p>v-on不同写法有以下几种情况:顺序很重要</p>
+<ul>
+<li>v-on:click=‘click’ 这时会自动将第一个参数视为事件对象 //MouseEvent{} undefined</li>
+<li>v-on:click=‘click(1)’ 这时就没事件对象啥事了 当做正常参数了 //1 undefined</li>
+<li>v-on:click=‘click($event)’ 显示调事件参数 //MouseEvent{} undefined</li>
+<li>v-on:click=‘click(1,$event) 两个参数都生效 //1 MouseEvent{}</li>
+</ul>
+<p>==事件修饰符== 不同指令有不同修饰符 有的指令无修饰符</p>
+<p>@click.修饰符=“函数名” 也可以不跟函数 只是触发事件修饰符</p>
+<p>@contextmenu.prevent 阻止右键弹出菜单的默认行为</p>
+<p>stop 阻止冒泡 相当于stopPropagation()</p>
+<p>capture 捕获 相当于把原生addEventListener中第三个参数设置为true 事件设为捕获</p>
+<p>prevent 阻止默认行为</p>
+<p>once 绑定一次</p>
+<p>self 只有点自己才会触发 </p>
+<p>passive(消极的) true表示永不调用preventDefault 为false即可以preventDefault</p>
+<p>self:给父亲设置@click.self后，点击儿子是不会触发父亲方法的(没设置之前是可以触发的)</p>
+<blockquote>
+<p>v-model 双向绑定</p>
+</blockquote>
+<p>简单滴说：</p>
+<p>双向绑定 = 单向绑定 + UI 事件监听</p>
+<p>例子:</p>
+<p><a href="http://js.jirengu.com/duzo/1/edit?html,console,output" target="_blank" rel="noopener">http://js.jirengu.com/duzo/1/edit?html,console,output</a></p>
+<blockquote>
+<p>表单💡</p>
+</blockquote>
+<p>数据单向绑定(v-bind)  model -&gt; view </p>
+<p>当js中的数据变化了,视图上显示的数据也会重新渲染</p>
+<p>数据双向绑定(v-model)  model <-> view </-></p>
+<p>当js中的数据变化，视图上的数据也会变化</p>
+<p>当视图的数据发生变化，js中的数据也发生变化</p>
+<p>不同的标签 v-model绑定的标签属性不一样 智能地绑</p>
+<p>input:text v-model 绑定的是value</p>
+<p>input:checkbox v-model 绑定的是checked</p>
+<p>input:radio v-model 绑定的是checked</p>
+<p>input单个checkbox v-model 绑定checked 布尔值</p>
+<p>input多个checkbox v-model绑定数组 value出现在了数组中则被选中</p>
+<p>input多个radio v-model绑定字符串 哪个radio被选中 就显示哪个radio的value值</p>
+<p>select多个option v-model绑定字符串 哪个option被选中 就显示哪个option的innerText(文本内容)</p>
+<p>.lazy修饰符 input变化时不会实时更新 而是失去焦点时再更新</p>
+<p>.number 用户输入的值转为数值类型(原本默认为string)</p>
+<p>.trim 去除首尾空白字符</p>
+<h6 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h6><p>指令是以属性方式出现在元素上的，有特殊前缀，v-指令名称</p>
+<p>指令时作用于 使用当前指令的元素上的 当一个元素使用某个指令以后 该指令会对当前使用它的元素产生一些特定效果 具体的效果由当前指令的具体代码去实现</p>
+<p>Vue.directive(id,[definition]) 方法定义全局指令</p>
+<p>id:指令名称 使用时需要带v-前缀，定义时不用带v-前缀</p>
+<p>defnition:指令定义 具体定义、指令配置</p>
+<p>钩子函数：指令的执行过程中不同阶段调用的不同函数</p>
+<p>==5个钩子==: bind inserted update componentUpdated unbind</p>
+<p><a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/custom-directive.html</a></p>
+<p>注意💡 bind函数只执行一次，在初始化时指令绑定到元素上的瞬间执行，即使值再改 不会重新绑定的</p>
+<p>第一次绑定并不算update 一般大逻辑写在bind中 update改变小值</p>
+<p>如果bind函数和update函数想共享变量 可以把变量挂载这些函数的第一个参数上(即dom元素对象)</p>
+<p>或者通过dataset来共享数据</p>
+<p>bind函数的第一个参数为元素 第二个参数binding为对象 里头有一些属性</p>
+<p>根据binding来配置自定义指令的值</p>
+<p>如果想自动重新绑定类似v-model那样 就不用bind函数钩子 用update钩子</p>
+<p>focus不生效的原因：</p>
+<p>focus不能放在bind和update中，要放在inserted狗子中</p>
+<p>bind vue还没解析完</p>
+<h5 id="data中的数据"><a href="#data中的数据" class="headerlink" title="data中的数据"></a>data中的数据</h5><p>data中一般放原始数据 </p>
+<p>派生数据一般放 computed中 是通过计算或其他值换算来的</p>
+<p>计算属性 会动态地受其他值影响 其他值变了 它动态地改变 很智能</p>
+<p>==注意==</p>
+<p>computed对象中为方法，返回计算后的结果</p>
+<p>对应的html中<code>双花括号--双花括号</code>中的数据为方法名</p>
+<p>html: </p>
+<p><code>\&lt;p&gt;双花括号-methodA-双花括号\&lt;/p&gt;</code></p>
+<p>js:</p>
+<p>data:{message:‘hello’}</p>
+<p>computed: {</p>
+<p>methodA: return this.message.substr(1)</p>
+<p>}</p>
+<p>如果用v-model绑定了数据 computed方法中必须配上get()和set()</p>
+<p>因为v-model是双向绑定 用户也可能改数据 导致computed属性发生改变</p>
+<p>如果是v-bind就说明只是读取值 不会改值 就不用写get()和set() 默认为get()</p>
+<p>直接return xxxxx</p>
+<p>注💡 </p>
+<p>一般来说 computed属性都是派生来的 由其他属性计算得来的 而不是直接手动改</p>
+<h5 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h5><p>watch</p>
+<p>监听的属性名要与data中的数据同名</p>
+<p>watch:{</p>
+<p>​    a(){ //a为data中的属性}</p>
+<p>}</p>
+<p>当有的数据 是异步变化而不是立即得到结果的可能要用到监听watch</p>
+<h5 id="vue-router-前端路由"><a href="#vue-router-前端路由" class="headerlink" title="vue-router 前端路由"></a>vue-router 前端路由</h5><p>注💡 页面切换的请求千万不要让浏览器发请求(这样会让浏览器来渲染了)</p>
+<p>要让vue来渲染</p>
+<p>模式 url的# hash是不会导致页面刷新发请求的</p>
+<p>单页面SPA和多页面MPA SPA通过#hash 后端通过x1.html/x2.html</p>
+<p><a href="https://juejin.im/post/5a0ea4ec6fb9a0450407725c" target="_blank" rel="noopener">https://juejin.im/post/5a0ea4ec6fb9a0450407725c</a></p>
+<p>历史记录方式要处理比较多情况 比如判断别人是浏览器直接打开访问的 比如 localhost/a</p>
+<p>可能要加个header 然后判断方式不是ajax时</p>
+<p> 可能还需要后端支持 </p>
+<p>因为不带hash了 所以可能需要后端路由</p>
+<p>可以局部刷新 局部渲染 用户体验比较流程</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/04/Vue基础/">https://skr.dog/2019/01/04/Vue基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/基础/">基础</a><a class="post-meta__tags" href="/tags/Vue/">Vue</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/06/Vue的lifecycle/"><i class="fa fa-chevron-left">  </i><span>Vue的lifecycle</span></a></div><div class="next-post pull-right"><a href="/2019/01/03/MySql简单使用备注/"><span>MySql简单使用备注</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

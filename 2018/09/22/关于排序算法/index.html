@@ -1,0 +1,243 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="关于排序算法"><meta name="keywords" content="JavaScript,基础,算法"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>关于排序算法 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#结构化编程"><span class="toc-number">1.</span> <span class="toc-text">结构化编程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#伪代码"><span class="toc-number">2.</span> <span class="toc-text">伪代码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#流程图"><span class="toc-number">3.</span> <span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#算法"><span class="toc-number">4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据结构"><span class="toc-number">5.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#排序算法"><span class="toc-number">6.</span> <span class="toc-text">排序算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据结构-1"><span class="toc-number">7.</span> <span class="toc-text">数据结构</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">关于排序算法</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Algorithm/">Algorithm</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h6 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h6><ol>
+<li>一行一行执行</li>
+<li>有条件控制语句 if…else…</li>
+<li>有循环控制语句 while(exp) do…</li>
+</ol>
+<h6 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h6><ul>
+<li>不纠结语法细节，语法自己定</li>
+<li>可以体会语言设计者的想法，因为语法是自定的</li>
+</ul>
+<h6 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h6><p>==一轮选择排序选出最小值==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始 </span><br><span class="line">ed=&gt;end: 打印最小值min</span><br><span class="line">as1=&gt;operation: a = &#123;&apos;0&apos;:23,&apos;1&apos;:34,&apos;2&apos;:45,&apos;3&apos;:123,&apos;4&apos;:213,&apos;length&apos;:5&#125;</span><br><span class="line">as2=&gt;operation: min = a[0]</span><br><span class="line">as3=&gt;operation: index = 1(不需要从索引0开始)</span><br><span class="line">cond1=&gt;condition: index&lt;a[&apos;length&apos;]</span><br><span class="line">cond2=&gt;condition: a[index]&lt;min</span><br><span class="line">op1=&gt;operation: min=a[index]</span><br><span class="line">op2=&gt;operation: index=index+1</span><br><span class="line">st-&gt;as1-&gt;as2-&gt;as3-&gt;cond1</span><br><span class="line">cond1(yes)-&gt;cond2</span><br><span class="line">cond1(no)-&gt;ed</span><br><span class="line">cond2(yes)-&gt;op1-&gt;op2</span><br><span class="line">cond2(no)-&gt;op2</span><br><span class="line">op2-&gt;cond1</span><br></pre></td></tr></table></figure>
+<p>==冒泡排序==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">ed=&gt;end: 结束</span><br><span class="line">input=&gt;inputoutput: 输入数组a </span><br><span class="line">initt1=&gt;operation: (轮次)turn = 0</span><br><span class="line">opt1=&gt;operation: turn = turn + 1</span><br><span class="line">condt=&gt;condition: turn &lt; a.length</span><br><span class="line">initi1=&gt;operation: (数组索引下标)index = 0</span><br><span class="line">condi=&gt;condition: index &lt; a.length - 1</span><br><span class="line">condbc=&gt;condition: a[index+1] &lt; a[index]</span><br><span class="line">opswap=&gt;operation: 交换a[index]和a[index+1]</span><br><span class="line">temp = a[index]</span><br><span class="line">a[index] = a[index+1]</span><br><span class="line">a[index+1] = temp</span><br><span class="line">opi1=&gt;operation: index = index + 1</span><br><span class="line">print=&gt;operation: Print a</span><br><span class="line">st-&gt;initt1-&gt;opt1-&gt;condt</span><br><span class="line">condt(no)-&gt;print-&gt;ed</span><br><span class="line">condt(yes)-&gt;initi1-&gt;condi</span><br><span class="line">condi(no)-&gt;opt1</span><br><span class="line">condi(yes)-&gt;condbc</span><br><span class="line">condbc(no)-&gt;opi1</span><br><span class="line">condbc(yes)-&gt;opswap-&gt;opi1</span><br><span class="line">opi1-&gt;condi</span><br></pre></td></tr></table></figure>
+<p>交换a[index]和a[index+1]<br>temp = a[index]<br>a[index] = a[index+1]<br>a[index+1] = temp</p>
+<h6 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h6><ul>
+<li>输入: 一个算法必须有0个或以上输入量</li>
+<li>输出: 一个算法必须有一个或以上输出量，输出量是算法计算的结果。</li>
+<li>明确性: 算法的描述必须无起义，保证算法的实际执行结果精确地匹配要求或期望，通常要求实际运行结果是确定的。</li>
+<li>有限性: 依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态、有限个输入符号和有限个转移函数(指令)。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
+</ul>
+<h6 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h6><p>数据的结构。</p>
+<ol>
+<li>解决一个跟数据相关的问题</li>
+<li>分析这个问题，先想出对应的数据结构</li>
+<li>分析数据结构，再相处算法</li>
+</ol>
+<blockquote>
+<p><strong>数据结构和算法是互相依存、不可分开的</strong></p>
+</blockquote>
+<p>==<strong>算法大分类</strong>==</p>
+<ul>
+<li><p>分治法: 把一个问题分区成互相独立的多个部分分别求解，这种求解思路便于进行并行计算。</p>
+</li>
+<li><p>动态规划法: 当问题的整体最优解就是由局部最优解组成的时候，经常采用的一种方法。</p>
+<p>(<code>把局部最优解看作最优解</code>)</p>
+</li>
+<li><p>贪婪算法: 常见的近似求解思路。当文字的整体最优解不是(或无法证明是)由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。</p>
+<p>(<code>把眼前看到的最好办法看作最优解(短视算法)</code>)</p>
+</li>
+<li><p>线性规划法:</p>
+</li>
+<li><p>简并法: 把一个问题通过逻辑或数学推理，简化成与之等价或近似的、相对简单的模型，进而求解。</p>
+</li>
+</ul>
+<p><strong>前端最主要使用分治法——分而治之</strong></p>
+<h6 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h6><ul>
+<li>体育委员两两摸头法 ==冒泡排序==</li>
+<li>体育老师一指禅法 ==选择排序==</li>
+<li>起扑克牌法 ==插入排序==</li>
+<li>强迫症收扑克牌法 ==计数排序==</li>
+<li>桶排序</li>
+<li>基数排序(LSD低位优先(适用于位数少) | MSD高位优先(位数多时效率更优))</li>
+<li>快速排序 / 随机快排</li>
+</ul>
+<hr>
+<ul>
+<li>归并排序</li>
+<li>堆排序</li>
+</ul>
+<blockquote>
+<p>==<strong>冒泡排序</strong>==</p>
+<hr>
+<p>索引从小到大,顺序都是从左向右,</p>
+<p>若从小到大排,则每一轮后会将最大的推到最最右边,<strong><em>站定了</em></strong> (一般多为从小到大排)</p>
+<p>若从大到小排,则每一轮后会将最小的推到最最右边,<strong><em>站定了</em></strong></p>
+<p><code>精髓</code></p>
+<p>每次比较都是比较两两相邻的,一个一个向上挤,就像泡泡一样,把最大的(看需求)挤到最上面,然后浮出水面(即确定位置不动了).</p>
+<ul>
+<li><em>n即数组的长度,有几个数</em></li>
+<li><em>假设轮次为t,则第t轮需要比较n-t次</em></li>
+</ul>
+<p>第一轮后只是将最大的推到最右边(在相邻的两个数之间画圆弧,一共需要比较n-1次)</p>
+<p>第二轮将第二大的推到最右边(第一大已经固定位置不动了,这里的最右边是指第一大的左边)</p>
+<p>第n-1轮将第n-1大的推到最右边(这时剩下两个数了,比较(n-(n-1)次,即1次)</p>
+<p>不需要第n轮了,因为只剩下第n大的数了(即最小的数)</p>
+</blockquote>
+<blockquote>
+<p>==<strong>选择排序</strong>==</p>
+<hr>
+<p>从头比到尾,不是只比较相邻的两个数</p>
+<p>设置一个变量min,最小的赋值给min</p>
+<p>第一轮过后,把min挪到了最左边,与之前的第一个数交换位置</p>
+<p>第二轮过后,把min挪到最左边的右边,即第二个位置</p>
+<p><code>精髓</code></p>
+<p>从小到大排,每一轮找出最小的,换到最左边</p>
+<p>与冒泡正好相反,冒泡的从小到大是每一轮找出最大的,顶到最右边</p>
+<p>找出最小的时候不是立刻换位置,是一轮完了之后再换位置</p>
+</blockquote>
+<p>选择排序伪代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">输入数组a</span><br><span class="line"></span><br><span class="line">turn = 1</span><br><span class="line"></span><br><span class="line">while turn &lt; a.length</span><br><span class="line">	min = a[turn-1]</span><br><span class="line">	index = turn</span><br><span class="line">	while index &lt; a.length      (注意此处不是轮次而是遍历,所以每个数都要看,所以是length不是length-1)</span><br><span class="line">		if a[index] &lt; min</span><br><span class="line">			min = a[index]</span><br><span class="line">			min_index = index</span><br><span class="line">		else</span><br><span class="line">			//do nothing</span><br><span class="line">		end</span><br><span class="line">		index = index + 1</span><br><span class="line">	end</span><br><span class="line">	a[turn-1]与a[min_index]换位置</span><br><span class="line">	turn = turn + 1</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>计数排序(收扑克牌法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">输入一个数组a，</span><br><span class="line"></span><br><span class="line">找出数组a中的最小值amin和最大值amax，</span><br><span class="line"></span><br><span class="line">创建一个计数数组b，b的长度length=amax+1(这样设置是为了下方代码能方便将a元素值作为b索引；若将length设为amax-amin+1能更节省空间||注意:在js中，若有一个空数组，设置a[6]=1，则数组为a[empty×6,1]，长度为7，所以还是用amax+1吧)，</span><br><span class="line">数组b所有元素的值初始化为0</span><br><span class="line"></span><br><span class="line">a数组元素的值作为b数组索引，a数组元素出现的次数作为b数组元素的值。</span><br><span class="line"></span><br><span class="line">for(index=0;index&lt;a.length;index++)&#123;</span><br><span class="line">    for(i = 0;i &lt; b.length;i++)&#123;</span><br><span class="line">        if a[index] == i</span><br><span class="line">            b[i] = b[i] + 1</span><br><span class="line">        end </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line">for(j=0;j&lt;b.length;j++)&#123;</span><br><span class="line">    for(k=0;k&lt;b[j];k++)&#123;</span><br><span class="line">        print j</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>计数排序流程图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">ed=&gt;end: 结束</span><br><span class="line">input=&gt;inputoutput: 输入数组a</span><br><span class="line">init-arrayb=&gt;operation: 创建一个计数数组b，b的长度length=max(a)+1，b中所有元素值=0</span><br><span class="line">output=&gt;inputoutput: Print j 从小到大打印排序后的数组元素</span><br><span class="line">st-&gt;input-&gt;init-arrayb</span><br><span class="line">output-&gt;ed</span><br><span class="line">init1=&gt;operation: index=0,i=0</span><br><span class="line">init2=&gt;operation: j=0,k=0</span><br><span class="line">cond-a1=&gt;condition: index&lt;a.length</span><br><span class="line">cond-a2=&gt;condition: i&lt;b.length</span><br><span class="line">cond-cmp=&gt;condition: a[index]==i</span><br><span class="line">op-a1=&gt;operation: index++</span><br><span class="line">op-a2=&gt;operation: i++</span><br><span class="line">op-b+=&gt;operation: b[i]++</span><br><span class="line">cond-b1=&gt;condition: j&lt;b.length</span><br><span class="line">cond-b2=&gt;condition: k&lt;b[j]</span><br><span class="line">op-b1=&gt;operation: j++</span><br><span class="line">op-b2=&gt;operation: k++</span><br><span class="line">init-arrayb-&gt;init1-&gt;cond-a1</span><br><span class="line">cond-a1(yes)-&gt;cond-a2</span><br><span class="line">cond-a2(yes)-&gt;cond-cmp</span><br><span class="line">cond-cmp(yes)-&gt;op-b+-&gt;op-a2-&gt;cond-a2</span><br><span class="line">cond-cmp(no)-&gt;op-a2-&gt;cond-a2</span><br><span class="line">cond-a2(no)-&gt;op-a1-&gt;cond-a1</span><br><span class="line">cond-a1(no)-&gt;init2-&gt;cond-b1</span><br><span class="line">cond-b1(yes)-&gt;cond-b2</span><br><span class="line">cond-b2(yes)-&gt;output-&gt;op-b2-&gt;cond-b2</span><br><span class="line">cond-b2(no)-&gt;op-b1-&gt;cond-b1</span><br><span class="line">cond-b1(no)-&gt;ed</span><br></pre></td></tr></table></figure>
+<p>若设置b.length = amax - amin + 1</p>
+<p>则可以用这个判断，而不是将b数组所有元素置为0</p>
+<p>number为a数组元素的值，因为将a数组元素的值作为b数组索引，所以肯定至少出现过一次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a &lt;- &#123;</span><br><span class="line">    &apos;0&apos;:0,</span><br><span class="line">    &apos;1&apos;:2,</span><br><span class="line">    &apos;2&apos;:1,</span><br><span class="line">    &apos;3&apos;:56,</span><br><span class="line">    &apos;4&apos;:4,</span><br><span class="line">    &apos;5&apos;:67,</span><br><span class="line">    &apos;6&apos;:3,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">index = 0</span><br><span class="line">while(index &lt; a.length)</span><br><span class="line">	number = a[index]</span><br><span class="line">	if b[number] == undefined // b[number] 不存在/未定义，则置为1，说明至少出现过1次，				b[number] = 1</span><br><span class="line">	else</span><br><span class="line">		b[number] &lt;- b[number] + 1	//之前出现过了，则再出现就加1</span><br><span class="line">	end</span><br><span class="line">	index = index + 1</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">index2 &lt;- 0</span><br><span class="line">max &lt;- findMax(a) // 最大值67</span><br><span class="line">newArr &lt;- &#123;&#125;</span><br><span class="line">while index2 &lt; max + 1</span><br><span class="line">    count &lt;- b[index2]</span><br><span class="line">    if count != undefined // 不等于undefined代表count值存在(被赋值过)，至少为1，则可以push</span><br><span class="line">        countIndex &lt;- 0</span><br><span class="line">//此处循环代表计数个数有几个，就打印几次出来，count值代表b数组元素的值，即a数组元素出现次数计数</span><br><span class="line">        while countIndex &lt; count	</span><br><span class="line">            newArr.push(index2)</span><br><span class="line">            countIndex &lt;- countIndex + 1</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    index2 &lt;- index2 + 1</span><br><span class="line">end</span><br><span class="line">print newArr</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h6 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h6></blockquote>
+<p>==哈希==</p>
+<p>key value 键值对</p>
+<p><strong><em>桶排序，入桶 出桶</em></strong></p>
+<p>所有桶组成一个哈希</p>
+<p>计数排序，浪费更多桶，浪费空间版桶排序，弱化版桶排序</p>
+<p>适用于排范围较小的正整数，例如年龄、学号等</p>
+<p>缺点：</p>
+<ul>
+<li>需要hash，占空间</li>
+<li>无法排序负数和小数(负数优化下其实可以排，全都加上一个正数)</li>
+</ul>
+<p>桶排序，升级版计数排序</p>
+<p>节省空间，可以更灵活地安排桶，但要做二次排序，</p>
+<p>例如高考分数</p>
+<p>基数排序，10个桶，0~9，适用于排序更大范围的整数，比如上万上十万，不适合用计数排序或桶排序</p>
+<p>依次对比个位、十位、百位、千位……</p>
+<hr>
+<p>==队列==</p>
+<ul>
+<li>先进先出</li>
+<li>可以用数组实现</li>
+<li>举例：排队</li>
+</ul>
+<p>push进队，shift出队</p>
+<p>var queue = []</p>
+<p>q.push(‘张三’)</p>
+<p>q.push(‘李四’)</p>
+<p>q.push(‘王五’)</p>
+<p>q.shift()    //出队，先进的先出，第一次出队的是张三，shift一次后数组减少一个元素</p>
+<p>‘张三’</p>
+<hr>
+<p>==栈==</p>
+<ul>
+<li>先进后出</li>
+<li>可以用数组实现</li>
+<li>举例：盗梦空间，电梯，冰箱，汉诺塔</li>
+</ul>
+<p>push入栈，pop弹栈</p>
+<p>var stack = []</p>
+<p>stack.push(‘第一层梦’) </p>
+<p>stack.push(‘第二层梦’)</p>
+<p>stack.push(‘第三层梦’)</p>
+<p>stack.pop()    //出栈，弹出</p>
+<p>‘第三层梦’</p>
+<hr>
+<p>==链表==</p>
+<p>一个哈希指向另一个哈希，再指向另另一个哈希,</p>
+<p>多个哈希连接起来</p>
+<ul>
+<li>数组无法直接删除中间某一项(操作较复杂)，链表可以</li>
+<li>可用哈希(JS里用对象object表示哈希)实现链表</li>
+<li>head、node概念，链表头也是节点</li>
+<li>取链表中某一项很麻烦，chain.next.next.next…….next</li>
+</ul>
+<p>删除数组的一项操作很多，删除一个后还要将后续元素提前，然后将长度-1</p>
+<p>链表删除一项很简单很方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var chain = &#123;</span><br><span class="line">value:0,</span><br><span class="line">next:&#123;</span><br><span class="line">	value:2,</span><br><span class="line">	next:&#123;</span><br><span class="line">		value:1,</span><br><span class="line">		next:undefined</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">3项的链表</span><br><span class="line">0 -&gt; 2 -&gt; 1</span><br><span class="line">想删除第二项，让第一项直接指向第三项即可</span><br><span class="line">chain.next = chain.next.next</span><br></pre></td></tr></table></figure>
+<hr>
+<p>==树==</p>
+<ul>
+<li><p>举例：层级结构、DOM、堆排序</p>
+</li>
+<li><p>概念：层数、深度、节点个数 | 深度即为总层数</p>
+</li>
+<li><p>操作：增删改查</p>
+</li>
+<li><p>二叉树    第i层，最多2^i-1^个节点；前i层，总节点数最多为2^i^-1个节点</p>
+<p>取第i层第1个节点的数据，a[2^i-1^-1]；取第i层第n个节点，a[2^i-1^-1+(n-1)] (完全二叉树才可以用这个方式取)</p>
+</li>
+<li><p>满二叉树  (长满了叶子的二叉树，满二叉树也是完全二叉树)</p>
+</li>
+<li><p>完全二叉树 (除了最后一层，其他层都长满叶子；最后一层右边缺少<code>连续若干叶子</code>，即节点是连续的，中间没有断开)</p>
+</li>
+<li><p>满二叉树和完全二叉树可以用数组来实现</p>
+</li>
+<li><p>B树 | 红黑树 | AVL树</p>
+</li>
+<li><p>其他树可以用哈希(对象)来实现</p>
+</li>
+</ul>
+<p>断子绝孙的节点是叶子节点，没有后代</p>
+<p>最顶部节点-根节点</p>
+<hr>
+<p>==堆==</p>
+<p>堆可以看作一棵完全二叉树</p>
+<p>最大堆(用的多)</p>
+<ul>
+<li>每个父亲元素值&gt;=孩子元素值</li>
+<li>最大元素值在根节点</li>
+</ul>
+<blockquote>
+<p><strong>堆排序</strong></p>
+<p>第一轮将所有数变成最大堆，则最大数到了根节点位置，把他取走</p>
+<p>第二轮将剩余数变成最大堆，则次大的数到了根节点位置，把他取走</p>
+<p>第三轮…</p>
+<p>第n轮…</p>
+<p>相当于从大到小排序</p>
+<p>做了一次最大堆调整，有节点位置换了后，新的父亲要和后面的新儿子再次对比</p>
+</blockquote>
+<p>最小堆</p>
+<ul>
+<li>每个父亲元素值&lt;=孩子元素值</li>
+<li>最小元素值在根节点</li>
+</ul>
+<p><code>最大堆调整：</code></p>
+<p>两个儿子对比，最大的儿子和父亲比，如果赢了则调上去替换掉父亲</p>
+<hr>
+<p>已知儿子节点下标i，parent(i)=floor(i/2) 向下取整</p>
+<p>已知父亲节点下标i，</p>
+<p>儿子节点left(i)=2i，左子节点下标</p>
+<p>儿子节点right(i)=2i+1，右子节点下标</p>
+<p>第n层的左边第一个节点下标 i = 2^n-1^</p>
+<p>第n层最右边的节点下标 i = 2^n^ - 1  （即第n+1层的上一个节点,即2^(n+1)-1^-1)</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/09/22/关于排序算法/">https://skr.dog/2018/09/22/关于排序算法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/基础/">基础</a><a class="post-meta__tags" href="/tags/算法/">算法</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/10/17/谈谈JS中的数据类型/"><i class="fa fa-chevron-left">  </i><span>谈谈JS中的数据</span></a></div><div class="next-post pull-right"><a href="/2018/09/22/HTTP入门-相关姿势/"><span>HTTP入门&amp;相关姿势</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

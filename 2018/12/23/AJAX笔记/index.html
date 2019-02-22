@@ -1,0 +1,215 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="AJAX笔记"><meta name="keywords" content="JavaScript,HTTP,AJAX"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>AJAX笔记 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#发请求"><span class="toc-number">1.</span> <span class="toc-text">发请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#代码示例-创-开-发-载"><span class="toc-number">2.</span> <span class="toc-text">代码示例 创 开 发 载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通识-同步-异步"><span class="toc-number">3.</span> <span class="toc-text">通识:同步 | 异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ajax框架"><span class="toc-number">4.</span> <span class="toc-text">ajax框架</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#jQuery"><span class="toc-number">4.1.</span> <span class="toc-text">jQuery</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#axios框架"><span class="toc-number">4.2.</span> <span class="toc-text">axios框架</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">AJAX笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-23</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="发请求"><a href="#发请求" class="headerlink" title="发请求"></a>发请求</h5><p>用form表单 get或post请求</p>
+<p>用a标签 get请求</p>
+<ol>
+<li><p>基于js的请求 即xhr xmlhttpserver</p>
+<p>不会重新渲染整个页面</p>
+</li>
+</ol>
+<p>通过queryString方式 既可以post也可以get</p>
+<p>如果用正文方式 只能post</p>
+<p>获取表单元素的小技巧:</p>
+<p>form.username</p>
+<p>username为表单内标签的name</p>
+<p>获取到了name为username的input元素</p>
+<blockquote>
+<p>发请求的方式</p>
+<ul>
+<li><p>通过url (path,例如localhost/login这种)</p>
+</li>
+<li><p>通过url的queryString (?xxx=yyy) 受长度限制不能传大数据,只能传字符串,</p>
+<p>有缓存/历史记录/编码urlencoded格式问题</p>
+</li>
+<li><p>通过请求头信息传 例如发content-type 发cookie等</p>
+</li>
+<li><p>通过请求正文传 不支持get 要用post</p>
+</li>
+</ul>
+</blockquote>
+<p>path和queryString都基于url，会受到url长度限制</p>
+<p>大数据可以用正文传</p>
+<p>==提交==</p>
+<ol>
+<li>使用form表单，表单中的button(需要唯一?)或input(submit)自带提交功能</li>
+<li>不适用form表单，使用ajax提交，或者使用form表单但是给button或input(submit)取消默认行为 preventDefault</li>
+</ol>
+<blockquote>
+<p>Ajax是JS提交请求而不是浏览器提交请求 不用重新渲染整个页面</p>
+<p>即无刷新提交</p>
+</blockquote>
+<h5 id="代码示例-创-开-发-载"><a href="#代码示例-创-开-发-载" class="headerlink" title="代码示例 创 开 发 载"></a>代码示例 创 开 发 载</h5><p>//创建</p>
+<p>let xhr = new XMLHttpRequest();</p>
+<p>//发送前的准备工作，open(method,url,async) 开启</p>
+<p>//async参数默认为true，异步的</p>
+<p>xhr.open(‘get’,‘/checkUserName?username=’+this.value,true);</p>
+<p>//发送请求 发送</p>
+<p>xhr.send();</p>
+<p>console.log(1);</p>
+<p>如果open参数设置为同步的，后面所有事情都需要等待请求完成才会处理后面的事情</p>
+<p>会阻塞后续所有行为，如果请求没回来 所有操作都无效</p>
+<p>onload事件绑定发生在事件完成之后，所以 onload就不生效了，事件都结束了 over了</p>
+<p>解决方法：将onload放到send之前，这样就先触发onload再触发，再打印1</p>
+<p>//响应完成(即下载完成)后触发的事件 加载 </p>
+<p>//响应完成后,服务端返回的信息会保存在xhr对象下response属性下</p>
+<p>xhr.onload = function(){</p>
+<p>​    console.log(this.response)</p>
+<p>​    userNameMessageEle.innerHTML = this.response;</p>
+<p>}</p>
+<hr>
+<p>一般都使用异步，</p>
+<p>除非后续操作或行为严重依赖于ajax请求返回后的结果，才需要用同步，但是基本废弃了</p>
+<p>参数同步和异步</p>
+<p>两种情况:</p>
+<ul>
+<li><p>异步，将onload加载放在打印1之后，结果是先打印1再拿到返回结果；</p>
+<p>将onload加载放在send之前，结果是先打印1再拿到返回结果；</p>
+</li>
+<li><p>同步，将onload加载放在打印1之后，就只会打印1但拿不到返回结果了，因为还没等到拿到就已经结束了 (一定避免这种情况) </p>
+<p>它只在请求完成后触发一次，没触发就算了 不会等你了 而不是一直不停地申请触发</p>
+<p>将onload加载放在send之前，结果是先拿到返回结果再打印1。</p>
+</li>
+</ul>
+<blockquote>
+<p>求稳妥，可以先写onload，再写send</p>
+</blockquote>
+<p>==注意==</p>
+<p>提交数据方式</p>
+<p>若通过queryString提交的数据只支持url编码字符串(urlencoded)</p>
+<p>通过正文发送，提交的数据支持多种格式(纯文本|url编码|formData等等),需要在发送的请求头中设置提交的数据的content-type</p>
+<p>queryString方式 open的url参数带查询参数即可,send()不用带参数,简单四步 创开发载</p>
+<p>正文方式 </p>
+<p>xhr.setRequestHeader(‘content-type’,‘application/x-www-form-urlencoded’)</p>
+<p>xhr.send(‘content=’ + content.value)</p>
+<hr>
+<p>后端代码:</p>
+<p>接口名为checkUserName</p>
+<p>router.get(‘/checkUserName’,async ctx=&gt;{</p>
+<p>​    let {username} = ctx.request.query;</p>
+<p>​    if(username==‘’){</p>
+<p>​        ctx.body = ‘用户名不能为空’;</p>
+<p>​    return;</p>
+<p>​    }</p>
+<p>let sql1 = “select * from users where username=?”</p>
+<p>let [[user]] = await db.query(sql1,)</p>
+<p>​    ctx.body = “可以注册”</p>
+<p>})</p>
+<p>不同提示对应前端不同颜色的文字，比如可以注册和不能注册</p>
+<p>后端经常这么处理 返回一个约定好的数据结构json</p>
+<p>{“code”:number}</p>
+<p>ctx.body = {</p>
+<p>​    code: 1,</p>
+<p>​    message: ‘用户名不能为空’</p>
+<p>}</p>
+<p>ctx.body = {</p>
+<p>​    code: 2,</p>
+<p>​    message: ‘用户名已经被注册’</p>
+<p>}</p>
+<p>ctx.body = {</p>
+<p>​    code: 0,</p>
+<p>​    message: ‘可以注册’</p>
+<p>}</p>
+<p>koa框架自动会将对象转为json格式(当把对象赋给body时)</p>
+<p>xhr.send()</p>
+<p>get方式不支持正文提交 所以send后面不写参数</p>
+<p>post方式支持正文提交，send后可加参数 (提交的内容)</p>
+<p>post提交一般需要设置头信息</p>
+<p>xhr.setRequestHeader(‘content-type’,‘application/json’)</p>
+<p>map相当于开了个循环</p>
+<p>keys.map((key,index)=&gt;{</p>
+<p>​    return key+‘=’+values[index]</p>
+<p>})</p>
+<p>==知识点==</p>
+<p>前端处理后端传来的各种类型的数据</p>
+<p>如果是json，需要</p>
+<p>let data = JSON.parse(xhr.response); //转成对象格式，方便使用</p>
+<p>如果是string，就这么用</p>
+<p>如果是xxx</p>
+<p>根据content-type来判断数据类型，从而使用不同处理方法，可借助MIME来处理不同类型</p>
+<p>xhr.getAllResponseHeaders() 把整个响应头返回</p>
+<p>xhr.getResponseHeader(‘content-type’) 返回响应头指定的某个属性</p>
+<p>整个响应头包括：connection,content-length,content-type</p>
+<p>urlencoded格式发data写法：</p>
+<p>使用&amp;来连接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(<span class="string">'content-type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">xhr.send(<span class="string">'content='</span> + content.value+<span class="string">"&amp;singerid="</span>+<span class="built_in">window</span>.location.href.split(<span class="string">'/'</span>)[<span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
+<h5 id="通识-同步-异步"><a href="#通识-同步-异步" class="headerlink" title="通识:同步 | 异步"></a>通识:同步 | 异步</h5><p>有些操作是需要花费时间去完成，比如下载电影-&gt;看电影</p>
+<p>同步：盯着电影下载完成后 再看电影</p>
+<p>异步：后台静默下载(同时做些其他事情)，当电影下载完成后会通知下载完成了</p>
+<p>阻塞/非阻塞 </p>
+<p>一件事情一件事情地做，阻塞(一件事情做完后再做另外一件)，非阻塞(一件事情没做完就可以做别的)</p>
+<p>同步/异步</p>
+<p>事情的通知方式，自己主动观察(同步) | 自动通知(异步)</p>
+<h5 id="ajax框架"><a href="#ajax框架" class="headerlink" title="ajax框架"></a>ajax框架</h5><ul>
+<li>jQuery</li>
+<li>axios | 在vue中很常用</li>
+</ul>
+<p>自己封装一个ajax框架</p>
+<p>let opts = Object.assign({method:‘get’,url:‘’,data:‘’})</p>
+<h6 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h6><p>jq头信息默认是urlencoded，有时返回的是json，但是一看头信息还是urlencoded(不匹配)</p>
+<p>可以用contentType字段指定发给服务器的头信息的content-type (请求头)</p>
+<p>格式:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">                type: <span class="string">"GET"</span>,</span><br><span class="line">                url: <span class="string">'/checkUserName_login'</span>,</span><br><span class="line">                data: &#123;</span><br><span class="line">                  username: <span class="keyword">this</span>.value</span><br><span class="line">                &#125;,</span><br><span class="line">    			<span class="comment">//url: '/checkUserName_login?username='+this.value,</span></span><br><span class="line">    		   contentType: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    		   dataType: <span class="string">"text"</span>, <span class="comment">//可不写，jq根据MIME信息智能判断</span></span><br><span class="line">                success: <span class="function"><span class="keyword">function</span>(<span class="params">data,status,jqxhr</span>)</span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'data:'</span>);</span><br><span class="line">                    <span class="built_in">console</span>.log(data);</span><br><span class="line">                    <span class="comment">/*console.log('status:');</span></span><br><span class="line"><span class="comment">                    console.log(status);</span></span><br><span class="line"><span class="comment">                    console.log('xhr:');</span></span><br><span class="line"><span class="comment">                    console.log(xhr);*/</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jquery123.com/jQuery.ajax/" target="_blank" rel="noopener">https://www.jquery123.com/jQuery.ajax/</a></p>
+<p>可写在对象中的属性</p>
+<p>success的回调函数有三个参数</p>
+<p>服务器返回的数据，状态，xhr对象</p>
+<p>xhr对象有很多可用属性和方法，可借助这儿的参数获得</p>
+<p>==注意点==</p>
+<p>data为对象，内容为键值对形式</p>
+<p>在get请求中，data将作为queryString附加到url之后(例如?username=‘superman’)</p>
+<p>或者这种写法: url: ‘/api?username=’+this.value</p>
+<p>data写法更好</p>
+<p>queryString采用以下两种写法都行，jq做了智能的封装，能判断各种类型，很聪明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data: &apos;username=&apos;+this.value,</span><br><span class="line">//对象写法或string写法都可以，因为jq做了智能的处理，支持各种格式</span><br><span class="line">data: &#123;</span><br><span class="line">  username: this.value</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h6 id="axios框架"><a href="#axios框架" class="headerlink" title="axios框架"></a>axios框架</h6><p>这个框架功能比之jQ的ajax更简单简洁 明晰 专一为ajax而生</p>
+<p>使用说明: <a href="https://www.kancloud.cn/yunye/axios/234845" target="_blank" rel="noopener">https://www.kancloud.cn/yunye/axios/234845</a></p>
+<p>里头借用了一个很好的框架 qs</p>
+<p>url解析，queryString和对象互转</p>
+<p>request header 的content-type默认为json，与jq不同</p>
+<p>格式:</p>
+<p>axios({</p>
+<p>​    url: ‘’,</p>
+<p>​    method: ‘’,</p>
+<p>​    data:{</p>
+<p>​    },</p>
+<p>​    headers: {‘content-type’:‘application/json’}</p>
+<p>​    timeout: 1000</p>
+<p>})</p>
+<p>这儿的data没有jQ的智能，只能适用于post|put|patch，没有jq的作为get的queryString功能</p>
+<p>想使用get+查询参数 只能用url方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: <span class="string">'/checkUserName?username='</span>+<span class="keyword">this</span>.value,</span><br></pre></td></tr></table></figure>
+<p>axios中想使用queryString也可以，但是不是放在data中，而是放在params字段</p>
+<p>params: {username:‘wzc’,password:‘123’}</p>
+<p>其实axios区分更合理，axios把正文和queryString区分开了，</p>
+<p>分为data和params</p>
+<p>跨域相关的配置</p>
+<ul>
+<li>withCredentials</li>
+<li>proxy</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/23/AJAX笔记/">https://skr.dog/2018/12/23/AJAX笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a><a class="post-meta__tags" href="/tags/AJAX/">AJAX</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/24/关于前端模块化/"><i class="fa fa-chevron-left">  </i><span>关于前端模块化</span></a></div><div class="next-post pull-right"><a href="/2018/12/22/ES6务必掌握内容/"><span>ES6务必掌握内容</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

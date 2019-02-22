@@ -1,0 +1,366 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Solidity学习笔记"><meta name="keywords" content="Ethereum,Solidity,BlockChain,智能合约"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>Solidity学习笔记 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#通识"><span class="toc-number">1.</span> <span class="toc-text">通识</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基本类型"><span class="toc-number">2.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#整数"><span class="toc-number">3.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#引用类型"><span class="toc-number">4.</span> <span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#数据位置"><span class="toc-number">5.</span> <span class="toc-text">数据位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#内建对象"><span class="toc-number">6.</span> <span class="toc-text">内建对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#内置函数"><span class="toc-number">7.</span> <span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#随机数生成方法"><span class="toc-number">8.</span> <span class="toc-text">随机数生成方法</span></a></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#函数"><span class="toc-number"></span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#函数声明"><span class="toc-number">1.</span> <span class="toc-text">函数声明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数修饰符"><span class="toc-number">2.</span> <span class="toc-text">函数修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#可见性-不刻意声明时有默认值"><span class="toc-number">2.1.</span> <span class="toc-text">可见性 不刻意声明时有默认值</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#require-assert-revert"><span class="toc-number">3.</span> <span class="toc-text">require assert revert</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#事件"><span class="toc-number">4.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#数组"><span class="toc-number">5.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字符串"><span class="toc-number">6.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#web3-js"><span class="toc-number">7.</span> <span class="toc-text">web3.js</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#At-Address-加载已部署合约"><span class="toc-number">7.1.</span> <span class="toc-text">At Address 加载已部署合约</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#import引入的用法"><span class="toc-number">8.</span> <span class="toc-text">import引入的用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#库library的用法"><span class="toc-number">9.</span> <span class="toc-text">库library的用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#solidity-0-5-0那些事"><span class="toc-number">10.</span> <span class="toc-text">solidity 0.5.0那些事</span></a></li></ol></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">Solidity学习笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-26</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/">BlockChain</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Solidity/">Solidity</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="通识"><a href="#通识" class="headerlink" title="通识"></a>通识</h5><p>一个字节对应8位(8个二进制位) 1B(Byte)对应8b(bit)</p>
+<p>一个十六进制位对应4个二进制位(2^4^=16)</p>
+<p>所以==一个字节对应2个十六进制位==</p>
+<p>bytes32 32字节长，对应64位十六进制数 即256bit</p>
+<p>address 20字节长，对应40位十六进制数【160位二进制，相当于uint160】</p>
+<p>地址是 address 长度为40位(加上开头0x就42位)</p>
+<p>私钥|公钥 bytes32 长度为64位</p>
+<h5 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h5><p>string 字符串，utf-8编码</p>
+<p>bool</p>
+<p>int 有符号整数</p>
+<p>uint 无符号整数</p>
+<p>address 16进制，一共有40位数(不包括开头0x)</p>
+<h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><p>uint8 8位无符号整数，0~2^8^-1(255)</p>
+<p>uint16</p>
+<p>…</p>
+<p>uint256</p>
+<p>以8为步长，uint相当于uint256</p>
+<p>int类似</p>
+<h5 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h5><p>int[8] 定长数组</p>
+<p>type[] 动态数组(多种类型)，length长度，push加入元素</p>
+<p>struct 结构体 <strong>可见性只能为internal,不支持自己声明</strong></p>
+<p>mapping(key =&gt; value) 映射表 (即kv键值对) mapping(type1=&gt;type2) map; map[key]对应value</p>
+<blockquote>
+<p>「如何判断某个key是否存在mapping中」，其实是为了输入不合法的key时能给与提示，否则只是返回缺省值或者没反应 肯定不合适。</p>
+<p>具体可见合约HMS/InfoManagement.sol</p>
+<p>有个比较耗gas的方法</p>
+<p>把mapping的value也做一个数组，value[] values;数组中需要有map的key(即id)</p>
+<p>传入参数为input_id</p>
+<p>for(uint i=0;i&lt;values.length;i++){</p>
+<p>​    if(input_id==values[i].id){则说明input_id确实存在于mapping中的}</p>
+<p>}</p>
+</blockquote>
+<blockquote>
+<p>💡特别注意：</p>
+<p>==!!!!入参和出参支持结构体，结构体数组，数组，映射!!!!==  0.5.0  666</p>
+<p>想支持结构体或结构体数组 开头要添加pragma experimental ABIEncoderV2;</p>
+<p>传入或返回映射的写法 returns(mapping(uint=&gt;uint) memory(或storage))</p>
+<p>切记传入或返回映射只能在==internal方法==或==library库方法==中</p>
+<p>传入或返回数组returns(uint[] memory) 当可见性为internal时，可为storage(少用)</p>
+<p>传入或返回结构体returns(structName memory)  当可见性为internal时，可为storage(少用)</p>
+<p>传入或返回结构体数组returns(structName[] memory) 当可见性为internal时，可为storage(少用)</p>
+<p>具体可见HMS/InfoManagement.sol，拿方法getCustomerIDs()来试验</p>
+</blockquote>
+<p>==结构体==</p>
+<p>目前可能性只能为internal，而且不能显示地写出来!</p>
+<p>struct CustomerInfo</p>
+<p>mapping(uint=&gt;CustomerInfo) cinfos</p>
+<p>切记数组添加元素必须用push，不能array[1]=xxx,array[2]=xxx,不是mapping,是序列化的，一定要一个个来！</p>
+<p>结构体添加可以structA.name=xxx</p>
+<p>mapping添加可以 address[name]=“myName”</p>
+<p>结构体两种赋值方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CustomerInfo memory hotelAdmin = CustomerInfo(&#123;</span><br><span class="line">    customerName:<span class="string">"Administrator"</span>,</span><br><span class="line">    customerID:customers.length,</span><br><span class="line">    customerAge:<span class="number">666</span>,</span><br><span class="line">    isCrime:<span class="literal">false</span>&#125;);</span><br><span class="line">CustomerInfo memory hotemAdmin = CustomerInfo(<span class="string">"Admin"</span>,<span class="number">1</span>,<span class="number">666</span>,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>新建结构体必须加memory，因为新建的结构体未属于状态变量。</p>
+<p>若是将已经存在的状态变量结构体赋值给新声明的结构体，可以用storage</p>
+<p>如 CustomerInfo storage newguest = customers[0];</p>
+<p>💡tips: 新建结构体不是storage，无所谓啊，把他添加进属于状态变量的某个数组里头，他就成状态变量啦。</p>
+<p>solidity结构体初始化 不需要new 不像js</p>
+<p>Person ap = Person(172,‘Satoshi’);</p>
+<p>==bytes== 动态分配大小的字节数组</p>
+<p>bytes byt; byt.length byt[0]，可访问长度和某个下标</p>
+<p>bytes32 字节数组</p>
+<p>bytes32 写一个的时候可以简写0x1234，必须为==偶数位==，后面自动补0</p>
+<p>💡初始化数组方法：</p>
+<p>uint[] memory values = new uint[](3);</p>
+<p>内存数组必须用长度参数创建，创建一个长度为3的数组</p>
+<p>需要试一试5.0中的最新改动</p>
+<h5 id="数据位置"><a href="#数据位置" class="headerlink" title="数据位置"></a>数据位置</h5><p>storage 保存在状态树中，成员变量一般位于此处|全局变量</p>
+<p>memory 参数、局部变量一般位于此处</p>
+<p>有的变量可以使用修饰符来改变变量位置，但是==状态变量不可改变位置==。</p>
+<p>两个不同位置的引用变量，会导致深拷贝警告</p>
+<p>memory 值传递，拷贝，不改变源数据</p>
+<p>storage 引用传递，相当于指针，会改变源数据</p>
+<p>强制指定的数据位置：</p>
+<ul>
+<li>外部函数的参数（不包括返回参数）： calldata</li>
+<li>状态变量： storage</li>
+</ul>
+<p>默认数据位置：</p>
+<ul>
+<li>函数参数（包括返回参数）： memory</li>
+<li>所有其它局部变量： storage</li>
+</ul>
+<blockquote>
+<p>函数参数默认为memory，想显示声明数据位置的只能为struct|array|mapping</p>
+<p>三种数据类型，其他数据类型都不可加memory或storage声明</p>
+<p>最新版本！string类型的函数参数需要显示增加memory声明</p>
+</blockquote>
+<p>注意💡: ==函数中结构体和数组的声明和赋值==需要显示标为storage或者memory，不声明会报warning(默认为storage),而其他类型(包括mapping)都不能带storage或memory声明。</p>
+<p>函数中无法声明临时mapping，mapping一定会作为状态变量存在的，函数中声明mapping也需要初始化而且要将一个状态变量mapping(A)赋值给他，这时用声明的mapping相当于在用mappingA了。</p>
+<p>合约中函数外的声明都是状态变量，都存在storage中，不能显示加上memory或storage声明。</p>
+<p>Person p = persons[_index];<br>p.age = _age;</p>
+<p>//改变age会影响原来的值</p>
+<p>Person memory p = persons[_index];<br>p.age = _age;</p>
+<p>//改变age不会影响原来的值</p>
+<p>例子：<a href="https://cryptozombies.io/zh/lesson/3/chapter/12" target="_blank" rel="noopener">https://cryptozombies.io/zh/lesson/3/chapter/12</a></p>
+<p>批量删除数组元素，有两种方法，第一种符合直觉，但是特别费gas</p>
+<ul>
+<li><p>方法需要传入storage数组参数，数组的删除项后面的每个项都往前挪一位(即重新赋值)，然后再将数组长度减1。</p>
+<p>因为需要修改storage变量，每动一项都要消耗gas，贵</p>
+</li>
+<li><p>方法二:由于外部调用view函数免费，可以用for循环遍历整个数组把符合要求的挑出来构建出数组，这样会便宜的多得多。(需要做if判断)</p>
+</li>
+</ul>
+<p>批量赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uint a;</span><br><span class="line">uint b;</span><br><span class="line">uint c;</span><br><span class="line"><span class="comment">// 这样来做批量赋值:</span></span><br><span class="line">(a, b, c) = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="内建对象"><a href="#内建对象" class="headerlink" title="内建对象"></a>内建对象</h5><p>==<strong>block</strong>==</p>
+<p>block.blockhash(uint blockNumber) returns (bytes32) 指定块的哈希</p>
+<p>block.coinbase (address) 当前块矿工地址</p>
+<p>block.difficulty (uint) 当前块难度值</p>
+<p>block.gaslimit (uint) 当前块gaslimit</p>
+<p>block.number (uint) 当前块块号(区块高度)</p>
+<p>block.timestamp (uint) 当前块时间戳</p>
+<p>==<strong>msg</strong>==</p>
+<p>调用方法时，会给方法传递一个msg属性</p>
+<p>msg.data (byte) 完整的calldata</p>
+<p>msg.gas (uint) 剩余gas</p>
+<p>msg.sender (address)当前消息的发送者</p>
+<p>msg.sig (bytes4) 呼叫数据的前四个字节(即功能标识符)</p>
+<p>msg.value (uint) 发送的消息的数量(发送的token数量)</p>
+<p>==now==</p>
+<p>即block.timestap的别名 当前块时间戳</p>
+<p>==address==</p>
+<p>\&lt;address>.balance</p>
+<p>\&lt;address>.transfer(uint256 amount) 发送指定数量ether到地址，失败时抛异常，</p>
+<p>\&lt;address>.send(uint256 amount) returns (bool)  </p>
+<p>发送指定数量ether到地址，失败时返回false</p>
+<p>\&lt;address>.call(…) returns (bool)</p>
+<p>\&lt;address>.callcode(…) returns (bool)</p>
+<p>\&lt;address>.delegatecall(…) returns (bool)</p>
+<p>getBalance()方法</p>
+<p>return this.balance;</p>
+<p>更安全的写法是return address(this).balance;</p>
+<p>this代表当前合约的地址，合约地址！</p>
+<p>msg.sender代表当前调用人的地址，外部账户地址！</p>
+<p>==tx==</p>
+<ul>
+<li><p><strong>tx.gasprice (uint)</strong>  gas价格</p>
+</li>
+<li><p><strong>tx.origin (address)</strong> 交易的发送者（全调用链）</p>
+<p>Solidity有一个全局变量tx.origin，它遍历整个调用堆栈，并返回原先发送调用（或事务）的帐户地址。</p>
+<p>如果一个函数的调用者规定必须为外部账户，然而这个合约B是被其他合约A部署的，这时用msg.sender会获得外部账户地址而不是合约地址，如果使用tx.origin则可以获得最先部署合约A的外部账户的地址了。</p>
+<p>不过要注意安全问题，一般较少使用。</p>
+<p>有一个判断require(msg.sender==tx.origin)什么含义呢？</p>
+</li>
+</ul>
+<h5 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h5><p>addmod(uint x,uint y,uint k) returns (uint) (x+y)%k</p>
+<p>mulmod(uint x,uint y,uint k) returns (uint) (x*y)%k</p>
+<p>keccak256(…) returns(bytes32)</p>
+<p>变参，可传多个参数</p>
+<p>sha3 keccak256别名</p>
+<p>assert(bool condition)</p>
+<p>require(bool condition)</p>
+<p>revert();</p>
+<p>assert比较自信，断言此事不发生，发生会惩罚 扣光所有gas</p>
+<p>require比较温和，如果条件不满足，退回剩余gas，用的更多</p>
+<p>revert主动退回gas，if/else判断后使用</p>
+<p>assert多用于判断非状态变量</p>
+<p>assert可考虑放在函数结尾部分用于验证之前的操作结果的正确性</p>
+<p>solidity内部有this，address(this)</p>
+<p>selfdestruct(address) 销毁合约，address是收益人(销毁后钱转给)</p>
+<h5 id="随机数生成方法"><a href="#随机数生成方法" class="headerlink" title="随机数生成方法"></a>随机数生成方法</h5><p>keccak256函数：</p>
+<p>uint random = uint(keccak256(block.difficulty,now));</p>
+<p>blockhash法:</p>
+<p>uint random = uint(block.blockhash(block.number-1)); //？待查</p>
+<p>不像js，变量的赋值|函数的执行 不能直接写在合约中的，而是写在函数中，这些操作是可能需要消耗gas的。或者写在js中？</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><h5 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h5><p>定义</p>
+<p>修饰</p>
+<p>调用</p>
+<p>返回值(可以多个，<strong><em>最多7个</em></strong>，可省略名字) 可return (v0,v1,…,vn)</p>
+<p>fallback(匿名函数)</p>
+<h5 id="函数修饰符"><a href="#函数修饰符" class="headerlink" title="函数修饰符"></a>函数修饰符</h5><p>💡 切记区分可见性(可调用的位置)和能不能看见函数内容是不同的</p>
+<p>调用其他合约(除继承外)需要先获得一个其他合约实例c,然后c.functionxx()</p>
+<blockquote>
+<p>💡</p>
+<ul>
+<li>函数声明时默认为<strong><code>public</code></strong>类型，和显示声明为<strong><code>public</code></strong>类型的函数一样，都可供外部访问。</li>
+<li>构造函数大部分情况下都声明为<code>public</code>类型。</li>
+<li>所有在合约内的东西对外部的观察者来说都是可见的，将某些东西标记为<strong><code>private</code></strong>仅仅阻止了其它合约来进行访问(调用)和修改，但并不能阻止其它人看到相关的信息[可以看到函数是干啥的，函数体里头有啥内容，但是没法调用，没法改]。</li>
+<li>可见性的标识符的定义位置，==对于变量声明来说是在类型的后面==，==对于函数声明来说是在参数列表和返回关键字(returns)中间==。</li>
+<li>状态变量声明时，默认为<strong><code>internal</code></strong>类型，只有显示声明为<strong><code>public</code></strong>类型的状态变量才会自动生成一个和状态变量同名的<strong><code>get</code></strong>函数以供外部获取当前状态变量的值。状态变量无法声明为<code>external</code>类型。</li>
+</ul>
+</blockquote>
+<h6 id="可见性-不刻意声明时有默认值"><a href="#可见性-不刻意声明时有默认值" class="headerlink" title="可见性 不刻意声明时有默认值"></a>可见性 不刻意声明时有默认值</h6><p>函数可见性默认为public</p>
+<p>状态变量可见性默认为internal 无法声明为external</p>
+<p>结构体默认为internal 且无法加任何其他的可见性声明</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>意义</th>
+<th style="text-align:center">分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td>任何人(包括儿子)可以调用(同一个sol文件内部可以直接调用,其他文件需要import引入)该函数，和private互斥</td>
+<td style="text-align:center">调用控制类</td>
+</tr>
+<tr>
+<td>private</td>
+<td>只有该合约能调用(儿子都不可)，和public互斥</td>
+<td style="text-align:center">调用控制类</td>
+</tr>
+<tr>
+<td>external</td>
+<td>外部函数。内部不可访问(可this)，外部正常访问，子类可继承。</td>
+<td style="text-align:center">调用控制类</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>内部函数。内部正常访问，外部无法访问，子类可继承。</td>
+<td style="text-align:center">调用控制类</td>
+</tr>
+<tr>
+<td>view</td>
+<td>合约不修改状态变量，和constant一样</td>
+<td style="text-align:center">状态变量访问控制类</td>
+</tr>
+<tr>
+<td>constant</td>
+<td>合约不修改状态变量，和constant一样</td>
+<td style="text-align:center">状态变量访问控制类</td>
+</tr>
+<tr>
+<td>pure</td>
+<td>合约不但不修改，也不读取状态变量</td>
+<td style="text-align:center">状态变量访问控制类</td>
+</tr>
+<tr>
+<td>payable</td>
+<td>涉及eth(其他token不算)的转移操作需要加上这个</td>
+<td style="text-align:center">资金控制类</td>
+</tr>
+<tr>
+<td>自定义修饰符</td>
+<td>自定义修饰符号modifier</td>
+<td style="text-align:center">自定义控制类</td>
+</tr>
+</tbody>
+</table>
+<p>函数中有transfer、send等方法，则需要加上payable修饰</p>
+<p>合约中的struct数组的可见性只支持internal(默认值，不需要写)，不能声明其他可见性！！(新版本也看下)</p>
+<p>==external调用注意==</p>
+<p>合约内或后代合约(继承)需要用this方式调用，此外合约外部直接用合约实例调即可。b.externalFn();</p>
+<p>==函数返回值return用法==</p>
+<ol>
+<li><p>function .. returns (type _result){…;_result = xxx;}</p>
+<p>定义出参时加上变量名，函数体不写return</p>
+</li>
+<li><p>function .. returns (type){…;return result;}</p>
+<p>定义出参时不加变量名，函数体写return</p>
+</li>
+</ol>
+<p>函数若声明成private私有的，remix右侧工具栏是无法看到和调用的；声明成external和public才可以。</p>
+<p>view和constant在remix中为蓝色的，pure可用于计算(只是传参，不关心别的)</p>
+<p>public变量会自动生成一个同名查询函数，蓝色。</p>
+<p>查询最好带上view，因为不消耗gas啊，给力</p>
+<p>函数多个返回值，只想取后面的返回值的方法：</p>
+<blockquote>
+<p>(,,,,,result) = functionA();</p>
+</blockquote>
+<p>==return在哪看==</p>
+<ol>
+<li>在控制台debug的decoded output字段看</li>
+<li>在右侧工具窗口debugger页签的Solidity State看所有状态，这儿可以看到</li>
+<li>如果带上view修饰符，直接在右侧界面可以看，调用方法后就在函数名下可以看到</li>
+</ol>
+<p>==！注意注意！==</p>
+<p>view和pure的函数 被合约外部(即外部账户)调用时不花费gas</p>
+<p>但它们被内部其他函数调用时 会耗费gas (取决于主调函数)</p>
+<h5 id="require-assert-revert"><a href="#require-assert-revert" class="headerlink" title="require assert revert"></a>require assert revert</h5><p>if(msg.sender==owner){</p>
+<p>//dosomething</p>
+<p>}else{</p>
+<p>​    revert();</p>
+<p>}</p>
+<p>不满足条件会revert回滚</p>
+<p>更好的写法</p>
+<p>require(msg.sender\==owner)//或assert(msg.sender==owner)</p>
+<p>//dosomething</p>
+<p>效果一样，但更简洁更语义化</p>
+<h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><p>可用于打日志</p>
+<p>在logs项中的event字段可以看到事件中定义了的参数</p>
+<p>声明：</p>
+<p>Event BidEvent(address _myAddr,uint _myMoney)</p>
+<p>使用：</p>
+<p>在函数中发射 emit BidEvent(myAddr,myMoney); </p>
+<h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><p>push方法只能对变长数组使用</p>
+<p>如果想用delete删数组元素，也用变长数组吧</p>
+<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><p>abi.encodePacked(a,b) 连接两个字符串</p>
+<h5 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h5><p>RPC方式访问以太坊网络</p>
+<blockquote>
+<p>资料：<br><a href="http://cw.hubwiz.com/card/c/web3.js-1.0/1/4/7/" target="_blank" rel="noopener">http://cw.hubwiz.com/card/c/web3.js-1.0/1/4/7/</a></p>
+</blockquote>
+<p>view蓝色的 用call来调用？</p>
+<p>红色的不带view的 用send来调用？</p>
+<p>==调用关键点==</p>
+<p>连接到以太坊</p>
+<p>已知合约ABI</p>
+<p>已知合约地址(通过ABI也可以部署新合约) 知道ABI和合约地址可以获得合约实例</p>
+<p>以太坊客户端支持rpc</p>
+<ol>
+<li><p>创建合约对象</p>
+</li>
+<li><p>通过合约地址和合约abi获得合约实例</p>
+</li>
+<li><p>调用合约中的方法</p>
+<p>实例.methods.functionName().call()</p>
+</li>
+</ol>
+<p>或者methods.functionName().send()</p>
+<p>call可以不用from和gas，send必须有from和gas</p>
+<p>call(function(){})</p>
+<p>send({},function(){})</p>
+<h6 id="At-Address-加载已部署合约"><a href="#At-Address-加载已部署合约" class="headerlink" title="At Address 加载已部署合约"></a>At Address 加载已部署合约</h6><p>之前部署过的合约，有数据，</p>
+<h5 id="import引入的用法"><a href="#import引入的用法" class="headerlink" title="import引入的用法"></a>import引入的用法</h5><ul>
+<li>import “./xxx.sol”</li>
+<li></li>
+</ul>
+<h5 id="库library的用法"><a href="#库library的用法" class="headerlink" title="库library的用法"></a>库library的用法</h5><ol>
+<li><p>import {Console} from “./Console.sol”; //Console为library名字</p>
+<p>使用时Console.log(xxx) 调用库名.方法</p>
+</li>
+<li><p>import “./AddressUtils.sol”;</p>
+<p>合约内 using AddressUtils for address; 然后address类型自带方法isContract</p>
+<p>使用时isContract(addrxxx) 或者 addrxx.isContract()?</p>
+</li>
+</ol>
+<h5 id="solidity-0-5-0那些事"><a href="#solidity-0-5-0那些事" class="headerlink" title="solidity 0.5.0那些事"></a>solidity 0.5.0那些事</h5><p><a href="https://www.colabug.com/4931922.html" target="_blank" rel="noopener">https://www.colabug.com/4931922.html</a></p>
+<ul>
+<li>地址分为address和address payable,必须显式声明了payable才可以transfer send</li>
+<li>external 的函数参数(普通类型数组!类型)需显式声明为 calldata,其他按各自规则来。</li>
+<li>keccak256(abi.encodePacked(a,b,c)) 必须加上abi.encodePacked</li>
+<li>bytes32无法转为uint8,但是可以转为uint(即uint256)</li>
+<li>uint和uint8 一起运算可能会被禁止</li>
+<li>selfdestruct参数的地址a必须为address payable,因为要把钱打到a那儿,payable才可以接收钱。</li>
+<li>最新版本！string类型的函数参数需要显示增加memory声明</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/26/Solidity学习笔记/">https://skr.dog/2019/01/26/Solidity学习笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Ethereum/">Ethereum</a><a class="post-meta__tags" href="/tags/Solidity/">Solidity</a><a class="post-meta__tags" href="/tags/BlockChain/">BlockChain</a><a class="post-meta__tags" href="/tags/智能合约/">智能合约</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/02/22/回到解放前/"><i class="fa fa-chevron-left">  </i><span>回到解放前</span></a></div><div class="next-post pull-right"><a href="/2019/01/22/npm常用知识点/"><span>npm常用知识点</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

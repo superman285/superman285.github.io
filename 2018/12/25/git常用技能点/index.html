@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="git常用技能点"><meta name="keywords" content="Git"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>git常用技能点 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#给他人直接提交权限，团队写作方式"><span class="toc-number">1.</span> <span class="toc-text">给他人直接提交权限，团队写作方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#git-pull相当于git-fetch和git-mergt的合集"><span class="toc-number">2.</span> <span class="toc-text">git pull相当于git fetch和git mergt的合集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#git回滚和撤销"><span class="toc-number">3.</span> <span class="toc-text">git回滚和撤销</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#branch分支相关"><span class="toc-number">4.</span> <span class="toc-text">branch分支相关</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#本地与远程master分支"><span class="toc-number">4.1.</span> <span class="toc-text">本地与远程master分支</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#冲突conflict"><span class="toc-number">5.</span> <span class="toc-text">冲突conflict</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fork-pull-request-「不加入团队协作者collaborator的协作方式，即跨团队协作」"><span class="toc-number">6.</span> <span class="toc-text">fork + pull request 「不加入团队协作者collaborator的协作方式，即跨团队协作」</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#clone和fork区别"><span class="toc-number">7.</span> <span class="toc-text">clone和fork区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#学习视频"><span class="toc-number">8.</span> <span class="toc-text">学习视频</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">git常用技能点</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-25</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/Git/">Git</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="给他人直接提交权限，团队写作方式"><a href="#给他人直接提交权限，团队写作方式" class="headerlink" title="给他人直接提交权限，团队写作方式"></a>给他人直接提交权限，团队写作方式</h5><p>自己的github中某个项目，Settings-Collaborators</p>
+<p>Add collaborators的input输入框中，填入别人用户名，然后上方会多出用户</p>
+<p>这时点击==Copy invite link==,然后发送给被邀请方</p>
+<p>被邀请方访问这个邀请链接，然后点击按钮==Accept invitation==即可接受邀请</p>
+<p>然后被邀请方git clone下来项目仓库，更改之后就可以直接提交commit啦</p>
+<h5 id="git-pull相当于git-fetch和git-mergt的合集"><a href="#git-pull相当于git-fetch和git-mergt的合集" class="headerlink" title="git pull相当于git fetch和git mergt的合集"></a>git pull相当于git fetch和git mergt的合集</h5><p>相当于走了下面三步，将远程的master合并到本地master，对本地master进行了改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin master</span><br><span class="line">git log -p master..origin/master</span><br><span class="line">git merge origin/master</span><br></pre></td></tr></table></figure>
+<p>merge相当于一个新的提交记录</p>
+<p>但是push并不等于merge,将本地master内容merge到远程origin/master上确实已经改变了远程origin/master内容，但是他们的位置还是差1，本地master[ahead1]，远程origin/master[behind 1]</p>
+<h5 id="git回滚和撤销"><a href="#git回滚和撤销" class="headerlink" title="git回滚和撤销"></a>git回滚和撤销</h5><ol>
+<li>没add 没commit</li>
+</ol>
+<p>当进行一个操作，且没add时，可以用checkout . 进行撤销。可定位到当前的目录 撤销</p>
+<p>或者指定文件 cheout filename 来撤销某个文件</p>
+<ol>
+<li>add了 没commit</li>
+</ol>
+<p>git reset head filename(可选,不写就是回滚目录所有)</p>
+<ol>
+<li>add了 commit了</li>
+</ol>
+<p>当进行一个操作，且add和commit了，可以用revert commitID 进行回滚。(commitID在log中查看)</p>
+<p>然后需要push?</p>
+<h5 id="branch分支相关"><a href="#branch分支相关" class="headerlink" title="branch分支相关"></a>branch分支相关</h5><p>git branch branchB 创建分支B</p>
+<p>git checkout branchB 切换到分支branchB</p>
+<p>或者合并为命令 git checkout -b branchB 创建并切换到分支branchB</p>
+<p>git branch 查看所有分支，当前分支会标*号</p>
+<p>git branch -d branchA 删除分支A</p>
+<p>git merge branchC 合并branchC分支到当前分支 相当于git merge branchX to this</p>
+<p>==远程分支检出(checkout)时自动进入分离HEAD状态==</p>
+<h6 id="本地与远程master分支"><a href="#本地与远程master分支" class="headerlink" title="本地与远程master分支"></a>本地与远程master分支</h6><p>master代表本地master分支,origin/master代表远程master分支</p>
+<p>远程master分支表示</p>
+<p>* (HEAD detached at origin/master)</p>
+<p>  master</p>
+<p>本地master分支表示</p>
+<p>* master</p>
+<p>合并之前可以先用命令 git checkout master|git checkout origin/master来切换分支查看内容</p>
+<h5 id="冲突conflict"><a href="#冲突conflict" class="headerlink" title="冲突conflict"></a>冲突conflict</h5><p>当A和B都在修改文件，A提交后B不知道，B改了自己的也提交，这时就会出现提交失败，需要先pull。</p>
+<p>然后B进行pull操作后，就出现了conflict冲突，然后B进行修改，把特殊符号行删除，修改成所需内容，然后再add和commit和push即可。</p>
+<h5 id="fork-pull-request-「不加入团队协作者collaborator的协作方式，即跨团队协作」"><a href="#fork-pull-request-「不加入团队协作者collaborator的协作方式，即跨团队协作」" class="headerlink" title="fork + pull request 「不加入团队协作者collaborator的协作方式，即跨团队协作」"></a>fork + pull request 「不加入团队协作者collaborator的协作方式，即跨团队协作」</h5><p>fork成为独属自己的仓库，自己可以随意改动随意提交</p>
+<p>add，commit，push之后，可以发起pull request</p>
+<p>New pull request -&gt; Create pull request</p>
+<p>切记切记</p>
+<p>==base fork 是自己的==</p>
+<p>==head fork 是别人的==</p>
+<p>更新fork仓库的方法：<a href="https://www.jianshu.com/p/8ab6ef7ce5e3" target="_blank" rel="noopener">https://www.jianshu.com/p/8ab6ef7ce5e3</a></p>
+<p>学习video:<a href="https://www.bilibili.com/video/av24736323/?p=41" target="_blank" rel="noopener">https://www.bilibili.com/video/av24736323/?p=41</a></p>
+<h5 id="clone和fork区别"><a href="#clone和fork区别" class="headerlink" title="clone和fork区别"></a>clone和fork区别</h5><p>clone是把远程仓库给同步到本地，会生成一个与远程同步的本地仓库 remote-&gt;local</p>
+<p>而fork呢 是将别人的仓库复制一份作为自己的远程仓库 remote-&gt;remote，想直接操作的话要先clone到本地</p>
+<p>即fork+clone</p>
+<h5 id="学习视频"><a href="#学习视频" class="headerlink" title="学习视频"></a>学习视频</h5><p><a href="https://www.bilibili.com/video/av24736323" target="_blank" rel="noopener">https://www.bilibili.com/video/av24736323</a></p>
+<p>互动学习：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/25/git常用技能点/">https://skr.dog/2018/12/25/git常用技能点/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/02/Promise手札/"><i class="fa fa-chevron-left">  </i><span>Promise手札</span></a></div><div class="next-post pull-right"><a href="/2018/12/24/关于前端模块化/"><span>关于前端模块化</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

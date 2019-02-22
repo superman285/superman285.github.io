@@ -1,0 +1,187 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="简单说说DOM和BOM"><meta name="keywords" content="JavaScript,DOM,BOM"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>简单说说DOM和BOM | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-number">1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#你可能不知道的坑💣"><span class="toc-number">1.0.1.</span> <span class="toc-text">你可能不知道的坑💣</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#BOM"><span class="toc-number">2.</span> <span class="toc-text">BOM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#window常用方法"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">window常用方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#window下的四大金刚"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">window下的四大金刚</span></a></li></ol></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">简单说说DOM和BOM</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-12</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/JavaScript/">JavaScript</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>document object model</p>
+<p>顶层对象document</p>
+<p>文档对象模型，结构图如下：</p>
+<p><img src="DOMStruct.png" alt="DOM结构图"></p>
+<p>document.documentElement 获取到整个html即root</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">节点类型nodeType</font> 返回数字<br><br>元素节点 1 标签<br><br>属性节点 2 他们的属性<br><br>文本节点 3 他们的文本 text<br><br>注释节点 8 comment<br><br>文档节点 9 document<br><br><br><br>获取属性节点<br><br>e.g. element.getAttributeNode(“width”)  行间属性<br><br><br><br>获取文本节点<br><br>e.g. span.firshChild<br><br><br><br><font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">节点名称nodeName</font>
+
+<p>元素节点返回大写标签名(string类型);属性节点返回属性名;文本节点返回#text</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">节点内容nodeValue</font>
+
+<p>属性节点的为属性值，文本节点的为文本内容，元素节点的为null</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">节点关系</font>
+
+<p>父子关系：上下级</p>
+<p>兄弟关系：同级</p>
+<p>祖先关系：当前节点上面所有节点统称</p>
+<p>子孙关系：当前节点下面所有节点统称</p>
+<p>想拿到所有后代用 <code>祖先</code>.getElementsByTagName(“”);</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">定位祖先节点</font>
+
+<p>element.offsetParent 距离元素最近的有定位属性的祖先节点</p>
+<p>如果祖先都没有定位，那么会获取到body</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">儿子节点</font>
+
+<p>childNodes：获取一个元素下的所有子节点(只获取到儿子一级)，包括文本节点、注释节点</p>
+<p>children：获取一个元素下的所有==子<strong>元素节点</strong>== (只获取到儿子一级)</p>
+<p>firstChild：获取第一个子节点(包括三种节点)</p>
+<p>lastChild：获取最后一个子节点(包括三种节点)</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">父亲节点</font>
+
+<p>parentNode：获取一个元素的父节点</p>
+<p>parentElement 不好用 只在ie可用</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">兄弟节点</font>
+
+<p>nextSibling：获取当前元素的下一个兄弟节点(包括元素、文本、注释节点)</p>
+<p>nextElementSibling：获取当前元素的下一个兄弟元素节点</p>
+<p>previousSibling：获取当前元素的上一个兄弟节点(包括元素、文本、注释节点)</p>
+<p>previousElementSibling：获取当前元素的上一个兄弟元素节点</p>
+<p>获取不到节点返回null</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">创建节点</font>
+
+<p>父节点.appendChild(element)</p>
+<p>父节点.insertBefore(insertElement,beforeWhichElement) 待插入元素，要插到哪个元素之前f</p>
+<p>若第二个参数为null(相当于父亲没有儿子)，则直接插入，此时效果同appendChild</p>
+<p>法一：</p>
+<p>var son = document.createElement(“标签名字”)</p>
+<p>son.innerHTML=val</p>
+<p>father.appendChild(son)</p>
+<p>法二：</p>
+<p>father.innerHTML += “\<li>” + val + “\</li>”</p>
+<blockquote>
+<p>针对子节点ChildNode的接口 都是插入到父亲底下,和son同级</p>
+</blockquote>
+<p>son.before(xx) 将xx插入到son之前\<xx>\<son></son></xx></p>
+<p>son.after(yy) 将yy插入到son之后\<son>\<yy></yy></son></p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">替换节点</font>
+
+<p>father.replaceChild(newElement,oldElement) 应该先判断oldElement是否存在</p>
+<p>son.replaceWith(newElement) | p.replaceWith(span)</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">删除节点</font>
+
+<ul>
+<li>father.removeChild(element)</li>
+<li>要删的元素本身.remove()</li>
+</ul>
+<h5 id="你可能不知道的坑💣"><a href="#你可能不知道的坑💣" class="headerlink" title="你可能不知道的坑💣"></a>你可能不知道的坑💣</h5><p>HTMLCollection <font color="dark"><strong>V.S</strong></font> NodeList</p>
+<p>相同点: </p>
+<ul>
+<li><p>这两者都是伪数组，真对象</p>
+</li>
+<li><p>这两者都是动态的，若dom发生了变化，之前获取到的HTMLCollection或NodeList也会随之变化</p>
+</li>
+<li><p>两者都有item方法，可以通过索引来获取到数组中的元素，如collection.item(0)</p>
+<p>HTMLCollection的item方法参数只能为数字,代表索引；</p>
+<p>NodeList的item方法参数只能为数字,代表索引。</p>
+</li>
+</ul>
+<p>区别:</p>
+<ul>
+<li><p>HTMLCollection包含的是元素节点Element，NodeList顾名思义包含的是所有类型的节点(包括文本节点|属性节点|注释节点等等)</p>
+</li>
+<li><p>HTMLCollection多了一个namedItem方法，参数可以为id或name(表单元素的name)，若id与name同名，以id优先。</p>
+</li>
+<li><p>通过querySelectorAll方法返回的是NodeList 这个方法返回的内容很全</p>
+<p>通过getElementsByXXX方法返回的是HTMLCollection 方法名都告诉你了 getElements</p>
+<p>所以只返回元素节点</p>
+</li>
+</ul>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">重点来了</font>
+
+<p>HTMLCollection和NodeList都是动态的，具有实时性。</p>
+<p>通过getElementsByxxx 返回的集合是动态的 实时的</p>
+<p>But,通过querySelectorAll 返回的集合却是静态的 不具有实时性 (很特殊的一点)</p>
+<p>举个🌰</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p"</span>&gt;</span>我是1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p"</span>&gt;</span>我是2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> qps = <span class="built_in">document</span>.querySelectorAll(<span class="string">".p"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> gps = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"p"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> newp = <span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</span></span><br><span class="line"><span class="javascript">    newp.classList = <span class="string">'p'</span>;</span></span><br><span class="line"><span class="javascript">    newp.innerHTML = <span class="string">'我是3'</span>;</span></span><br><span class="line"><span class="undefined">    outer.appendChild(newp);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(qps);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(gps);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>qps打印出的是NodeList,里头只有<strong>2个元素</strong></p>
+<p>gps打印出的是HTMLCollection,里头有<strong>3个元素</strong></p>
+<blockquote>
+<p>说明querySelector获取到的是当时的元素，后续的变化不会影响获取到的值了</p>
+<p>而getElementsByXXX获取到的是动态的值，后续的变化实时反应影响到值，使用的时候已经不是当时获取到的值了</p>
+</blockquote>
+<p>所以按照需求选择方案</p>
+<p>如果想安全点 不会受后面改变dom影响之前获取到的元素的使用的 就用querySelector</p>
+<h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><p>browser object model 顶层对象是window</p>
+<h6 id="window常用方法"><a href="#window常用方法" class="headerlink" title="window常用方法"></a>window常用方法</h6><ul>
+<li>alert</li>
+<li>confirm 返回值true|false</li>
+<li>setInterval() | clearInterval()</li>
+<li>setTimeout() | clearTimeout()</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timerID = setTimeout(fn,<span class="number">1000</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;xxxx;clearTimeout(timerID);&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>open([页面地址]，[打开方式])</p>
+<p>打开方式：_self本窗口打开 _blank新窗口打开 _parent</p>
+<p>不写页面地址默认打开blank，不写打开方式默认是_blank</p>
+<p>返回值：新窗口的window对象</p>
+<p>前端会涉及跨域问题，若页面地址写一个百度的网址，是无法对百度网址的窗口对象直接进行操作的，因为跨了域。 </p>
+</li>
+<li><p>close() 火狐无法关闭本窗口，除非设置某个值为true(about:config dom.allow.xxx)</p>
+</li>
+</ul>
+<h6 id="window下的四大金刚"><a href="#window下的四大金刚" class="headerlink" title="window下的四大金刚"></a><font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">window下的四大金刚</font></h6><blockquote>
+<p>四个对象</p>
+<p>navigator | location | history | screen</p>
+</blockquote>
+<ul>
+<li><p>navigator 浏览器信息</p>
+<p>navigator.userAgent</p>
+<p>1操作系统</p>
+<p>2渲染内核</p>
+<p>3浏览器版本</p>
+</li>
+<li><p>location 页面URL相关信息</p>
+<p>location.href 页面地址</p>
+<p>location.hash 锚点 获取地址栏从#开始到后面的内容，包括#，格式为<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">string</font></p>
+<p>从#开始截止到下一个特殊符号前，例如?</p>
+<p>神奇之处：这个hash不会因为页面刷新和被刷掉，刷新之后仍赖在地址栏上</p>
+<p>使用：添加hash后，判断当hash为某个值时，状态为xx，这个xx状态就不会因为刷新页面而消失了。</p>
+<ol>
+<li>通过a标签添加hash值 &lt;a href=“#11” 点击a标签就给地址加上了#1</li>
+<li>通过js代码添加hash值 location.hash = xx; 设置时忽略#，不用写#</li>
+<li></li>
+</ol>
+<p>location.search 获取地址栏从?开始到后面的内容，包括?，格式为<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">string</font></p>
+<p>从?开始截止到下一个特殊符号前，例如#</p>
+<p>添加方法：</p>
+<ol>
+<li>通过a标签添加search值 &lt;a href=“?why” 点击a标签 #11就消失了，末尾加上了?why</li>
+<li>用js代码添加search值的话，会加在#11之前，无法达到取消#不刷新(即重新刷新)的目的。</li>
+</ol>
+</li>
+<li><p>screen 屏幕对象</p>
+<p>height | width 获取屏幕的宽度和高度，包括顶部地址栏和工具栏</p>
+<p>availHeight | availWidth 获取屏幕的可用宽度和可用高度，不包括顶部地址栏和工具栏</p>
+<p>availHeight&lt;height 但 availWidth==width</p>
+<p>对比：</p>
+<p>document.documentElement.clientWidth/clientHeight 可视窗口的宽高，会随着拖动浏览器变化</p>
+</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/11/12/简单说说DOM和BOM/">https://skr.dog/2018/11/12/简单说说DOM和BOM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/DOM/">DOM</a><a class="post-meta__tags" href="/tags/BOM/">BOM</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/11/22/ERC标准/"><i class="fa fa-chevron-left">  </i><span>ERC标准</span></a></div><div class="next-post pull-right"><a href="/2018/11/02/JS中的对象和原型/"><span>JS中的对象和原型</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

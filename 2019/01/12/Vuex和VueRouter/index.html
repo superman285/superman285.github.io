@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Vuex和VueRouter"><meta name="keywords" content="JavaScript,Vue"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>Vuex和VueRouter | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#VueRouter-vue前端路由"><span class="toc-number">1.</span> <span class="toc-text">VueRouter vue前端路由</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#路由组件传参"><span class="toc-number">1.1.</span> <span class="toc-text">路由组件传参</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#路由守卫"><span class="toc-number">1.2.</span> <span class="toc-text">路由守卫</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#路由元信息meta"><span class="toc-number">1.3.</span> <span class="toc-text">路由元信息meta</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#路由跳转"><span class="toc-number">1.4.</span> <span class="toc-text">路由跳转</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#组件内的守卫"><span class="toc-number">1.5.</span> <span class="toc-text">组件内的守卫</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#路由监听"><span class="toc-number">1.6.</span> <span class="toc-text">路由监听</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VueX状态管理"><span class="toc-number">2.</span> <span class="toc-text">VueX状态管理</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">Vuex和VueRouter</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-12</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/Vue/">Vue</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="VueRouter-vue前端路由"><a href="#VueRouter-vue前端路由" class="headerlink" title="VueRouter vue前端路由"></a>VueRouter vue前端路由</h5><p>vue页面开发中 每一个要实现的独立页面内容都是通过组件来完成的</p>
+<p>router 路由管理者 新建Vue对象需要配置此项</p>
+<p>route 单个路由 对象</p>
+<p>routes 路由们 (定义路由组件关系映射关系的数组)</p>
+<p>routes[route1,route2]</p>
+<p>route{name:xx,path:yy,component:zz} path即url,component即组件名,name不是必须的</p>
+<p>router的组件 router-view router-link</p>
+<p>router-view : 相当于占位符,用于展示与当前url匹配的组件内容(route对象中的component)</p>
+<p>router-link : 会被渲染成a标签，但是会增加click事件，阻止默认行为(跳转和发请求)，</p>
+<p>根据hash模式或history模式进行不同处理；</p>
+<p>history模式增加pushState事件，hash模式用上了onhashchange事件(回顾下确定)</p>
+<p>切记 把url放在地址栏然后回车 是通过浏览器发请求给后端 如果没有配后端路由 就会挂掉</p>
+<p>但是在页面上点击标签 就没有给后端发请求</p>
+<p>动态路由</p>
+<p>path-to-regexp模式  path: ‘/:id’</p>
+<p>$route 当前路由信息 包括path、params等属性</p>
+<p>$router 为new出来的router对象实例</p>
+<p>传数据</p>
+<p>$route.params.id </p>
+<p>$route.query.id 通过查询参数?</p>
+<p>router-link激活的类名 router-link-active(包含匹配) router-link-exact-active(精确匹配)</p>
+<p>==💡坑点:==</p>
+<p>可能需要默认选中项(第一项)进行精确匹配，其他项进行包含匹配</p>
+<p>默认项router-link标签加上属性exact即变成精确匹配</p>
+<p>router-link tag属性 不默认渲染成a 而是渲染成写在tag后的标签</p>
+<p>==嵌套路由两个核心==</p>
+<p>routes选项中设置路由的包含关系，在某个route对象中设置children routes数组</p>
+<p>子路由组件出现在父级路由组件页面中的哪个位置</p>
+<p>==命名路由== 更方便以后管理和修改路径</p>
+<p>==命名视图== router-view起名 一个页面可能包含多个页面组合 用name来标识他们</p>
+<p>==重定向==</p>
+<p>{path:‘/list’,redirect:‘/l’} 访问list时重定向到l</p>
+<h6 id="路由组件传参"><a href="#路由组件传参" class="headerlink" title="路由组件传参"></a>路由组件传参</h6><p>在一个组件中复用另一个组件，都统一从props中拿，而不是从$route.params或\$route.query中拿</p>
+<h6 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h6><p>最全解释:</p>
+<p><a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html" target="_blank" rel="noopener">https://router.vuejs.org/zh/guide/advanced/navigation-guards.html</a></p>
+<p>==全局前置守卫== 导航被确认之前</p>
+<p>router.beforeEach((to,from,next)=&gt;{//路由跳转前的业务逻辑})</p>
+<p>next()调用 才可以正常跳转到路由页</p>
+<p>当路由发生变化时，全局beforeEach就会被触发，</p>
+<p>我们可以在这个函数中加入一些业务处理，例如权限验证，如果通过则调用next进入目标路由页</p>
+<p>demo例子: 登录验证 如果没登录 点其他页都跳到登录页，登录了就正常跳转</p>
+<p>to 即将要进入的目标 ==路由对象==</p>
+<p>from 当前正要离开的 ==路由对象== 如果name看不出来可以看它的fullPath来判断是哪个路由</p>
+<p>==全局后置守卫== 导航被确认之后</p>
+<p>router.afterEach</p>
+<p>==单独路由独享的守卫==</p>
+<p>某一个路由想做一些与全局无关的事情 多个路由的话用全局守卫</p>
+<p>路由对象中配置beforeEnter(to,from,next){}</p>
+<p>{name:xx,path:yy,component:zz,beforeEnter(to,from,next){}}</p>
+<p>与在全局用路由守卫 然后单个路由加上meta</p>
+<p>多个里头有一个有特殊需求 可以用路由独享守卫</p>
+<p>多个里头有多个有特殊需求 可以用全局守卫+ 多个路由元信息</p>
+<h6 id="路由元信息meta"><a href="#路由元信息meta" class="headerlink" title="路由元信息meta"></a>路由元信息meta</h6><p>在路由中配置</p>
+<p>加入可供查看的一些路由的信息 做一些批量xx或者批量不xx的工作</p>
+<h6 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h6><p>router.push({name: ‘login’}) 跳转到login路由页</p>
+<p>在路由守卫中可以简写为 next({name:‘login’})</p>
+<h6 id="组件内的守卫"><a href="#组件内的守卫" class="headerlink" title="组件内的守卫"></a>组件内的守卫</h6><p>类似生命周期</p>
+<p>to from next</p>
+<p>beforeRouteEnter  不能获取this!!! 因为组件都没渲染出来呢!! 用to就相当于this.$route了</p>
+<p>这里头的next(function(vm){}) function参数vm就相当于组件对象实例！</p>
+<p>beforeRouteUpdate 例如 /login/:id 这种 由login/1切换到login/2 就走了beforeRouteUpdate</p>
+<p>beforeRouteLeave</p>
+<p>写了的话 一定要处理好调用next()的条件和逻辑!! 否则无法正常执行</p>
+<p>不写的话 相当于默认都无条件调了next() 没有特殊判断逻辑</p>
+<h6 id="路由监听"><a href="#路由监听" class="headerlink" title="路由监听"></a>路由监听</h6><p>watch: { ‘$route’(to,from){}} </p>
+<h5 id="VueX状态管理"><a href="#VueX状态管理" class="headerlink" title="VueX状态管理"></a>VueX状态管理</h5><p>不同组件之间想共享数据方式</p>
+<ul>
+<li><p>把数据向上层提，提到多个组件的上层，大家都能访问</p>
+<p>需要修改时往上汇报$emit 父亲来改，可能需要不停地向上坑爹</p>
+</li>
+<li><p>vuex状态管理 多个组件都需要使用的公有数据 提到仓库中</p>
+</li>
+</ul>
+<p>把应用中需要公用的数据都交给一个人管理，使用时不需要层层传递，扁平化</p>
+<p>这时不要定义data(){}</p>
+<p>定义computed计算属性 </p>
+<p>当仓库的数据发生改变时，该计算属性也会更新 (用data的话数据变了可能不会对应更新)</p>
+<p>return this.$store.state.dataA</p>
+<p>不要直接修改state中的数据，而是提供修改数据的方法放在mutations中</p>
+<p>==💡易错点==</p>
+<p>methods中的方法 向vuex commit时，只能有两个参数，第一个参数为vuex中的方法名，第二个参数为对象</p>
+<p>如果有多个参数必须包含在对象中</p>
+<p>然后vuex中的mutations的方法的参数也写成对象形式</p>
+<p>==state==</p>
+<p>存储原始数据的位置</p>
+<p>==过程==</p>
+<p>通过Vuex.Store创建一个存储数据的仓库</p>
+<p>new Vue时配置加入store 关联起来 然后就可以通过this.$store访问仓库啦</p>
+<p>组件就不用自己调methods了</p>
+<p>通知仓库Store去处理就可以了</p>
+<p>this.$store.commit(‘eventName’,payload)</p>
+<p>或 commit({type:‘eventName’,payload})</p>
+<p>==仓库的处理方法统一在mutations对象中== 放同步操作和不需要返回值的操作</p>
+<p>mutation =&gt; commit</p>
+<blockquote>
+<p>💡注意:</p>
+<p>mutation处理同步任务，但是但是它不会返回任何的值(即使写个return 1)，其实能处理异步任务但不能返回异步结果</p>
+</blockquote>
+<p>修改仓库数据的方法在这儿</p>
+<p>mutations对象的方法 第一个参数为state 然后可以改state中的数据，第二个参数为传入来的参数</p>
+<p>第二个参数叫载荷Payload (传进来的实际参数)</p>
+<p>==actions== 放异步操作和需要返回值的操作</p>
+<p>action =&gt; dispatch</p>
+<p>可接受异步任务处理，可以返回异步结果</p>
+<p>==getter== 用于store的计算属性</p>
+<p>存放提供派生数据 有点类似计算属性computed: 用法也类似</p>
+<p>getters: { data(state){} }</p>
+<p>使用: this.$store.getters.data</p>
+<hr>
+<p>不要data了 把需要多个地方共享的数据 放在Store对象的state中</p>
+<p>属于单向绑定</p>
+<blockquote>
+<p>问题 虚拟dom</p>
+<p>vue中的数据变了 并不会导致所有标签重新渲染 不会渲染整个dom 节省dom操作</p>
+<p>跟数据有关的dom才会改变，其他的会继续复用 不会更改</p>
+<p>有时候会有坑 有时不希望有这种复用性</p>
+<p>例如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">&gt; 	<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span> = <span class="string">'user in users'</span>&gt;</span></span><br><span class="line">&gt;         <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'checkbox'</span>&gt;</span></span><br><span class="line">&gt;         <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;user.username&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">&gt;     <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>比如有三组数据:</p>
+<p>随机方法改变user数组的排序，然后调用随机方法时，只有span(涉及了user数据)会重新渲染</p>
+<p>其他dom都不会重新渲染，所以即使你给老的user1打上check，随机之后user2成了第一位，但是老user1的check并不会跟user1一起变位置，而是仍然在位置一，相当于user2前加了check</p>
+<p>d</p>
+<p>解决方式: 加上一个vue自带的v-bind属性 :key=‘’ </p>
+<p>而且key不能重复!!! key不能使用数组index!!! 一定要一个新增的id!!!</p>
+<p>给user对象新加一个字段id :key=‘user.id’ 这样就会给每个user数据挂钩上了id</p>
+<p>check就会跟随span的随机变化而一起变了 </p>
+<p>所以经常会看到key相关的提示</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/12/Vuex和VueRouter/">https://skr.dog/2019/01/12/Vuex和VueRouter/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/Vue/">Vue</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/14/流行的Koa框架/"><i class="fa fa-chevron-left">  </i><span>流行的Koa框架</span></a></div><div class="next-post pull-right"><a href="/2019/01/06/Vue的lifecycle/"><span>Vue的lifecycle</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

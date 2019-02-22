@@ -1,0 +1,167 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Promise手札"><meta name="keywords" content="JavaScript,Promise"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>Promise手札 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#同步异步"><span class="toc-number">1.</span> <span class="toc-text">同步异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#先记住写法"><span class="toc-number">2.</span> <span class="toc-text">先记住写法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Promise状态"><span class="toc-number">3.</span> <span class="toc-text">Promise状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Promise对象的then方法"><span class="toc-number">4.</span> <span class="toc-text">Promise对象的then方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#catch"><span class="toc-number">4.1.</span> <span class="toc-text">catch</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#finally"><span class="toc-number">4.2.</span> <span class="toc-text">finally</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Promise多任务处理"><span class="toc-number">5.</span> <span class="toc-text">Promise多任务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#💡补充知识点-js内置属性-prop-双方括号"><span class="toc-number">5.1.</span> <span class="toc-text">💡补充知识点:js内置属性[[prop]] 双方括号</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#async和await-很甜的语法糖"><span class="toc-number">6.</span> <span class="toc-text">async和await 很甜的语法糖</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">Promise手札</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-02</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/JavaScript/">JavaScript</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/JavaScript/Promise/">Promise</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h5><p>script标签加载方式为同步阻塞方式，所以一般放在body最后</p>
+<p>最新es版本 script标签增加了async属性 可设置为true 则为异步加载</p>
+<p>createElement创建script对象加载 为异步非阻塞模式</p>
+<h5 id="先记住写法"><a href="#先记住写法" class="headerlink" title="先记住写法"></a>先记住写法</h5><p>new Promise(function(resolve,reject){dosomething(异步代码)})</p>
+<p>==等价于==</p>
+<p>new Promise((resolve,reject)=&gt;{dosomething(异步代码)})</p>
+<p>Promise为js内置的构造函数，构造的Promise对象是==专门用于处理异步任务的管理工具==</p>
+<blockquote>
+<p>Promise并不是将异步变为同步</p>
+<p>而是提供了一种异步代码的管理方式，将嵌套关系(回调地狱)变为平行关系</p>
+</blockquote>
+<h5 id="Promise状态"><a href="#Promise状态" class="headerlink" title="Promise状态"></a>Promise状态</h5><blockquote>
+<p><strong>Promise的状态是不可逆的，一旦状态发生改变就永远无法还原(你手动也改不了)</strong></p>
+</blockquote>
+<p>Promise如何管理异步代码？</p>
+<p>它为每一个任务都维护了一个内部状态，我们可根据异步代码的执行结果去动态改变Promise的内部状态，从而实现后续代码的调用</p>
+<p>(是我们手动改变状态，不是Promise自己维护的，如果我们不去手动改，<strong>永远都是初始状态pending</strong>)</p>
+<ul>
+<li>pending - 初始状态 既非成功 也非失败 在等待</li>
+<li>resolved - 操作成功 通过resolve(xx)方法 之后调用then方法</li>
+<li>rejected - 操作失败 通过reject(yy)方法 之后调用catch方法</li>
+</ul>
+<p>resolve和reject函数调用类似事件对象event，需要传入进new Promise的参数中才可调用！</p>
+<p>Promise的状态被修改后 就会调用后续的then、catch方法 </p>
+<p>Promise中的异步任务什么时候 可以继续向下执行 全凭你吩咐 看你什么时候改Promise的状态</p>
+<p>(看你什么时候调resolve或reject方法)</p>
+<p>特殊写法：return Promise.resolve(xx) | return Promise.reject(yy)</p>
+<p>这个写法既改变了PromiseStatus也改变了PromiseValue</p>
+<h5 id="Promise对象的then方法"><a href="#Promise对象的then方法" class="headerlink" title="Promise对象的then方法"></a>Promise对象的then方法</h5><p>then方法可接收两个函数作为参数，第一个表示resolved，第二个表示rejected</p>
+<p>如果只接收了一个函数 那么就是成功</p>
+<p>then方法的参数函数只能接收一个值</p>
+<p>let p1 = new Promise((resolve,reject)=&gt;{dosomething;resolve();})</p>
+<p>p1.then(()=&gt;{},()=&gt;{})</p>
+<p>如果p1是resolved状态则走then方法中的第一个函数体，</p>
+<p>如果p1是rejected状态则走then方法中的第二个函数体。</p>
+<p>💡注:</p>
+<p>如果在调用resolve(par1)或reject(par2)方法时传入了参数值par，par可以被传递到then方法中使用哦，par就赋给了Promise内部的PromiseValue</p>
+<p>p1.then(par1=&gt;{},par2=&gt;{})par1为resolve状态的PromiseValue,par2为rejected状态的PromiseValue</p>
+<p>==同一个Promise对象==的then方法都是同级(相当于并发或并行)的，类似addEventListener事件注册机制</p>
+<p>p1.then(xx=&gt;{yy1});p1.then(xx=&gt;{yy2})</p>
+<blockquote>
+<p><strong>then方法也是有默认返回值的</strong></p>
+<hr>
+<p>p1对象的then方法返回一个新的Promise对象p2(不同于p1)</p>
+<p><strong><em>大坑:</em></strong></p>
+<p>一旦你调用了then或catch方法而且里头有传函数作为参数(即使函数体为空！)，但你没有手动return new Promise和在里头更改status和value的话</p>
+<p>那then或catch之后一定会给你返回这么一个Promise: <resolved>: undefined</resolved></p>
+<p>因为then第一个参数代表resolve,而catch其实相当于then(undefined,xxx)</p>
+<p>不信你去试试 例如p2 = p1.then(()=&gt;{},x=&gt;{console.log(x)})</p>
+<p>p3=p2.catch(y=&gt;{console.log(y)})</p>
+<p>==小坑==</p>
+<p>如果你在函数体结尾写了return 2;返回值并不是2,而是</p>
+<p>Promise {<resolved>: 2} 没想到吧.</resolved></p>
+<p>所以可以动手造一个new Promise作为返回值，在这个new Promise中根据需求手动设定状态</p>
+<p>切记这个手动造的新Promise得传入参数resolve或reject</p>
+</blockquote>
+<p>then方法可以链式调用，最好每个then中都动手构造new Promise作为返回值，根据需求来改变状态，</p>
+<p>但是最后一个then不需要手动构造了，因为后续没有要执行的代码了</p>
+<h6 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h6><p>catch相当于then的一种特殊情况的一个语法糖 也是可以链式调用滴</p>
+<p>p1.then(()=&gt;{},x=&gt;{y}) =&gt; p1.then(undefined,x=&gt;{y})</p>
+<p>=&gt; p1.catch(x=&gt;{y}) 都是等价的</p>
+<p>想链式调用多个catch 中间一定要手动返回new Promise且reject(val)</p>
+<p>p1.catch(x=&gt;{}).catch(x=&gt;{}).catch(x=&gt;{});</p>
+<h6 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h6><p>如果你想在 promise 执行完毕后无论其结果怎样都做一些处理或清理时，可以在链式调用末尾使用finally</p>
+<p>p1.then().then().finally(()=&gt;{})</p>
+<h5 id="Promise多任务处理"><a href="#Promise多任务处理" class="headerlink" title="Promise多任务处理"></a>Promise多任务处理</h5><ul>
+<li><p>Promise.all</p>
+<p>当参数中所有Promise都到达了成功状态(resolved)才可以执行后续的then</p>
+<p>一个任务依赖多个任务的处理结果时可用</p>
+<p>let p1 = new Promise(xx;resolve(p1v)); let p2 = new Promise(yy;resolve(p2v));</p>
+<p>Promise.all([p1,p2]).then(val=&gt;{//拿到p1和p2结果后才执行的代码})</p>
+<p>then中的val值为数组，数组元素为前面异步任务的值(即p1和p2 传给resolve函数的值)PromiseValue</p>
+<p>val-&gt;[p1v,p2v]</p>
+</li>
+<li><p>Promise.race</p>
+<p>当参数中的Promise但凡有一个到达了成功状态(resolved)就可以执行后续的then</p>
+<p>一个任务依赖于多个任务中任意一个处理结果时可用</p>
+<p>Promise.race([p1,p2]).then(v=&gt;{})</p>
+<p>then中的v代表的是最先完成的Promise对象的PromiseValue(p1和p2中先完成的那个传给resolve函数的值)</p>
+</li>
+</ul>
+<hr>
+<p>then中处理返回值方案选择(需不需要手动return新Promise呢?)：</p>
+<ol>
+<li><p>then中没有异步代码|逻辑处理或不需要向下传值了，我们只需要用then默认返回的promise即可</p>
+<p>默认返回的promise的状态继承自上个promise的状态(new Promise过来的或then过来的)</p>
+</li>
+<li><p>如果then中有异步代码 或者需要向下传值，我们就需要手动返回new Promise</p>
+</li>
+</ol>
+<ul>
+<li><p>如果仅仅需要传个值 简洁地用return Promise.resolve(val)或Promise.reject(val) 即可</p>
+</li>
+<li><p>如果除了传值可能还有更复杂的异步任务和逻辑要处理，就使用</p>
+<p>return new Promise(resolve=&gt;{</p>
+<p>//dosomething;</p>
+<p>resolve(val)</p>
+<p>})</p>
+</li>
+</ul>
+<blockquote>
+<p>几段代码读懂promise特性 <a href="https://www.jb51.net/article/119630.htm" target="_blank" rel="noopener">https://www.jb51.net/article/119630.htm</a></p>
+</blockquote>
+<h6 id="💡补充知识点-js内置属性-prop-双方括号"><a href="#💡补充知识点-js内置属性-prop-双方括号" class="headerlink" title="💡补充知识点:js内置属性[[prop]] 双方括号"></a>💡补充知识点:js内置属性[[prop]] 双方括号</h6><p>[[PromiseStatus]]和[[PromiseValue]]</p>
+<p>均为js内置属性，这种双方括号属性无法直接进行读或写操作，只能通过特定方法来进行读写操作。</p>
+<p>特定方法来了:</p>
+<p>Promise.resolve(1) 就相当于把promise的status设置为resolved,PromiseValue设为1</p>
+<p>想读取PromiseValue只能 Promise.resolve(‘hello’).then(res=&gt;{console.log(res)})</p>
+<p>then中才可以打印出‘hello’</p>
+<p>或者这种写法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'hello'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="comment">//注意console.log(res)要紧跟在await后才有效</span></span><br></pre></td></tr></table></figure>
+<p>Promise.resolve() 则 Promise为 resolved:undefined</p>
+<p>==注意==</p>
+<p>var er = Promise.reject(‘err2’) 会改变PromiseStatus为rejected和PromiseValue为‘err’</p>
+<p>但是会报错 Uncaught (in promise) err2</p>
+<p>还是得处理下错误</p>
+<h5 id="async和await-很甜的语法糖"><a href="#async和await-很甜的语法糖" class="headerlink" title="async和await 很甜的语法糖"></a>async和await 很甜的语法糖</h5><p>若将函数声明为async，一般没写return的函数原本默认返回undefined，加了async声明后默认返回值为Promise对象: Promise {<resolved>: undefined}</resolved></p>
+<p>若在async函数末尾return x ,返回的仍然是Promise对象</p>
+<p>Promise {<resolved>: x}</resolved></p>
+<p>await后面是一个Promise对象</p>
+<p>等待Promise的状态发生改变(且需要是resolve) 才进行后续操作 await后面的值 会被赋值给‘=’左侧的变量</p>
+<p>await不能单独使用，需要在async函数中使用</p>
+<p>await后的Promise对象如果reject了 那整个async函数会中断执行</p>
+<p>若可能变为reject，需要将await所在语句放在try catch语句中</p>
+<p>回调函数 (err,result)=&gt;{}</p>
+<p>换await写的话 用try catch来处理</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>);</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'上面已经出错了'</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'hello world'</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>打印出‘出错了’ 后面代码不再执行；如果不适用try catch语句 会爆红错误</p>
+<p>❌ Uncaught (in promise) 出错了</p>
+<p>注意💡</p>
+<p>let foo = await getFoo();</p>
+<p>let bar = await getBar();</p>
+<p>这种写法是会顺序执行的 bar会等foo拿到之后再拿 </p>
+<p>(如果then是这种写法 p1.thenxxx;p1.thenyyy;则是并发执行)</p>
+<p>这时就靠Promise.all了</p>
+<p>let [foo, bar] = await Promise.all([getFoo(), getBar()]);</p>
+<p>这个时候foo和bar就是会并发执行了 两个Promise包成了一个</p>
+<p>但是会等到两个结果都拿到</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/02/Promise手札/">https://skr.dog/2019/01/02/Promise手札/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/Promise/">Promise</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/03/MySql简单使用备注/"><i class="fa fa-chevron-left">  </i><span>MySql简单使用备注</span></a></div><div class="next-post pull-right"><a href="/2018/12/25/git常用技能点/"><span>git常用技能点</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="HTTP入门&amp;相关姿势"><meta name="keywords" content="基础,HTTP"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>HTTP入门&amp;相关姿势 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP入门"><span class="toc-number">1.</span> <span class="toc-text">HTTP入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-number">1.1.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-Client-HTTP"><span class="toc-number">1.2.</span> <span class="toc-text">Server + Client + HTTP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP相关姿势"><span class="toc-number">2.</span> <span class="toc-text">HTTP相关姿势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求与响应的构成"><span class="toc-number">2.1.</span> <span class="toc-text">请求与响应的构成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP请求"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">HTTP请求</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#请求具体格式"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">请求具体格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP响应"><span class="toc-number">2.1.0.3.</span> <span class="toc-text">HTTP响应</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#响应具体格式"><span class="toc-number">2.1.0.4.</span> <span class="toc-text">响应具体格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#状态码"><span class="toc-number">2.1.0.5.</span> <span class="toc-text">状态码</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">HTTP入门&amp;相关姿势</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Web/">Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="HTTP入门"><a href="#HTTP入门" class="headerlink" title="HTTP入门"></a>HTTP入门</h3><hr>
+<p>1.www万维网来历</p>
+<p>2.HTTP+HTML+URL</p>
+<p>3.curl命令</p>
+<p>4.请求与响应</p>
+<p>==<strong>搞清楚5个概念</strong>==</p>
+<ul>
+<li>缓存</li>
+<li>请求</li>
+<li>响应</li>
+<li>Cookie</li>
+<li>Session</li>
+</ul>
+<p>www来历</p>
+<p>李爵士发明了第一个网页、第一个浏览器、第一个服务器。</p>
+<p>1950年~1960年已经有了互联网雏形，但1990年之前没有网页。</p>
+<p>当时人们对互联网的使用集中在email，</p>
+<p>1965年email被发明，成为互联网杀手级应用。</p>
+<p>1971年@符号被发明</p>
+<p>人们用FTP下载文件附件</p>
+<p>1980~1990年间人们迫切需要更好的上网方式，很多方案被提出，例如HTTP和Gopher，后来HTTP因为其易用性被提出。</p>
+<p>当时的邮件内容都是普通文本或类markdown形式的文本，人们需要一种超文本用作页面跳转，也就是现在说的<a>标签，当时超文本方案有很多，HTML只是其中之一。</a></p>
+<p>这种背景下1989~1992i案件，李爵士发明了world wide web(WWW)，主要包含三个概念：</p>
+<ul>
+<li>URL，统一资源定位符、俗称网址</li>
+<li>HTTP，两个电脑间传输内容的协议</li>
+<li>HTML，超文本，主要用作页面跳转</li>
+</ul>
+<p>URL作用是让你访问一个页面，HTTP作用是让你能下载这个页面，HTML作用是让你能看懂这个页面。</p>
+<p>三者相加是一个简单而完美的系统</p>
+<p>世界上第一个网页 info.cern.ch</p>
+<p>URI：统一资源标识符</p>
+<p>URL：统一资源定位符    唯一确定的位置</p>
+<p>URN：统一资源名称    唯一确定的</p>
+<p>最具体的URL会包含以下内容：</p>
+<ul>
+<li>协议</li>
+<li>域名</li>
+<li>端口号(不写的话用默认端口)</li>
+<li>路径</li>
+<li>查询参数</li>
+<li>锚点</li>
+</ul>
+<p><span style="color:darkred;font-weight:700">至少也要包含协议-域名两部分，例如<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 才能算得上URL，才能正常定位</span></p>
+<p>(不带协议版本号)</p>
+<p>类似</p>
+<p><a href="https://localhost:8080/?wd=scss#2" target="_blank" rel="noopener">https://localhost:8080/?wd=scss#2</a></p>
+<p>URL的范围更大，既有URI的标识作用，还有地址定位作用，所以URL可以是URI，但是URI却不是URL。</p>
+<p>URN和URL 都可以是URI</p>
+<p>本地host文件：</p>
+<p>127.0.0.1    <a href="http://www.163.com" target="_blank" rel="noopener">www.163.com</a></p>
+<p>修改域名指向127.0.0.1 ip地址</p>
+<blockquote>
+<p>URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。URI是一种语义上的抽象概念，可以是绝对的，也可以是相对的，而URL则必须提供足够的信息来定位，所以，是绝对的。</p>
+</blockquote>
+<p>举个栗子🌰</p>
+<p>经验式理解：<span style="color:red;">htt-p://localhost:8080</span><span style="color:green">/myweb/hello.html</span></p>
+<p>以上web地址，红色字体部分+绿色字体部分=URL；绿色字体部分=URI（相对的路径)。这是大部分程序员对两者理解的一个典型代表。</p>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>.com 是一级域名</p>
+<p>baidu 是二级域名</p>
+<p>www 是三级域名</p>
+<p>锚点，跳转到对应id设置处，#5即跳转到id为5的元素那儿</p>
+<p>打开html有文件协议和http协议，</p>
+<p>从IDE用浏览器打开，<a href="http://localhost" target="_blank" rel="noopener">http://localhost</a>: , http协议</p>
+<p>直接把html文件拖入浏览器打开， file:///C:/Users/SuperX/ , 文件协议</p>
+<p>file://  <code>/c</code>代表下 最顶层目录下的C盘，</p>
+<p>补充：//协议</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/jimbowong/article/details/54960244" target="_blank" rel="noopener">//协议</a></p>
+</blockquote>
+<hr>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><hr>
+<p>Domain Name System    域名系统</p>
+<ul>
+<li>==输入域名==</li>
+<li>==输出IP==</li>
+</ul>
+<h4 id="Server-Client-HTTP"><a href="#Server-Client-HTTP" class="headerlink" title="Server + Client + HTTP"></a>Server + Client + HTTP</h4><hr>
+<p>server服务器，指服务器中运行的代码</p>
+<p>client客户端，指用户的电脑中运行的浏览器</p>
+<p>服务器和客户端之间互相访问，HTTP协议</p>
+<p>开了很多端口，每个端口对应一些服务或功能</p>
+<p>1080端口对应代理</p>
+<p>输入地址到浏览网页经过的全过程：</p>
+<p>首先输入网址<a href="http://www.baidu.com，然后问电信DNSwww.baidu.com对应的IP是多少啊，电信回复一个IP" target="_blank" rel="noopener">www.baidu.com，然后问电信DNSwww.baidu.com对应的IP是多少啊，电信回复一个IP</a> x.x.x.x，然后我们就往这个IP x.x.x.x==发送请求==；服务器server收到请求后==开始响应==给我们返回一个网页，我们的client浏览器就下载这个网页，然后通过一定的规则渲染这个html网页 并展示给用户。</p>
+<ul>
+<li><p>浏览器负责发起请求</p>
+</li>
+<li><p>服务器在80端口接收请求</p>
+</li>
+<li><p>服务器负责返回内容(响应)</p>
+</li>
+<li><p>浏览器负责下载响应内容</p>
+</li>
+<li><p>==HTTP的作用就是指导浏览器和服务器如何沟通== HTTP就像调解师</p>
+<p>比如服务器不在线、未开机时 响应502，网址错误或不存在时可能响应404</p>
+</li>
+</ul>
+<p>发起请求</p>
+<p>curl -s -v – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>    默认为get请求方式</p>
+<p>curl -X POST -s -v -H “superman285” – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a></p>
+<p>“&gt;”代表请求</p>
+<p>“&lt;”代表响应</p>
+<p>GET请求</p>
+<p>POST请求</p>
+<p>POST带数据的请求</p>
+<p>💡 找到网页中的图片资源并为我所用:</p>
+<p>   Network选项卡，Img标签，选中某个Name点击，可看到Preview预览，选中想要的，双击Name新窗口打开，然后图片另存为即可。</p>
+<h3 id="HTTP相关姿势"><a href="#HTTP相关姿势" class="headerlink" title="HTTP相关姿势"></a>HTTP相关姿势</h3><hr>
+<p>==<strong>搞清楚5个概念</strong>==</p>
+<ul>
+<li>缓存</li>
+<li>请求</li>
+<li>响应</li>
+<li>Cookie</li>
+<li>Session</li>
+</ul>
+<p>==HTTP 的作用就是指导浏览器和服务器如何进行沟通。==</p>
+<blockquote>
+<p><strong>curl命令</strong></p>
+</blockquote>
+<p>curl命令是一个利用URL规则在命令行工作的文件传输工具。</p>
+<p>支持文件的上传和下载。</p>
+<p>🔔 <code>curl是发起一个请求</code></p>
+<table>
+<thead>
+<tr>
+<th>常用命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-X/–request</td>
+<td>指定请求方式，GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS</td>
+</tr>
+<tr>
+<td>-H/–header</td>
+<td>自定义头信息传递给服务器</td>
+</tr>
+<tr>
+<td>-d/–data</td>
+<td>HTTP POST方式传送数据</td>
+</tr>
+<tr>
+<td>-v/–verbose</td>
+<td>详细输出，包含请求和响应的头部</td>
+</tr>
+<tr>
+<td>-s/–silent</td>
+<td>静默模式，不显示错误和进度</td>
+</tr>
+<tr>
+<td>-O/</td>
+<td>从远程下载文件到当前目录，保留原文件名</td>
+</tr>
+</tbody>
+</table>
+<p>命令使用举:chestnut:</p>
+<ul>
+<li><p>curl -X POST <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> </p>
+<p>不带-X 默认为GET请求方式</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>curl -X POST -H “superman285:xxx” <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a></li>
+</ul>
+<hr>
+<ul>
+<li>curl -X POST -v -H “superman285:xxx” <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a></li>
+<li>curl -X POST -v -s -H “superman285:xxx” <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a></li>
+</ul>
+<p>请求内容为</p>
+<blockquote>
+<p>> POST / HTTP/1.1<br>> Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>> User-Agent: curl/7.59.0<br>> Accept: */*<br>> superman285:xxx</p>
+<p>></p>
+</blockquote>
+<p>响应内容为</p>
+<blockquote>
+<p>&lt; HTTP/1.1 302 Found<br>&lt; Connection: Keep-Alive<br>&lt; Content-Length: 17931<br>&lt; Content-Type: text/html<br>&lt; Date: Mon, 03 Sep 2018 16:36:53 GMT<br>&lt; Etag: “54d97485-460b”</p>
+<p>* Server bfe/1.0.8.18 is not blacklisted<br>&lt; Server: bfe/1.0.8.18<br>&lt;<br>网页html内容…</p>
+</blockquote>
+<hr>
+<ul>
+<li>curl -X POST -d “123456789” -v -s -H “superman285:xxx” <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a></li>
+</ul>
+<p>请求内容为</p>
+<blockquote>
+<p>> POST / HTTP/1.1<br>> Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>> User-Agent: curl/7.59.0<br>> Accept: */*<br>> superman285:xxx</p>
+<p>> Content-Length: 9</p>
+<p>> Content-Type: application/x-www-form-urlencoded</p>
+<p>></p>
+<p>1234567890(请求正文)</p>
+</blockquote>
+<p>响应内容为</p>
+<blockquote>
+<p>&lt; HTTP/1.1 302 Found<br>&lt; Connection: Keep-Alive<br>&lt; Content-Length: 17931<br>&lt; Content-Type: text/html<br>&lt; Date: Mon, 03 Sep 2018 16:36:53 GMT<br>&lt; Etag: “54d97485-460b”</p>
+<p>* Server bfe/1.0.8.18 is not blacklisted<br>&lt; Server: bfe/1.0.8.18<br>&lt;<br>网页html内容…(响应正文)</p>
+</blockquote>
+<hr>
+<p>curl -O <a href="https://ss0.bdstatic.com/img/logo_baidu.com" target="_blank" rel="noopener">https://ss0.bdstatic.com/img/logo_baidu.com</a></p>
+<hr>
+<p>:cyclone: <strong>注意</strong></p>
+<p>curl -s -v -H “superman285:666” <a href="https://xiedaimala.com/search?keyword=scss&amp;type=courses&amp;page=1" target="_blank" rel="noopener">https://xiedaimala.com/search?keyword=scss&amp;type=courses&amp;page=1</a></p>
+<p>如果在命令行中输入这行命令，只能识别一个查询参数keyword=scss，解决方法：</p>
+<ul>
+<li>转义： <a href="https://xiedaimala.com/search?keyword=scss\&amp;type=courses\&amp;page=1" target="_blank" rel="noopener">https://xiedaimala.com/search?keyword=scss\&amp;type=courses\&amp;page=1</a></li>
+<li>加双引号：“<a href="https://xiedaimala.com/search?keyword=scss&amp;type=courses&amp;page=1”" target="_blank" rel="noopener">https://xiedaimala.com/search?keyword=scss&amp;type=courses&amp;page=1”</a></li>
+</ul>
+<blockquote>
+<p>参考博客园-mofy文章 <a href="https://www.cnblogs.com/z-books/p/6228284.html" target="_blank" rel="noopener">https://www.cnblogs.com/z-books/p/6228284.html</a></p>
+</blockquote>
+<h4 id="请求与响应的构成"><a href="#请求与响应的构成" class="headerlink" title="请求与响应的构成"></a>请求与响应的构成</h4><hr>
+<blockquote>
+<p>HTTP请求和HTTP响应都包含4部分</p>
+</blockquote>
+<h6 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h6><ol>
+<li>请求方法 路径 协议/版本号 (请求行)</li>
+<li>请求头</li>
+<li>空行</li>
+<li>请求数据正文</li>
+</ol>
+<h6 id="请求具体格式"><a href="#请求具体格式" class="headerlink" title="请求具体格式"></a>请求具体格式</h6><ul>
+<li>第1部分：动词 路径 协议/版本号</li>
+<li>第2部分：key1:value1</li>
+<li>第2部分：key2:value2</li>
+<li>第2部分：key3:value3</li>
+<li>第2部分：Content-Type</li>
+<li>第2部分：Host</li>
+<li>第2部分：User-Agent</li>
+<li>第3部分：一个回车(\n)</li>
+<li>第4部分：要上传的数据</li>
+</ul>
+<p>请求最多包含4部分，最少包含3部分，第4部分<strong>可为空</strong>。</p>
+<p>一般第二部分必须要有</p>
+<p>Host(向谁发请求/请求的主机地址)、Accept(接收格式)</p>
+<p>💡 <strong>请求方法动词有：</strong></p>
+<p>==GET== <strong>|</strong> ==POST== <strong>|</strong> ==PUT== <strong>|</strong> ==PATCH== <strong>|</strong> ==DELETE==</p>
+<p>💡 路径默认为“/”,路径包括==查询参数==，但不包括==锚点==。</p>
+<p>✔ /search?keyword=SASS&amp;type=courses&amp;page=1</p>
+<p>× /search?keyword=SASS&amp;type=courses&amp;page=1#2</p>
+<p>💡 第2部分Content-Type标注了第4部分内容的格式</p>
+<p>💡 要上传的数据最常见的是用户名和密码</p>
+<p>💡 查看第四部分内容在FormData或Request Payload中。</p>
+<h6 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h6><ol>
+<li>状态行 「协议/版本号 状态码 状态描述」</li>
+<li>响应头</li>
+<li>空行</li>
+<li>响应数据正文</li>
+</ol>
+<h6 id="响应具体格式"><a href="#响应具体格式" class="headerlink" title="响应具体格式"></a>响应具体格式</h6><ul>
+<li><p>第1部分：协议/版本号 状态码 状态解释</p>
+</li>
+<li><p>第2部分：key1: value1</p>
+</li>
+<li><p>第2部分：key2: value2</p>
+</li>
+<li><p>第2部分：Content-Length</p>
+</li>
+<li><p>第2部分：Content-Type(标注第4部分格式) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如text/html | application/javascript | json | image/png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第3部分：一个回车(\n)</p>
+</li>
+<li><p>第4部分：要下载的内容</p>
+</li>
+</ul>
+<p>💡 第2部分Content-Type标注了第4部分内容的格式</p>
+<p>💡 第2部分中的Content-Type遵循MIME规范</p>
+<h6 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h6><ul>
+<li>1xx 不常用</li>
+<li>2xx 表示成功</li>
+<li>3xx 表示滚吧    301表示搬家了永远不回来了,302表示临时外出可能以后还回来</li>
+<li>4xx 表示你错了  (<strong>访问者</strong>出错了，例如地址打错了等)</li>
+<li>5xx 表示好吧,我错了    (<strong>服务器</strong>出错了，例如服务器挂了、服务器停止了) </li>
+</ul>
+<p>==状态码是服务器对浏览器说的话，需要记住。==</p>
+<p><strong>常见状态</strong></p>
+<ul>
+<li>200 OK 客户端请求成功</li>
+<li>301：Move Permanently 永久重定向，请求的资源已被永久的移动到新URI</li>
+<li>302：Found 临时重定向 与301类似，但资源只是临时被移动</li>
+<li>400 Bad Request 客户端请求的语法错误，服务器无法理解</li>
+<li>403 Forbidden 服务器拒绝执行此请求</li>
+<li>404 Not Found 请求的资源不存在，例如，输入了错误的URL</li>
+<li>500 Internal Server Error 服务器内部错误，无法完成请求</li>
+<li>502 服务器网关错误，收到无效响应</li>
+</ul>
+<p>请求和响应的第一部分都含有 <code>协议/版本号</code></p>
+<blockquote>
+<p><strong>查看请求和响应的方法</strong></p>
+</blockquote>
+<p>打开浏览器开发者工具Developer Tools，Network选项卡，右键添加Method页签(如果没有的话。)</p>
+<p>Method页签看GET或POST方法，status看状态码，protocol看协议/版本号，type看类型可以为document、script、png等</p>
+<p><img src="chrome-tab.png" alt="chrome-tab"></p>
+<p>然后在Name页签点一下你想要查看的URI</p>
+<p>在右侧弹出页的Headers,有General、Response Headers、Request Headers等信息</p>
+<p><img src="chrome-rr.png" alt="chrome-rr"></p>
+<p>General</p>
+<blockquote>
+<p>Request URL: <a href="https://xiedaimala.com/" target="_blank" rel="noopener">https://xiedaimala.com/</a></p>
+<p>Request Method: GET</p>
+<p>Status Code: 200 OK</p>
+<p>Remote Address: 114.215.175.213:443</p>
+<p>Referrer Policy: no-referrer-when-downgrade</p>
+</blockquote>
+<p>在Response Headers或Request Headers想查看响应或请求详情，关键来了：</p>
+<p><code>点击view source</code></p>
+<p><code>点击view source</code></p>
+<p><code>点击view source</code></p>
+<p>Response Headers/Request Headers<strong>右侧浅色小字</strong></p>
+<p>这儿可以==查看到请求|响应内容的前3部分==</p>
+<p>:cyclone:请求的第4部分数据在Form Data或Request Payload中查看 [<em>GET请求没有第4部分数据</em>]</p>
+<p><img src="request-chrome.png" alt="chrome-request4"></p>
+<hr>
+<p>:cyclone: 响应的第4部分数据在Preview或Response的tab中查看</p>
+<p><img src="response-chrome.png" alt="response-chrome4"></p>
+<hr>
+<p>#### </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/09/22/HTTP入门-相关姿势/">https://skr.dog/2018/09/22/HTTP入门-相关姿势/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/基础/">基础</a><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/09/22/关于排序算法/"><i class="fa fa-chevron-left">  </i><span>关于排序算法</span></a></div><div class="next-post pull-right"><a href="/2018/09/11/CSS布局-居中小贴士/"><span>CSS布局-居中小贴士</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

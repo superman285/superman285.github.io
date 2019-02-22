@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Web3库使用"><meta name="keywords" content="Ethereum,JavaScript,Web3"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>Web3库使用 | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web3的provider提供器"><span class="toc-number">1.</span> <span class="toc-text">Web3的provider提供器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#判断是否为地址类型"><span class="toc-number">1.1.</span> <span class="toc-text">判断是否为地址类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#判断账户类型"><span class="toc-number">1.2.</span> <span class="toc-text">判断账户类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#构造合约实例"><span class="toc-number">1.3.</span> <span class="toc-text">构造合约实例</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#事件event相关"><span class="toc-number">1.4.</span> <span class="toc-text">事件event相关</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">43</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">42</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">Web3库使用</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-02</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/">BlockChain</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Ethereum/">Ethereum</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="Web3的provider提供器"><a href="#Web3的provider提供器" class="headerlink" title="Web3的provider提供器"></a>Web3的provider提供器</h5><ul>
+<li>HttpProvider: HTTP服务提供器已经被弃用，因为它不支持订阅。不支持subscribe?</li>
+<li>WebsocketProvider: Websocket服务提供器是用于传统的浏览器中的标准方法。</li>
+<li>IpcProvider: 当运行一个本地节点时，IPC服务提供器用于node.js下的DApp环境，该方法提供最安全的连接。</li>
+</ul>
+<p>var Web3 = require(‘web3’);</p>
+<p>var web3 = new Web3(new Web3.providers.HttpProvider(‘<a href="http://localhost:8545’)" target="_blank" rel="noopener">http://localhost:8545’)</a>)</p>
+<p>httpprovider更稳，错误更少</p>
+<p>web3的public属性的状态变量 会生成getter方法</p>
+<p>这个getter方法 的返回值一般为string格式 例如uint或address的 不过也不一定</p>
+<p>然后web3调用合约方法 的from 的账户地址 一般为 string类型</p>
+<p>js中拿到的地址 一般为string类型</p>
+<h6 id="判断是否为地址类型"><a href="#判断是否为地址类型" class="headerlink" title="判断是否为地址类型"></a>判断是否为地址类型</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web3.utils.isAddress(addr)</span><br></pre></td></tr></table></figure>
+<h6 id="判断账户类型"><a href="#判断账户类型" class="headerlink" title="判断账户类型"></a>判断账户类型</h6><p>getCode返回的是一个promise对象，需要对结果进行处理才可以</p>
+<p>web3.eth.getCode(address [, defaultBlock][, callback])</p>
+<p>参数：</p>
+<ul>
+<li><code>address</code>：String - 要读取代码的地址</li>
+<li><code>defaultBlock</code>：Number|String - 可选，使用该参数覆盖web3.eth.defaultBlock属性值</li>
+<li><code>callback</code>：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果</li>
+</ul>
+<p>返回值：</p>
+<p>一个Promise对象，其解析值为指定地址处的代码字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> addrCorrect = <span class="literal">false</span>;</span><br><span class="line">web3.eth.getCode(transTarget.value, <span class="function"><span class="keyword">function</span> (<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">                    <span class="keyword">var</span> code = result;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">"代码:"</span> + code);</span><br><span class="line">                    <span class="keyword">if</span> (code != <span class="string">"0x0"</span>) &#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">"代码不为空"</span>);</span><br><span class="line">                        <span class="built_in">console</span>.log(code);</span><br><span class="line">                        addrCorrect = <span class="literal">false</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        addrCorrect = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">"错误:"</span> + err);</span><br><span class="line">                &#125;</span><br><span class="line">&#125;).then(判断addrCorrect然后进行后续步骤)</span><br></pre></td></tr></table></figure>
+<h6 id="构造合约实例"><a href="#构造合约实例" class="headerlink" title="构造合约实例"></a>构造合约实例</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> web3 = <span class="keyword">new</span> Web3(<span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">"http://127.0.0.1:7545"</span>));</span><br><span class="line"><span class="keyword">var</span> showhandContract = <span class="keyword">new</span> web3.eth.Contract(abi,contractAddr);</span><br></pre></td></tr></table></figure>
+<p>调用方法使用send或call</p>
+<p>所有view或pure方法使用call</p>
+<p>所有非view或非pure方法使用send</p>
+<p>==定期检测账户激活的代码实例==</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> accountInterval = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 检查账户是否切换</span></span><br><span class="line">  <span class="keyword">if</span> (web3.eth.accounts[<span class="number">0</span>] !== userAccount) &#123;</span><br><span class="line">    userAccount = web3.eth.accounts[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// 调用一些方法来更新界面</span></span><br><span class="line">    updateInterface();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h6 id="事件event相关"><a href="#事件event相关" class="headerlink" title="事件event相关"></a>事件event相关</h6><p>好资料：<a href="https://cryptozombies.io/zh/lesson/6/chapter/9" target="_blank" rel="noopener">https://cryptozombies.io/zh/lesson/6/chapter/9</a></p>
+<p><a href="http://cw.hubwiz.com/card/c/web3.js-1.0/1/4/13/" target="_blank" rel="noopener">http://cw.hubwiz.com/card/c/web3.js-1.0/1/4/13/</a></p>
+<p>事件的参数都是可选项</p>
+<p>==订阅合约事件和订阅区块链上的特定事件==</p>
+<p>💡订阅合约声明的事件(event声明 emit触发)</p>
+<p>contractObj.events.EventA() </p>
+<p>订阅指定的合约事件EventA(事件名为EventA)</p>
+<p>💡订阅区块链的特定事件</p>
+<p><a href="http://cw.hubwiz.com/card/c/web3.js-1.0/1/3/5/" target="_blank" rel="noopener">http://cw.hubwiz.com/card/c/web3.js-1.0/1/3/5/</a></p>
+<p>web3.eth.subscribe(type,[,options][,callback])</p>
+<p>e.g. web3.eth.subscribe(‘logs’,{address:_from})</p>
+<p>订阅来自_from的日志</p>
+<p>subscribe订阅类型type有:</p>
+<ul>
+<li>logs 订阅日志 一定一定要options,callback可选</li>
+<li>syncing 订阅同步事件 无options,callback可选</li>
+<li>newBlockHeaders 订阅新区块头生成事件 无options,callback可选</li>
+<li>pendingTransactions 订阅处于pending状态的交易 无options,callback可选</li>
+</ul>
+<p>==indexed关键字==</p>
+<p>如果需要筛选数据，需要添加indexed关键字</p>
+<p>event Transfer(address indexed _from,address indexed _to);</p>
+<p>event Test(uint indexed _num)</p>
+<p>使用如下：</p>
+<p>contractObj.events.Transfer({filter:{_to:userAccount}})</p>
+<p>过滤出_to为userAccount的所有事件</p>
+<p>contractObj.events.Test({filter:{_num:[12,13]}})</p>
+<p>过滤出_num为12或13的所有事件</p>
+<p>==回调函数==</p>
+<p>contractObj.events.Test(function(err,event){</p>
+<p>console.log(err)//第一个参数为错误</p>
+<p>console.log(event)//第二个参数为事件对象</p>
+<p>})</p>
+<p>==事件触发器 on==</p>
+<ul>
+<li>data 接收到新事件时触发</li>
+<li>changed 事件从区块链上移除时触发</li>
+<li>error 发生错误时触发</li>
+</ul>
+<p>可链式调用</p>
+<p>contractObj.events.EventA().on(‘data’,function(event){</p>
+<p>​    console.log(event)</p>
+<p>})</p>
+<blockquote>
+<p>还有一个很好用的库推荐，Ether.js 适用于钱包、交易等场景，后续会做个笔记</p>
+</blockquote>
+<p>Web3 签名交易要配合 EthereumJS-tx使用</p>
+<p>推荐使用Ether.js或者truffle家的 truffle-HDWallet-Provider</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/12/02/Web3库使用/">https://skr.dog/2018/12/02/Web3库使用/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Ethereum/">Ethereum</a><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/Web3/">Web3</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/13/原型-原型链简记/"><i class="fa fa-chevron-left">  </i><span>原型&amp;原型链简记</span></a></div><div class="next-post pull-right"><a href="/2018/11/22/ERC标准/"><span>ERC标准</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
