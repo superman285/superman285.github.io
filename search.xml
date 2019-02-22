@@ -4,6 +4,91 @@
   
     
     <entry>
+      <title>one2/</title>
+      <link href="/2019/02/22/one2/"/>
+      <url>/2019/02/22/one2/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> BlockChain </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Solidity </tag>
+            
+            <tag> BlockChain </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>one</title>
+      <link href="/2019/02/22/one/"/>
+      <url>/2019/02/22/one/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> BlockChain </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Solidity </tag>
+            
+            <tag> BlockChain </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>工具类合约或库的使用</title>
+      <link href="/2019/02/22/%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%90%88%E7%BA%A6%E6%88%96%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2019/02/22/%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%90%88%E7%BA%A6%E6%88%96%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>把工具功能写成合约，如下：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract Console &#123;</span><br><span class="line">    event LogUint(string, uint);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">string s , uint x</span>) <span class="title">internal</span> </span>&#123;</span><br><span class="line">    emit LogUint(s, x);</span><br><span class="line">    &#125;</span><br><span class="line">event LogInt(string, int);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">string s , int x</span>) <span class="title">internal</span> </span>&#123;</span><br><span class="line">emit LogInt(s, x);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>引用时，import “./Console.sol”</p><p>contract myContract is Console{ </p><p>log(“timeNow”,now); </p><p>}</p><h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>把工具功能写成库library，如下</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">library Console &#123;</span><br><span class="line">    event LogUint(string, uint);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">string s , uint x</span>) <span class="title">internal</span> </span>&#123;</span><br><span class="line">    emit LogUint(s, x);</span><br><span class="line">    &#125;</span><br><span class="line">    event LogInt(string, int);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">string s , int x</span>) <span class="title">internal</span> </span>&#123;</span><br><span class="line">    emit LogInt(s, x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>==注意==</p><p>在library中我们不能定义任何storage类型的变量。因为library只是意味着代码的重用而不是进行state的状态管理。使用前再查询确认下。</p><hr><p>引用时，import {Console} from “./Console.sol”</p><p>contract myContract {</p><p>​    Console.log(“timeNew”,now);</p><p>}</p><p>访问library中的数据或方法时，使用点，libraryName.xxx来访问。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> BlockChain </category>
+          
+          <category> Solidity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Solidity </tag>
+            
+            <tag> BlockChain </tag>
+            
+            <tag> Ethereum </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>回到解放前</title>
       <link href="/2019/02/22/%E5%9B%9E%E5%88%B0%E8%A7%A3%E6%94%BE%E5%89%8D/"/>
       <url>/2019/02/22/%E5%9B%9E%E5%88%B0%E8%A7%A3%E6%94%BE%E5%89%8D/</url>
