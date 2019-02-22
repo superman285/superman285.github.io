@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="CSS布局-居中小贴士"><meta name="keywords" content="CSS,布局技巧"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>CSS布局-居中小贴士 | Welcome to Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS布局小贴士"><span class="toc-number">1.</span> <span class="toc-text">CSS布局小贴士</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#左右布局实现"><span class="toc-number">1.1.</span> <span class="toc-text">左右布局实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS居中小贴士"><span class="toc-number">2.</span> <span class="toc-text">CSS居中小贴士</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#左中右布局实现"><span class="toc-number">2.1.</span> <span class="toc-text">左中右布局实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#水平居中实现"><span class="toc-number">2.2.</span> <span class="toc-text">水平居中实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#垂直居中实现"><span class="toc-number">2.3.</span> <span class="toc-text">垂直居中实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#水平垂直居中万用大法"><span class="toc-number">2.4.</span> <span class="toc-text">水平垂直居中万用大法</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Welcome to Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">CSS布局-居中小贴士</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-11</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="CSS布局小贴士"><a href="#CSS布局小贴士" class="headerlink" title="CSS布局小贴士"></a>CSS布局小贴士</h3><p><strong>常见简单布局:左右布局，左中右布局。</strong></p>
+<h4 id="左右布局实现"><a href="#左右布局实现" class="headerlink" title="左右布局实现"></a>左右布局实现</h4><ul>
+<li><blockquote>
+<p><strong>使用浮动float</strong></p>
+</blockquote>
+<p>可将左部分区域和右部分区域的float属性都设置为left，然后使用margin来调节两区域之间的间距。</p>
+<p>或者将左部分区域设置float:left，右部分区域float:right，用margin调节两区域间距。</p>
+<p><code>注意：使用float会造成元素脱标，要注意宽度的设置，要给父元素清除浮动</code></p>
+</li>
+<li><blockquote>
+<p><strong>使用inline-block</strong></p>
+</blockquote>
+<p>将左右部分区域display属性均设置为inline-block，然后左右区域即可在同一行显示，达到左右布局效果。</p>
+<p><code>注意：inline-block元素之间会因为换行导致有空隙，可用margin来调节间距。</code></p>
+</li>
+</ul>
+<ul>
+<li><blockquote>
+<p><strong>使用flex布局</strong></p>
+</blockquote>
+<p>将父容器display属性设置为flex，justify-content可以调节多种排布方式，居于两侧、居中、开头对齐、末尾对齐等。</p>
+<p>可以用flex-basis来设置左右区域的具体宽度值，也可用flex-grow来设置左右区域占父容器空间的比值。</p>
+</li>
+</ul>
+<h3 id="CSS居中小贴士"><a href="#CSS居中小贴士" class="headerlink" title="CSS居中小贴士"></a>CSS居中小贴士</h3><h4 id="左中右布局实现"><a href="#左中右布局实现" class="headerlink" title="左中右布局实现"></a>左中右布局实现</h4><p><strong>和左右布局一样，可采用上述三种方式来实现</strong></p>
+<hr>
+<ul>
+<li>使用float方式来布局</li>
+<li>使用inline-block方式来布局</li>
+<li>使用flex弹性布局方式</li>
+</ul>
+<h4 id="水平居中实现"><a href="#水平居中实现" class="headerlink" title="水平居中实现"></a>水平居中实现</h4><blockquote>
+<p><strong>行内元素的水平居中</strong></p>
+</blockquote>
+<ul>
+<li>给父元素设置text-align:center;</li>
+<li>给父元素设置display:flex;justify-content:center;</li>
+</ul>
+<blockquote>
+<p><strong>块级元素的水平居中</strong></p>
+</blockquote>
+<ul>
+<li>元素宽度确定时，给元素设置margin:0 auto;</li>
+<li>元素宽度不确定时，<ul>
+<li>给父元素设置display:flex;justify-content:center;</li>
+<li>给父元素设置display:flex;子元素设置margin:0 auto;</li>
+<li>给父元素设置display:grid;justify-content:center;</li>
+<li>给父元素设置display:grid;子元素设置margin:0 auto;</li>
+</ul>
+</li>
+</ul>
+<h4 id="垂直居中实现"><a href="#垂直居中实现" class="headerlink" title="垂直居中实现"></a>垂直居中实现</h4><blockquote>
+<p><strong>行内元素的垂直居中</strong></p>
+</blockquote>
+<ul>
+<li>设置父元素的高度height与行高line-height一致，则父元素内的行内子元素会垂直居中显示</li>
+<li>给父元素设置display:flex;flex-direction:column;justify-content:center;</li>
+<li>给父元素设置display:flex;align-items:center;</li>
+<li>给父元素设置display:flex;子元素设置margin:auto 0;</li>
+<li>给父元素设置display:grid;align-content:center;</li>
+<li>给父元素设置display:grid;子元素设置margin:auto 0;</li>
+</ul>
+<blockquote>
+<p><strong>块级元素的垂直居中</strong></p>
+</blockquote>
+<p><code>💡 flex布局和grid布局的方法对行内元素或块级元素都适用</code></p>
+<ul>
+<li><p>给父元素设置display:flex;flex-direction:column;justify-content:center;</p>
+</li>
+<li><p>给父元素设置display:flex;align-items:center;</p>
+</li>
+<li><p>给父元素设置display:flex;子元素设置margin:auto 0;</p>
+</li>
+<li><p>给父元素设置display:grid;align-content:center;</p>
+</li>
+<li><p>给父元素设置display:grid;子元素设置margin:auto 0;</p>
+</li>
+<li><p>元素高度确定时，</p>
+<ul>
+<li><p>父元素设置相对定位，子元素设置绝对定位，子元素top:50%;margin-top:-元素高度/2;</p>
+</li>
+<li><p>子元素设置相对定位，子元素top:50%;margin-top:-元素高度/2;</p>
+</li>
+<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.father</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">            <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">            <span class="attribute">display</span>:block;</span><br><span class="line">            <span class="attribute">height</span>: (父元素高度-子元素高度)/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>元素高度不确定时，</p>
+<ul>
+<li>父元素设置相对定位，子元素设置绝对定位，子元素top:50%;translateY(-50%)/translate(0,-50%)</li>
+<li>子元素设置相对定位，子元素top:50%;translateY(-50%)/translate(0,-50%)</li>
+</ul>
+</li>
+</ul>
+<h4 id="水平垂直居中万用大法"><a href="#水平垂直居中万用大法" class="headerlink" title="水平垂直居中万用大法"></a>水平垂直居中万用大法</h4><p><code>行内元素、块级元素均可</code> <strong>flex布局大法和grid布局大法</strong></p>
+<ul>
+<li>给父元素设置display:flex;justify-content:center;align-items:center;</li>
+<li>给父元素设置display:flex;给子元素设置<strong>margin:auto;</strong></li>
+<li>给父元素设置display:grid;justify-content:center;align-content:center;</li>
+<li>给父元素设置display:grid;给子元素设置<strong>margin:auto;</strong></li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/09/11/CSS布局-居中小贴士/">https://skr.dog/2018/09/11/CSS布局-居中小贴士/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSS/">CSS</a><a class="post-meta__tags" href="/tags/布局技巧/">布局技巧</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/10/17/谈谈JS中的数据类型/"><i class="fa fa-chevron-left">  </i><span>谈谈JS中的数据</span></a></div><div class="next-post pull-right"><a href="/2018/09/05/HTML标签那些事儿(下)/"><span>HTML标签那些事儿(下)</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

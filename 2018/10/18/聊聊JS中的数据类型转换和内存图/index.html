@@ -1,0 +1,318 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="聊聊JS中的数据类型转换和内存图"><meta name="keywords" content="JavaScript,前端知识"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>聊聊JS中的数据类型转换和内存图 | Welcome to Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS中的类型转换-amp-内存图-amp-GC-amp-深拷贝"><span class="toc-number">1.</span> <span class="toc-text">JS中的类型转换&amp;内存图&amp;GC&amp;深拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型转换"><span class="toc-number">1.1.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#转换方法总结"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">转换方法总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存图"><span class="toc-number">1.2.</span> <span class="toc-text">内存图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GC垃圾回收"><span class="toc-number">1.3.</span> <span class="toc-text">GC垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#GC-Garbage-Collecation"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">GC:Garbage Collecation</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝-VS-浅拷贝"><span class="toc-number">1.4.</span> <span class="toc-text">深拷贝 VS 浅拷贝</span></a></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Welcome to Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">聊聊JS中的数据类型转换和内存图</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-18</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="JS中的类型转换-amp-内存图-amp-GC-amp-深拷贝"><a href="#JS中的类型转换-amp-内存图-amp-GC-amp-深拷贝" class="headerlink" title="JS中的类型转换&amp;内存图&amp;GC&amp;深拷贝"></a>JS中的类型转换&amp;内存图&amp;GC&amp;深拷贝</h2><h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><table>
+<thead>
+<tr>
+<th>左👉右</th>
+<th>number</th>
+<th>string</th>
+<th>boolean</th>
+<th>null</th>
+<th>undefined</th>
+<th>object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>number</strong></td>
+<td></td>
+<td>n.toString()<br>(6).toString()<br>或var num = 6;<br>num.toString()</td>
+<td>Boolean(n)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>string</strong></td>
+<td>Number(‘str’)</td>
+<td></td>
+<td>Boolean()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>boolean</strong></td>
+<td>Number(true)</td>
+<td>.toString()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>null</strong></td>
+<td>Number()<br>转为0</td>
+<td>无法用toString</td>
+<td>Boolean()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>undefined</strong></td>
+<td>Number()<br>转为NaN</td>
+<td>无法用toString</td>
+<td>Boolean()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>object</strong></td>
+<td>对象和函数转为NaN，数组看情况</td>
+<td>使用toString<br>‘[object Object]’</td>
+<td>Boolean()</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>🛵<strong>老司机妙招</strong></p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">快速转换成string类型：xx + ‘’==</font>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="string">''</span> <span class="comment">//'1'</span></span><br><span class="line"><span class="literal">true</span>+<span class="string">''</span> <span class="comment">//'true'</span></span><br><span class="line"><span class="literal">undefined</span>+<span class="string">''</span> <span class="comment">//'undefined'</span></span><br><span class="line">(&#123;&#125;) + <span class="string">''</span> <span class="comment">//猜猜输出啥</span></span><br><span class="line">&#123;&#125; + <span class="string">''</span>   <span class="comment">//猜猜输出啥</span></span><br></pre></td></tr></table></figure>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">快速转换成boolean类型：!!xx</font>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!!<span class="literal">undefined</span> <span class="comment">//false</span></span><br><span class="line">!!<span class="literal">null</span> <span class="comment">//false</span></span><br><span class="line">!!<span class="number">6</span> <span class="comment">//true</span></span><br><span class="line">!!<span class="number">0</span> <span class="comment">//false</span></span><br><span class="line">!!<span class="string">'s'</span> <span class="comment">//true</span></span><br><span class="line">!!<span class="string">" "</span> <span class="comment">//空格字符串输出true</span></span><br><span class="line">!!<span class="string">''</span> <span class="comment">//猜猜输出啥</span></span><br><span class="line">!!&#123;&#125; <span class="comment">//猜猜输出啥</span></span><br><span class="line">!![] <span class="comment">//猜猜输出啥</span></span><br></pre></td></tr></table></figure>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">快速转换成number类型：</font>
+
+<ul>
+<li><font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">xx - 0</font></li>
+<li><font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">+xx</font>
+
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+<span class="string">'s'</span>	<span class="comment">//NaN</span></span><br><span class="line">+<span class="string">'12'</span>	<span class="comment">//12</span></span><br><span class="line">+<span class="string">'1s'</span>	<span class="comment">//NaN</span></span><br><span class="line">+[]		<span class="comment">//猜一猜</span></span><br><span class="line">+[<span class="number">123</span>]	<span class="comment">//123</span></span><br><span class="line">+[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]	<span class="comment">//NaN</span></span><br><span class="line">+&#123;&#125;		<span class="comment">//猜一猜</span></span><br><span class="line">+<span class="literal">null</span>	<span class="comment">//猜一猜</span></span><br><span class="line">+<span class="literal">undefined</span>	<span class="comment">//猜一猜</span></span><br></pre></td></tr></table></figure>
+<h5 id="转换方法总结"><a href="#转换方法总结" class="headerlink" title="转换方法总结"></a>转换方法总结</h5><blockquote>
+<p><strong>转换为字符串的方法</strong></p>
+</blockquote>
+<ul>
+<li><p>String(x)</p>
+</li>
+<li><p>x.toString()</p>
+</li>
+<li><p><strong>区别</strong></p>
+<ul>
+<li><p>.toString()不可用于null和undefined而String()可以。</p>
+</li>
+<li><p><code>注：</code>数字或对象使用toString方法需要加上括号，否则报错</p>
+<p>666.toString()❌ (666).toString() ✔</p>
+<p>{}.toString() ❌ ({}).toString() ✔</p>
+</li>
+<li><p>.toString可支持将数字转为不同进制字符串，例如(2).toString(2)//“10”</p>
+<p>可支持.toString(2)|.toString(8)|.toString(10)括号内不写默认为10|.toString(16)</p>
+</li>
+</ul>
+</li>
+<li><p>x+‘’</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>转换为数字的方法</strong></p>
+</blockquote>
+<ul>
+<li>Number(xx)</li>
+<li>parseInt(xx)</li>
+<li>parseFloat(xx)</li>
+<li>xx - 0</li>
+<li>+xx</li>
+</ul>
+<p>❗ <strong>注意ParseInt</strong></p>
+<p>完整写法是parseInt(value,radix)，value为要被解析的值，radix为基数。</p>
+<blockquote>
+<font color="darkorenge">parseInt会(从左到右)从第一个字符开始解析，直到碰到了无法解析为数字的东西(如unicode字母等)，前面的解析出来多少是多少，打印出多少。</font>
+
+<p>例如：</p>
+<p>parseInt(‘0b110’) //输出0</p>
+<p>parseInt([1,2,3]) //输出1</p>
+</blockquote>
+<p>含义是将参数value看作radix进制数，返回十进制数值。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'123'</span>, <span class="number">5</span>) <span class="comment">// 将'123'看作5进制数，返回十进制数38 =&gt; 1*5^2 + 2*5^1 + 3*5^0 = 38</span></span><br></pre></td></tr></table></figure>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">易错点</font>
+
+<p>先回顾下二进制、八进制、十六进制数表示：</p>
+<blockquote>
+<p><font color="deeppink"><strong>0b开头代表二进制</strong></font> <strong>|</strong> <font color="deeppink"><strong>0开头代表八进制</strong></font> <strong>|</strong> <font color="deeppink"><strong>0x开头代表十六进制</strong></font> (字母大小写均可)</p>
+</blockquote>
+<p>在没有指定基数radix或者基数为<code>0</code>时，有以下处理</p>
+<ul>
+<li><p>当参数value为<font color="darkorenge"><strong>数字</strong></font>时：</p>
+<ul>
+<li>以0b开头，则基数是2(二进制)</li>
+<li>以0开头，则基数是8(八进制)</li>
+<li>以0x开头，则基数是16(十六进制)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">017</span>) 相当于<span class="built_in">parseInt</span>(<span class="number">017</span>,<span class="number">10</span>)|<span class="built_in">parseInt</span>(<span class="number">017</span>,<span class="number">0</span>)</span><br><span class="line">也相当于直接在浏览器控制台输入 <span class="number">017</span> 得出一个数值</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">017</span>) <span class="comment">//15 , 1*8^1+7*8^0 = 15</span></span><br><span class="line"><span class="number">017</span> <span class="comment">//15 , 浏览器将其视为了八进制数，所以转换成十进制数后得到15</span></span><br><span class="line"><span class="number">0789</span> <span class="comment">//789,由于到达了8，浏览器会智能地将它视为十进制数，输出789</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">017</span>,<span class="number">8</span>) <span class="comment">//13,因为浏览器自动将017转为15,所以其实是parseInt(15,8),得到13</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">17</span>,<span class="number">8</span>) <span class="comment">//15,因为没有0开头,不知道他是八进制数，所以用给的radix参数来当作8进制数处理</span></span><br><span class="line">			  <span class="comment">//即 1*8^1+7*8^0 = 15 ，相当于parseInt(017)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当参数value为<font color="darkorenge"><strong>字符串</strong></font>时：</p>
+<ul>
+<li>以0b开头，并不会被识别为二进制，而是将b当为字符，所以解析到b之前中断，输出0</li>
+<li>以0开头，<strong>基数是10</strong>(十进制)或8(八进制)，ES5规定为10，但可能有的浏览器仍为8,一般用10</li>
+<li>以0x开头，则基数是16(十六进制)</li>
+<li>其他任何开头视为基数10(十进制)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0b111'</span>) <span class="comment">//输出0</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0789'</span>)  <span class="comment">//789,视为十进制，若为八进制是不会出现8和9的</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0789'</span>,<span class="number">8</span>) <span class="comment">//7,浏览器自动将'0789'转为了789,只能解析出小于8的，所以是7</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0x178'</span>)  <span class="comment">//376,1*16^2+7*16+8*1=376，相当于parseInt('0x178',16)</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0x178'</span>,<span class="number">10</span>) <span class="comment">//0，若视为其他进制，则x越不过去，解析到x前停下，所以是0</span></span><br><span class="line">傻傻分不清楚：</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0x011'</span>,<span class="number">16</span>)  <span class="comment">//17,1*16^1+1*16^0=17</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0x011</span>,<span class="number">16</span>)   <span class="comment">//23 , 0x011自动被转为了17,所以是parseInt(17,16),1*16+7*1=23</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>有很多坑，具体可以看MDN资料：</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a></p>
+</blockquote>
+<blockquote>
+<p><strong>转换为布尔值的方法</strong></p>
+</blockquote>
+<ul>
+<li>Boolean(x)</li>
+<li>!!x</li>
+</ul>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">记忆</font>
+
+<p>只有0|NaN|‘’|undefined|null 是<code>5</code>个falsy值，转成boolean为false，其他<code>所有</code>都会转成true</p>
+<p><code>所有对象</code>转为boolean都为true，包括空对象、空数组、空函数等</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">注意</font>
+
+<p>对象中</p>
+<p>var obj = {null:0,undefined:0}</p>
+<p>obj[null]==obj[‘null’]\==obj.null //都打印出0，null自动转换为了‘null’</p>
+<p>obj[undefined]==obj[‘undefined’]\==obj.undefined//都打出0，undefined自动转成了‘undefined’</p>
+<h3 id="内存图"><a href="#内存图" class="headerlink" title="内存图"></a>内存图</h3><p>js内存分配</p>
+<p>js引擎将内存分成两大块</p>
+<p>代码区：存代码 a </p>
+<p>数据区：‘1’ 2 {}</p>
+<p>栈内存(stack)和堆内存(heap)</p>
+<p>栈内存可以存基本类型的值或者对应堆内存的地址</p>
+<p>堆内存可以存复杂类型的值(如对象)，对象属性的值又可以是地址，这个地址再对应heap中的地址所对应的内容。</p>
+<p>js中数字是以64位浮点数存的</p>
+<p>64位(2^64^)可以表示目前市面上任意大小内存的任一个地址</p>
+<p>js存字符，每个字符16位</p>
+<p>数字64，字符16(后来更新了)</p>
+<p>var a = 2</p>
+<p>先进行变量提升</p>
+<p>若用栈内存按顺序存对象object，一旦要改对象的属性或者新增属性，就需要把之前对象后面的数据往后挪，特别的麻烦。所以只存一个地址，例如是100，100对应堆内存中的100号内存位置，这儿存着整个对象。</p>
+<p>然后如果要改对象属性或者给对象加属性，直接根据地址100找到堆内存对应位置，然后修改或添加即可。</p>
+<p>新加对象的话，就在栈内存新存一个地址，例如是200。则地址100对应对象obj1，地址200对应对象obj2。</p>
+<blockquote>
+<p>若写一个对象赋值语句obj2 = obj1</p>
+<p>然后对象的赋值实际上是将obj1对应的地址赋到了obj2那个位置，然后两个栈内存位置存的地址都是100了，obj1和obj2都指向了100。并没有多出的拷贝。见下图：</p>
+<p><img src="memorypic.png" alt="memorypic"></p>
+</blockquote>
+<p>不同数据类型的存储</p>
+<ul>
+<li>简单数据类型<ul>
+<li>直接存在Stack栈内存  num|str|symbol|bool|null|undefined</li>
+</ul>
+</li>
+<li>复杂数据类型<ul>
+<li>把Heap堆内存地址存到Stack栈，内容存在Heap堆内存中  object对象</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>变量跟对象的关系是引用关系，没有直接存你，而是存的你的地址。</p>
+<p>var obj={name:frank}  //变量obj是对象的引用，obj存的是对象的地址而不是对象的值本身</p>
+</blockquote>
+<p>❗ <strong>切记</strong></p>
+<p>赋值，等于号只做一件事情，就是把等于号右边的东西存到等于号左边的东西里头。</p>
+<p>赋值必须先确定等号右边的值，然后再开始赋值。</p>
+<p>例子：</p>
+<p>var a = {name:‘a’};</p>
+<p>b = a;</p>
+<p>b = {name:‘b’};</p>
+<p>console.log(a.name); //画内存图</p>
+<p>将新对象赋给b 改的是b存的地址，而不会改heap中原有的内容</p>
+<p>将新数字(或其他基本类型)赋给b 则b位置存的地址会被新的值覆盖掉</p>
+<blockquote>
+<p>几个题目例子，用内存图弄清对象的赋值</p>
+<p><code>基本类型之间的赋值</code></p>
+<p><img src="copy1.png" alt="copy1"></p>
+<p><code>直接赋值给对象</code></p>
+<p><img src="copy2.png" alt="copy2"></p>
+<p><code>赋值给对象的属性</code></p>
+<p><img src="copy3.png" alt="copy3"></p>
+<p><code>将基本类型值赋值给原来的对象</code></p>
+<p><img src="copy4.png" alt="copy4"></p>
+</blockquote>
+<p>var a ={};a.self=a; a.self.self.self.self可以取到么？ //可以</p>
+<p>其实heap里头只有一个对象，从stack找到heap，然后self的值addr33又找到了heap中33号地址位置的东西(就是自己)，然后不停地调自己。</p>
+<p><img src="objself.png" alt="objself"></p>
+<p>若是var a = {self:a};a.self.self.self //就会报错，</p>
+<p>因为赋值操作必须先确定右边的值，而第一次右边的值中的a是undefined 所以 a = {self:undefined};</p>
+<p>再来一次a = {self:a};就会变成 a = {self:{self:undefined}},再打一次就会再嵌套一层，不打就停在那一层。</p>
+<p>❗ <strong>坑</strong>🕳</p>
+<p>alert会调用toString()方法</p>
+<p>a.x = a ={n:2};</p>
+<p>先确定a，而不是从右往左算到最后才确定a，一开始就确定好了a，然后a={n:2}时会再把a存的地址改了</p>
+<blockquote>
+<p>多复习回顾几次:</p>
+<p><a href="https://xiedaimala.com/tasks/61db0dcc-71d4-4f0c-822d-5f24ff0dd128/video_tutorials/22579fe7-206c-411f-a8e1-5786501bf481" target="_blank" rel="noopener">https://xiedaimala.com/tasks/61db0dcc-71d4-4f0c-822d-5f24ff0dd128/video_tutorials/22579fe7-206c-411f-a8e1-5786501bf481</a></p>
+</blockquote>
+<hr>
+<h3 id="GC垃圾回收"><a href="#GC垃圾回收" class="headerlink" title="GC垃圾回收"></a>GC垃圾回收</h3><h5 id="GC-Garbage-Collecation"><a href="#GC-Garbage-Collecation" class="headerlink" title="GC:Garbage Collecation"></a>GC:Garbage Collecation</h5><blockquote>
+<p><strong>🖊核心</strong></p>
+<p>如果一个对象没有被引用，他就是垃圾，将会被回收。</p>
+</blockquote>
+<p>有人罩着就不回收，没人罩着就回收。</p>
+<p><img src="trash.png" alt="trash"></p>
+<p>若页面关闭了，document的click事件对应的function全成了垃圾。</p>
+<p>但ie有bug，不会回收，可加以下代码解决</p>
+<p>window.onunload = function(){document.body.onclick = null;}</p>
+<p>题目1</p>
+<p>hard1</p>
+<p><img src="hard1.png" alt="hard1"></p>
+<p>题目2</p>
+<p>var fn = function(){}</p>
+<p>document.body.onclick = fn</p>
+<p>fn = null</p>
+<p>问function是不是垃圾</p>
+<p><img src="hard2.png" alt="hard2"></p>
+<p>var fn = function(){}</p>
+<p>document.body.onclick = fn</p>
+<p>fn = null</p>
+<p>document.body.onclick = null</p>
+<p>问function是不是垃圾</p>
+<p><img src="hard3.png" alt="hard3"></p>
+<h3 id="深拷贝-VS-浅拷贝"><a href="#深拷贝-VS-浅拷贝" class="headerlink" title="深拷贝 VS 浅拷贝"></a>深拷贝 VS 浅拷贝</h3><blockquote>
+<p>深拷贝</p>
+</blockquote>
+<p>var a = 1;</p>
+<p>var b = a;</p>
+<p>b变不影响a，深拷贝</p>
+<p>基本类型的赋值，为深拷贝</p>
+<blockquote>
+<p>浅拷贝</p>
+</blockquote>
+<p>var a = {name:‘a’}</p>
+<p>var b = a</p>
+<p>b.name = ‘b’</p>
+<p>a.name //也是b</p>
+<p>b变a也变，浅拷贝</p>
+<p>对象的深拷贝，见下图</p>
+<p><img src="deepcopy.png" alt="deepcopy"></p>
+<p>深拷贝如何实现，请听下回分解</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/10/18/聊聊JS中的数据类型转换和内存图/">https://skr.dog/2018/10/18/聊聊JS中的数据类型转换和内存图/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/前端知识/">前端知识</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/11/02/JS中的对象和原型/"><i class="fa fa-chevron-left">  </i><span>JS中的对象和原型</span></a></div><div class="next-post pull-right"><a href="/2018/10/17/谈谈JS中的数据类型/"><span>谈谈JS中的数据</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

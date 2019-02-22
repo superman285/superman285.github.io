@@ -1,0 +1,228 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="JS中的对象和原型"><meta name="keywords" content="JavaScript,前端知识"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>JS中的对象和原型 | Welcome to Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS里的对象"><span class="toc-number">1.</span> <span class="toc-text">JS里的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象"><span class="toc-number">1.1.</span> <span class="toc-text">对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#表达式还是语句？"><span class="toc-number">1.1.1.</span> <span class="toc-text">表达式还是语句？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性的操作"><span class="toc-number">1.1.2.</span> <span class="toc-text">属性的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#读取属性"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">读取属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#属性的赋值"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">属性的赋值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看所有属性"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">查看所有属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#delete命令"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">delete命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#in运算符"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">in运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#for…in循环"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">for…in循环</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用API"><span class="toc-number">1.1.3.</span> <span class="toc-text">常用API</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS里的原型"><span class="toc-number">2.</span> <span class="toc-text">JS里的原型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#公用属性——原型"><span class="toc-number">2.0.1.</span> <span class="toc-text">公用属性——原型</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Welcome to Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">JS中的对象和原型</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-02</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="JS里的对象"><a href="#JS里的对象" class="headerlink" title="JS里的对象"></a>JS里的对象</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><blockquote>
+<p>对象就是一组键值对(key-value)集合,是无序的复合数据集合。类似map结构。</p>
+</blockquote>
+<p>一个对象的键值对之间，用逗号分隔。</p>
+<p>💫键名如果是数值，会被自动转为字符串。</p>
+<p>如果键名不符合标识名的条件（比如第一个字符为数字，或者含有空格或运算符），且也不是数字，则必须加上引号，否则会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1</span>p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="string">'1p'</span>: <span class="string">'Hello World'</span>,</span><br><span class="line">  <span class="string">'h w'</span>: <span class="string">'Hello World'</span>,</span><br><span class="line">  <span class="string">'p+q'</span>: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对象两种调用属性方式，obj.pro | obj[‘pro’]。在上面这个栗子，只能用[‘’]的方式调用。</p>
+<p>对象的每一个键名又称为“属性”（property），它的“键值”可以是任何数据类型。如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  p: <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.p(<span class="number">1</span>) <span class="comment">// 2</span></span><br><span class="line">obj[<span class="string">"p"</span>](<span class="number">1</span>) <span class="comment">// 2 ，第二种调用方法</span></span><br></pre></td></tr></table></figure>
+<h4 id="表达式还是语句？"><a href="#表达式还是语句？" class="headerlink" title="表达式还是语句？"></a>表达式还是语句？</h4><p>如果行首是一个大括号，它到底是表达式还是语句？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">foo</span>: <span class="number">123</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>JavaScript 引擎读到上面这行代码，会发现可能有两种含义。第一种可能是，这是一个表达式，表示一个包含<code>foo</code>属性的对象；第二种可能是，这是一个语句，表示一个代码区块，里面有一个标签<code>foo</code>，指向表达式<code>123</code>。</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">外面加上圆括号，理解为对象；不加圆括号，理解为代码块。</font>
+
+<p>这种差异在<code>eval</code>语句（作用是对字符串求值）中反映得最明显。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">'&#123;foo: 123&#125;'</span>) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">'(&#123;foo: 123&#125;)'</span>) <span class="comment">// &#123;foo: 123&#125;</span></span><br></pre></td></tr></table></figure>
+<p>没有圆括号，<code>eval</code>将其理解为一个代码块；加上圆括号以后，就理解成一个对象。</p>
+<h4 id="属性的操作"><a href="#属性的操作" class="headerlink" title="属性的操作"></a>属性的操作</h4><h5 id="读取属性"><a href="#读取属性" class="headerlink" title="读取属性"></a>读取属性</h5><p>点运算符和方括号运算符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  p: &apos;Hello World&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.p // &quot;Hello World&quot;</span><br><span class="line">obj[&apos;p&apos;] // &quot;Hello World&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码分别采用点运算符和方括号运算符，读取属性<code>p</code>。</p>
+<p>请注意，如果使用方括号运算符，键名必须放在引号里面，否则会被当作变量处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo  <span class="comment">// 1</span></span><br><span class="line">obj[foo]  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>方括号更加灵活多样，方括号运算符内部还可以使用表达式，点号不行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj[<span class="string">'hello'</span> + <span class="string">' world'</span>]</span><br><span class="line">obj[<span class="number">3</span> + <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>数字键可以不加引号，因为自动转为字符串。数字键不能用点运算符，会被当成小数点，报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">0.7</span>: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[<span class="string">'0.7'</span>] <span class="comment">// "Hello World"</span></span><br><span class="line">obj[<span class="number">0.7</span>] <span class="comment">// "Hello World"</span></span><br><span class="line">obj<span class="number">.0</span><span class="number">.7</span> <span class="comment">//报错，不可用点运算符。</span></span><br></pre></td></tr></table></figure>
+<h5 id="属性的赋值"><a href="#属性的赋值" class="headerlink" title="属性的赋值"></a>属性的赋值</h5><p>点运算符和方括号运算符，除了读取，还可用于赋值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo = <span class="string">'Hello'</span>;</span><br><span class="line">obj[<span class="string">'bar'</span>] = <span class="string">'World'</span>;</span><br></pre></td></tr></table></figure>
+<p>JavaScript 允许<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">属性的“后绑定”</font>，也就是说，你可以在任意时刻新增属性，没必要在定义对象的时候，就定义好属性。</p>
+<h5 id="查看所有属性"><a href="#查看所有属性" class="headerlink" title="查看所有属性"></a>查看所有属性</h5><p><code>Object.keys</code>，查看一个对象本身的所有属性(所有‘键’)，返回的是一个数组(Array)。</p>
+<p>💡 技巧：想查看一个对象中有多少个键，使用<code>Object.keys(objxx).length</code>方法即可。</p>
+<p>(或Object.keys(objxx)[‘length’])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  key1: <span class="number">1</span>,</span><br><span class="line">  key2: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj);</span><br><span class="line"><span class="comment">// ['key1', 'key2']</span></span><br></pre></td></tr></table></figure>
+<h5 id="delete命令"><a href="#delete命令" class="headerlink" title="delete命令"></a>delete命令</h5><p>用于删除对象的某个属性，删除成功后返回true</p>
+<p>删除存在或不存在的属性，都会返回true；只有一种情况，该属性存在而且不得删除，delete才会返回false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(obj) <span class="comment">// ["p"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> obj.p <span class="comment">// true</span></span><br><span class="line">obj.p <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj) <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.defineProperty(&#123;&#125;, <span class="string">'p'</span>, &#123;</span><br><span class="line">  value: <span class="number">123</span>,</span><br><span class="line">  configurable: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.p <span class="comment">// 123</span></span><br><span class="line"><span class="keyword">delete</span> obj.p <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>上面代码之中，对象<code>obj</code>的<code>p</code>属性是不能删除的，所以<code>delete</code>命令返回<code>false</code>（关于<code>Object.defineProperty</code>方法的介绍，请看《标准库》的 Object 对象一章）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">delete</span> obj.toString <span class="comment">// true</span></span><br><span class="line">obj.toString <span class="comment">// function toString() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
+<p>另外，需要注意的是，<code>delete</code>命令只能删除对象本身的属性，无法删除继承的属性（关于继承参见《面向对象编程》章节）。</p>
+<p>上面代码中，<code>toString</code>是对象<code>obj</code>继承的属性，虽然<code>delete</code>命令返回<code>true</code>，但该属性并没有被删除，依然存在。这个例子还说明，即使<code>delete</code>返回<code>true</code>，该属性依然可能读取到值。</p>
+<h5 id="in运算符"><a href="#in运算符" class="headerlink" title="in运算符"></a>in运算符</h5><p><code>in</code>运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值），如果包含就返回<code>true</code>，否则返回<code>false</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="string">'p'</span> <span class="keyword">in</span> obj <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>不能识别哪些属性是对象自身的，哪些属性是继承的。<code>toString</code>方法不是对象<code>obj</code>自身的属性，而是继承的属性。但是，<code>in</code>运算符不能识别，对继承的属性也返回<code>true</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> obj <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h5 id="for…in循环"><a href="#for…in循环" class="headerlink" title="for…in循环"></a>for…in循环</h5><p>该循环用来遍历一个对象的全部属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(obj[i]); | <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1  |  a</span></span><br><span class="line"><span class="comment">// 2  |  b</span></span><br><span class="line"><span class="comment">// 3  |  c</span></span><br></pre></td></tr></table></figure>
+<p>下面是一个使用<code>for...in</code>循环，提取对象属性名的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  x: <span class="number">1</span>,</span><br><span class="line">  y: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> props = [];</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  props[i++] = p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">props <span class="comment">// ['x', 'y']</span></span><br></pre></td></tr></table></figure>
+<p>对象<code>obj</code>继承了<code>toString</code>属性，该属性不会被<code>for...in</code>循环遍历到，因为它默认是“不可遍历”的。</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">hasOwnProperty</font>
+
+<p>判断某个属性是不是对象自身的属性(还是继承的?)，返回真假。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123; <span class="attr">name</span>: <span class="string">'老张'</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="keyword">if</span> (person.hasOwnProperty(key)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// name</span></span><br></pre></td></tr></table></figure>
+<p>以上总结From 『js标准参考教程』</p>
+<hr>
+<p>全局对象 global</p>
+<p>在浏览器中，global为window</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">window的属性分为两类</font>
+
+<ul>
+<li>ECMAScript规定 (标准化) parseInt | parseFloat</li>
+<li>私有的(只有某些浏览器有，没有标准) <ul>
+<li>alert 弹框提示</li>
+<li>prompt 用户填写</li>
+<li>confirm 确认</li>
+<li>console 开发者</li>
+<li>document （文档） DOM</li>
+<li>history （浏览器） BOM</li>
+</ul>
+</li>
+</ul>
+<p>window的属性或方法，使用时可以省略window</p>
+<p>window常用API</p>
+<p>Window.Number() | String() | Boolean() | Object()</p>
+<p>setTimeout (控制台打出的数字是指计时器序号)</p>
+<p>var a = new Number(1); 这时 a的类型为object对象，而不是数字</p>
+<h4 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h4><blockquote>
+<p><strong>Number()</strong></p>
+</blockquote>
+<p>直接声明1和new Number的区别</p>
+<p>var n1 = 1;             数字1  栈内存</p>
+<p>var n2 = new Number(1);  对象1  栈内存存地址，堆内存有各种属性方法和值</p>
+<p>temp = new Number(n1); temp.toString();</p>
+<p>然后把temp干掉，把temp.toString()返回表达式n1.toString()</p>
+<p>js之父上述后 让n1简单数字 也可以用对象的属性和方法了</p>
+<p>切记：临时对象temp会对抹杀，普通类型.xxx时 是引入了一个临时对象temp，这次用完立马抹杀</p>
+<p>把简单类型当成对象使用时，都是转成了临时对象temp，用完立刻抹杀。</p>
+<p>charAt(index) 获取index索引的字符</p>
+<p>charCodeAt(index) index索引字符对应的Unicode编码</p>
+<p>Var s = “abcd”; s0 = s.charAt(0); s1 = s.charCodeAt(0);</p>
+<p>则s0为“a”,s1为97,s2=s.charCodeAt(0).toString(16),为97的十六进制数61</p>
+<blockquote>
+<p><strong>String()</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>trim</strong></p>
+</blockquote>
+<p><strong>裁剪左右两边的多余空格</strong></p>
+<p>s1 = ‘ heell  ’</p>
+<p>s1.trim() - s1 = ‘heell’</p>
+<blockquote>
+<p><strong>concat</strong></p>
+</blockquote>
+<p><strong>连接两个字符串</strong></p>
+<p>s1 = ‘hello’; s2 = ‘world’;</p>
+<p>console.log(s1.concat(s2));‘helloworld’</p>
+<blockquote>
+<p><strong>slice</strong></p>
+</blockquote>
+<p><strong>切片</strong></p>
+<p>slice(start,num)，从索引start号开始，切出num片</p>
+<p>s1 = “hello”</p>
+<p>s1.slice(1,2) - “el”</p>
+<blockquote>
+<p><strong>replace</strong></p>
+</blockquote>
+<p><strong>替换</strong></p>
+<p>s1.replace(‘e’,‘o’) - s1 = hollo (替换第一个？)</p>
+<p>常用API可见MDN useful string methods</p>
+<blockquote>
+<p><strong>Boolean()</strong></p>
+</blockquote>
+<p>5个falsy值，0 | NaN | “” | null | undefined </p>
+<p>其他全都是true，<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;">所有对象均为true</font>，包括false对象</p>
+<p>⚠️注意：</p>
+<p>对象和对象一般都不相等，因为他们地址不一样。即使指向的东西的值一样。</p>
+<h2 id="JS里的原型"><a href="#JS里的原型" class="headerlink" title="JS里的原型"></a>JS里的原型</h2><h4 id="公用属性——原型"><a href="#公用属性——原型" class="headerlink" title="公用属性——原型"></a>公用属性——原型</h4><p>共用属性 toString | valueOf</p>
+<p>为了减少内存浪费，不用每个对象里头都存一个toString</p>
+<p>对象不存 toString和valueOf,但是可以调用</p>
+<p>有一个隐藏的key，__proto__</p>
+<p>__proto__ 存的是一个地址,指向那些共用属性 toString|valueOf </p>
+<p>⚠️注意：</p>
+<p>Number更复杂，__proto__中还套了一层__proto__，第二层__proto__才是指向的所有对象共有的属性，第一层__proto__是含有Number独有的属性</p>
+<p>String和Boolean与Number类似，__proto__中还套了一层__proto__</p>
+<p>结构像一棵树，Object的共有属性(Object.prototype)相当于树根，</p>
+<p>Object.prototype-&gt; 对象的共有属性，也就是实例对象的__proto__对应的值</p>
+<p>原型即共有属性的意思</p>
+<p>var o1 = new Object();</p>
+<p>o1.__proto__ === Object.prototype ✅ </p>
+<p>其实对象也有两层__proto__,第二层__proto__为null(注意不是undefined)</p>
+<p>o1.__proto__.__proto__ === null</p>
+<p>var n1 = new Number(1);</p>
+<p>n1.__proto__ === Number.prototype</p>
+<p>n1.__proto__.__proto__ === Object.prototype</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">某个实例访问属性，如果该实例的构造函数的prototype没有这个属性，就会往更下一层的__proto__(即Object的共有属性)去找，有的话就可调用成功，如果还是没有就返回undefined。</font>
+
+<p>例如上文的 n1.hasOwnProperty就是往下一层的__proto__中找的属性，是对象才有的公共属性。</p>
+<p>var __ = new __</p>
+<p>var后的为对象，new后面的为函数对象</p>
+<p>__proto__是对象的属性，prototype是函数的属性</p>
+<p>对象.__proto__ === 函数.prototype</p>
+<blockquote>
+<p><strong>总结</strong></p>
+<p><strong><font color="dared">对象.__proto__ == 该对象的构造函数.prototype</font></strong></p>
+<p>__proto__是对象的属性，prototype是函数的属性</p>
+<p><code>Object</code>| <code>String</code>| <code>Number</code>| <code>Boolean</code>| <code>Function</code>都是构造函数</p>
+<p>否</p>
+<p>Object.__proto__ === Function.__proto__</p>
+<p>原型对象prototype的所有属性和方法，都能被实例对象共享。</p>
+<p>原型对象的作用，就是定义所有实例对象共享的属性和方法。</p>
+<p>实例对象的__proto__指向原型对象；</p>
+<p>构造函数的prototype指向原型对象；</p>
+<p>原型对象的constructor指向构造函数</p>
+<p>(即Object===Object.prototype.constructor)</p>
+<p>将一个东西当成函数，则用xx.prototype去获取他的原型</p>
+<p>将一个东西当成对象，则用xx.__proto__去获取他的原型。</p>
+<p>(functionxx.prototype是一个对象,obj.__proto__也是一个对象)</p>
+<p>使用__proto__相当于使用一个访问器，</p>
+<p>e.g. obj.__proto__ 相当于 Object.getPrototypeOf(obj)</p>
+</blockquote>
+ <font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:2">特殊的Function</font>
+
+<p>Fuction的构造函数也是Function，</p>
+<p>Function.constructor === Function</p>
+<blockquote>
+<p>所以Function.__proto__ === Function.prototype</p>
+<p>即Object.getPrototypeOf(Function)===Function.prototype</p>
+</blockquote>
+<p>全等号左侧的Function被当成对象，而右侧的Function被当做函数。</p>
+<p>Function是Function的构造函数，</p>
+<p>相当于var obj = new Object();</p>
+<p>obj.__proto__===Object.prototype</p>
+<p>Object是obj的构造函数</p>
+<blockquote>
+<p>Function.prototype.__proto__ = Object.prototype</p>
+</blockquote>
+<p>Function.prototype也是一个对象，对象的__proto__属性即对象的构造函数Object的prototype。</p>
+<p>⚠️注意：</p>
+<font color="dared"><strong>Object是所有所有对象的构造函数，而Function是所有所有函数对象(typeof xx为function)的构造函数。</strong></font>
+
+<p>所以Object(Object是一个函数对象)的构造函数也是Function，则</p>
+<blockquote>
+<p>Object.__proto__ === Function.prototype </p>
+<p>Object.__proto__ === Function.__proto__</p>
+</blockquote>
+<p>附上一张图总结：</p>
+<p><img src="prototype.jpg" alt="prototype"></p>
+<p>引自思否<a href="https://segmentfault.com/a/1190000014717972" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014717972</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/11/02/JS中的对象和原型/">https://skr.dog/2018/11/02/JS中的对象和原型/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/前端知识/">前端知识</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/01/20/聊聊geth和私链节点/"><i class="fa fa-chevron-left">  </i><span>聊聊geth和私链节点</span></a></div><div class="next-post pull-right"><a href="/2018/10/18/聊聊JS中的数据类型转换和内存图/"><span>聊聊JS中的数据类型转换和内存图</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

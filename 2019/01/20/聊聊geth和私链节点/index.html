@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="聊聊geth和私链节点"><meta name="keywords" content="BlockChain,Ethereum"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>聊聊geth和私链节点 | Welcome to Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#创世区块"><span class="toc-number">1.</span> <span class="toc-text">创世区块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#GETH命令参数详解"><span class="toc-number">2.</span> <span class="toc-text">GETH命令参数详解</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Welcome to Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">聊聊geth和私链节点</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-20</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h5 id="创世区块"><a href="#创世区块" class="headerlink" title="创世区块"></a>创世区块</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"config"</span>: &#123;</span><br><span class="line">        //区块链的ID，你随便给一个就可以</span><br><span class="line">        "chainId": 21,</span><br><span class="line">        //下面三个参数暂时不知道干啥的</span><br><span class="line">        //等我知道了补上，或者有哪位大神知道</span><br><span class="line">        //可以在评论里指点我，谢谢</span><br><span class="line">        "homesteadBlock": 0,</span><br><span class="line">        "eip155Block": 0,</span><br><span class="line">        "eip158Block": 0</span><br><span class="line">    &#125;,</span><br><span class="line">  //用来预置账号以及账号的以太币数量，应该也就是所谓的预挖</span><br><span class="line">  //我这里不需要预挖，所以给了个空对象</span><br><span class="line">  //如果需要可以这样加</span><br><span class="line">  //"alloc": &#123;</span><br><span class="line">  //"0x0000000000000000000000000000000000000001": &#123;"balance": "111111111"&#125;,</span><br><span class="line">  //"0x0000000000000000000000000000000000000002": &#123;"balance": "222222222"&#125;</span><br><span class="line">  //&#125;</span><br><span class="line">  "alloc"      : &#123;&#125;,</span><br><span class="line">  //币基地址，也就是默认的钱包地址，因为我没有地址，所以全0，为空</span><br><span class="line">  //后面运行Geth后创建新账户时，如果Geth发现没有币基地址，会默认将第一个账户的地址设置为币基地址</span><br><span class="line">  //也就是矿工账号</span><br><span class="line">  "coinbase"   : "0x0000000000000000000000000000000000000000",</span><br><span class="line">  //挖矿难度，你可以随便控制哦，这里设置的难度比较小，因为我喜欢钱来得快</span><br><span class="line">  "difficulty" : "0x20000", //可以用小点的0x4000</span><br><span class="line">    //0x2ffffd大概 一分钟5~10个</span><br><span class="line">  //附加信息，随便填个文本或不填也行，类似中本聪在比特币创世块中写的报纸新闻</span><br><span class="line">  "extraData"  : "",</span><br><span class="line">  //gas最高限制，以太坊运行交易，合约等所消耗的gas最高限制，这里设置为最高</span><br><span class="line">  "gasLimit"   : "0x2fefd8",  //0xffffff为最高</span><br><span class="line">  //64位随机数，用于挖矿，注意他和mixhash的设置需要满足以太坊黄皮书中的要求</span><br><span class="line">  //直接用我这个也可以</span><br><span class="line">  "nonce"      : "0x0000000000000042",</span><br><span class="line">  //与nonce共同用于挖矿，注意他和nonce的设置需要满足以太坊黄皮书中的要求</span><br><span class="line">  "mixhash"    : "0x0000000000000000000000000000000000000000000000000000000000000000",</span><br><span class="line">  //上一个区块的Hash值，因为是创世块，石头里蹦出来的，没有在它前面的，所以是0</span><br><span class="line">  "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",</span><br><span class="line">  //创世块的时间戳，这里给0就好</span><br><span class="line">  "timestamp"  : "0x00"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化创世节点：</p>
+<p>geth –datadir ./data init genesis.json</p>
+<p>启动节点</p>
+<p>geth –datadir ./data –networkid 15 –port 30303 –rpc –rpcaddr 0.0.0.0 –rpcport 8545 –rpcapi ‘db,net,eth,web3,personal’ –rpccorsdomain ‘*’ –nat “any” –nodiscover console</p>
+<p>💡 <font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">千万注意引号是英文的 特别坑</font></p>
+<h5 id="GETH命令参数详解"><a href="#GETH命令参数详解" class="headerlink" title="GETH命令参数详解"></a>GETH命令参数详解</h5><table>
+<thead>
+<tr>
+<th>geth命令参数</th>
+<th>参数含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>console</td>
+<td>指启动节点后启用交互式js命令行</td>
+</tr>
+<tr>
+<td>datadir</td>
+<td>指定数据存放目录</td>
+</tr>
+<tr>
+<td>networkid</td>
+<td>以太坊网络标识符，1代表主网，3Ropsten，4Rinkeby，34都为测试网，<br>默认为1，填个大点的代表私有链</td>
+</tr>
+<tr>
+<td>port</td>
+<td>网卡监听端口号，不同计算机节点通过这个连接</td>
+</tr>
+<tr>
+<td>–rpc</td>
+<td>启用http-rpc服务器，允许远程指令访问</td>
+</tr>
+<tr>
+<td>rpcaddr 0.0.0.0</td>
+<td>允许任意有效的ip地址连接</td>
+</tr>
+<tr>
+<td>rpcport</td>
+<td>http-rpc服务器监听端口，即geth启动rpc服务的端口为8545(默认值)</td>
+</tr>
+<tr>
+<td>rpcapi</td>
+<td>提供的可供调用的api模块</td>
+</tr>
+<tr>
+<td>rpccorsdomain</td>
+<td>可以跨域访问的域名列表 (浏览器想连接上geth需要有此项)，<br>*代表所有</td>
+</tr>
+<tr>
+<td>nat</td>
+<td>端口映射机制，默认any</td>
+</tr>
+<tr>
+<td>nodiscover</td>
+<td>禁用节点发现机制(手动添加节点)</td>
+</tr>
+<tr>
+<td>–identity</td>
+<td>自定义节点名‘name’</td>
+</tr>
+<tr>
+<td>–dev</td>
+<td>开发者模式，自动分配一个不需要解锁的账户而且会得自动挖矿</td>
+</tr>
+</tbody>
+</table>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">注意</font>
+
+<p>–dev 使用POA共识网络，默认预分配一个开发者账户并且会自动开启挖矿。–dev可以不用创世块初始化</p>
+<p>创世块中调节挖矿难度</p>
+<p>–dev.period value | value为开发者模式下挖矿周期(0 = 仅在交易时)(默认: 0)</p>
+<blockquote>
+<p>geth –datadir ./data –networkid 15 –port 30303 –rpc –rpcaddr 0.0.0.0 –rpcport 8545 –rpcapi ‘db,net,eth,web3,personal’ –rpccorsdomain ‘*’ –nat “any” –nodiscover –identity “superman285” console 2&gt;gethprint.log</p>
+</blockquote>
+<p>信息不打印在命令行中，而是输出到gethprint.log文件中，</p>
+<p>这时如果用miner.start() 会打出null而不是true，但是也开始挖矿了</p>
+<p>geth命令参数详解：<a href="http://www.cnblogs.com/tinyxiong/p/7918706.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinyxiong/p/7918706.html</a></p>
+<p>geth的控制台可以定义变量，用js语法，可用var</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">常用：</font>
+
+<p>eth.accounts | eth.accounts[index]</p>
+<p>eth.blockNumber</p>
+<p>eth.getBalance(eth.accounts[0])</p>
+<p>personal.newAccount(“password”)</p>
+<p>personal.unlockAccount(address) | 可以address = eth.accounts[0]</p>
+<p>miner.start() | miner.stop()</p>
+<p>转账</p>
+<p>eth.sendTransaction({from:user1,to:user2,value:web3.toWei(10,“ether”)})</p>
+<p>转账10个eth，需要挖矿才能确认交易</p>
+<p>单位换算</p>
+<p>web3.toWei(10,“ether”)</p>
+<p>geth指令 启动节点时如果带了 –dev 开发者模式 可以不用创世块genesis block来初始化 ?</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/01/20/聊聊geth和私链节点/">https://skr.dog/2019/01/20/聊聊geth和私链节点/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BlockChain/">BlockChain</a><a class="post-meta__tags" href="/tags/Ethereum/">Ethereum</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/02/22/回到解放前/"><i class="fa fa-chevron-left">  </i><span>回到解放前</span></a></div><div class="next-post pull-right"><a href="/2018/11/02/JS中的对象和原型/"><span>JS中的对象和原型</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

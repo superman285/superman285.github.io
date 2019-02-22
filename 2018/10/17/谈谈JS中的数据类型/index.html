@@ -1,0 +1,169 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="谈谈JS中的数据"><meta name="keywords" content="JavaScript,前端知识"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>谈谈JS中的数据 | Welcome to Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS里的数据"><span class="toc-number">1.</span> <span class="toc-text">JS里的数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS黑历史"><span class="toc-number">1.1.</span> <span class="toc-text">JS黑历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS数据类型"><span class="toc-number">1.2.</span> <span class="toc-text">JS数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#number数字"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">number数字</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#string字符串"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">string字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#boolean"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">boolean</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null和undefined"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#对象object"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">对象object</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#创建对象方式"><span class="toc-number">1.2.0.5.1.</span> <span class="toc-text">创建对象方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用"><span class="toc-number">1.2.0.5.2.</span> <span class="toc-text">使用</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285e">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Welcome to Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">谈谈JS中的数据</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-17</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="JS里的数据"><a href="#JS里的数据" class="headerlink" title="JS里的数据"></a>JS里的数据</h2><h3 id="JS黑历史"><a href="#JS黑历史" class="headerlink" title="JS黑历史"></a>JS黑历史</h3><p>1991 李爵士 www</p>
+<p>1992 李爵士同事 CSS</p>
+<p>1993 W3C</p>
+<p>1995 网景 Netscape =&gt; Navigator</p>
+<p>Branden Eich JS之父，设计了js初版 Mocha</p>
+<p>改名Mocha=&gt;LiveScript=&gt;JavaScript</p>
+<p>网景和Sun达成协议，出品一门脚本语言。</p>
+<p>几年后 Unicode和UTF-8发布  (JS在这之前就出现了，所以它的编码有bug)</p>
+<p>1996 MS-&gt;IE =&gt; JScript 想抢占市场</p>
+<p>后来 浏览器市场占有 ms打败了网景</p>
+<p>网景开源浏览器 =&gt; Firefox 项目</p>
+<p>​    IE5.5 MS推出JS发请求功能</p>
+<p>2004 Gmail，网页上的程序 JS被正式认为是一门编程语言了(可以开发项目)</p>
+<p>网景为了对抗微软的脚本，向ECMA(欧洲计算机制造协会)申报标准</p>
+<p>标准名为 ECMAScript(因为javascript商标已经被注册了，不可用)</p>
+<p>JS的一些缺点：全局变量(没有模块化)、标准库(内置代码少) | ES3以及之前</p>
+<p>ECMAScript5 做了个小升级 步子比较小</p>
+<p>ECMAScript6 做了比较给力的升级 可以视为现代编程语言了</p>
+<p>很多来源于Rails社区的CoffeeScript社区</p>
+<blockquote>
+<p><strong>JS之父对JS的评价</strong></p>
+<p>原创之处并不优秀，</p>
+<p>优秀之处并非原创！</p>
+</blockquote>
+<p>目前JS每年一更 </p>
+<p>ES7 | ES8 | ES Next</p>
+<blockquote>
+<p>ES5新特性汇总：<a href="https://zhuanlan.zhihu.com/p/24336831?refer=study-fe" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24336831?refer=study-fe</a></p>
+<p>ES6新特性汇总：<a href="https://zhuanlan.zhihu.com/p/24570791" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24570791</a></p>
+</blockquote>
+<p><code>JS学习路径推荐</code></p>
+<p>先学核心ES3，小升级到ES5，再学习ES6(稍微要多花点时间精力)</p>
+<p>没有纳入规范的js语法，可能就先用上了，例如Chrome支持了y1、然后firefox也支持了y1’、IE也支持了y1’’</p>
+<p>ECMA一看大家都支持了，就把他纳入规范。</p>
+<p>或者例如Chrome支持x1，firefox不支持，可以通过Babel来转义。</p>
+<hr>
+<h3 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h3><p><strong>7种数据类型</strong></p>
+<ul>
+<li>number 数字</li>
+<li>string 字符串</li>
+<li>boolean 布尔值</li>
+<li>object 对象</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol 符号</li>
+</ul>
+<p>注：array和function并不是数据类型，他们都属于object对象</p>
+<blockquote>
+<p>object对象为复杂类型，其他6种都为基本类型(简单类型)</p>
+</blockquote>
+<h5 id="number数字"><a href="#number数字" class="headerlink" title="number数字"></a>number数字</h5><p>十进制数表示：</p>
+<p>1 | .1 | 1.23e2（代表1.23*10^2^)</p>
+<p>二进制：0b开头，e.g 0b11代表3</p>
+<p>八进制：0开头， e.g 011代表9</p>
+<p>十六进制：0x开头，e.g 0x11代表17</p>
+<h5 id="string字符串"><a href="#string字符串" class="headerlink" title="string字符串"></a>string字符串</h5><blockquote>
+<p>由于发布在unicode和utf-8之前的历史原因，JS只能支持到两个字节的unicode字符</p>
+</blockquote>
+<p>空字符串：‘’ | “” 长度为0</p>
+<p>空格字符串：‘ ’ | “ ” 长度为1</p>
+<p>回车也占长度</p>
+<p>例如：</p>
+<p>var str=`12345<br>67890`</p>
+<p>str长度是11，因为有回车，输出是<br>12345<br>67890</p>
+<blockquote>
+<p><strong><em>转义</em></strong></p>
+<p>符号前加\ 意为这个符号不是结束，而是我想显示出来的符号<br>转义符不占长度</p>
+<p>想显示一个单引号的方法：</p>
+<p>var a = “‘”<br>var a = ‘\‘’</p>
+<p>多行字符串(抄袭命令行，\再加回车来表示换行)</p>
+<p>var str = ‘a\     //此处\代表不是结束<br>​           b’</p>
+<p>常用转义：<br><code>\0</code> ：null（<code>\u0000</code>）</p>
+<p><code>\b</code> ：后退键（<code>\u0008</code>）</p>
+<p><code>\f</code> ：换页符（<code>\u000C</code>）</p>
+<p><code>\n</code> ：换行符（<code>\u000A</code>）</p>
+<p><code>\r</code> ：回车键（<code>\u000D</code>）</p>
+<p><code>\t</code> ：制表符（<code>\u0009</code>）</p>
+<p><code>\v</code> ：垂直制表符（<code>\u000B</code>）</p>
+<p><code>\&#39;</code> ：单引号（<code>\u0027</code>）</p>
+<p><code>\&quot;</code> ：双引号（<code>\u0022</code>）</p>
+<p><code>\\</code> ：反斜杠（<code>\u005C</code>）<br>\加空格 转义 为空格</p>
+</blockquote>
+<h5 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h5><p>两个值 true | false</p>
+<p>a&amp;&amp;b 两个为真则为真，其中一个为假则为假</p>
+<p>a||b 两个为假则为假，其中一个为真则为真</p>
+<h5 id="null和undefined"><a href="#null和undefined" class="headerlink" title="null和undefined"></a>null和undefined</h5><font color="white" style="font-weight:bold;background:#4EEE94">&nbsp;区别&nbsp;</font>
+
+<ul>
+<li>【语法】变量未赋值，则为undefined 不是null。</li>
+<li>【惯例】<ul>
+<li>有一个object对象，现在不想赋值。推荐可初始化为null。 </li>
+<li>有一个非object对象，现在不想赋值。推荐可初始化为undefined。</li>
+</ul>
+</li>
+</ul>
+<h5 id="对象object"><a href="#对象object" class="headerlink" title="对象object"></a>对象object</h5><p>对象是复杂类型，由基本类型组成。</p>
+<p>简单类型的组合。</p>
+<h6 id="创建对象方式"><a href="#创建对象方式" class="headerlink" title="创建对象方式"></a>创建对象方式</h6><ul>
+<li>var ob = {};</li>
+<li>var ob2 = new Object();</li>
+<li>var ob3 = Object.create(Object.prototype);</li>
+</ul>
+<h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h6><p>person[‘name’]  <strong>一定要有单引号，否则被视为变量名</strong></p>
+<p>person.name  <strong>key符合标识符规范的时候才可以这么用，切记!</strong></p>
+<p>❗ <strong>注意</strong></p>
+<p>空字符串也可以作为对象的key，使用方式为person[‘’]=‘superman’</p>
+<p>如果key不加单引号，就必须遵循标识符规则(不可以数字开头，中间无空格，必须符合变量名规则)</p>
+<blockquote>
+<ul>
+<li>第一个字符，可以是任意 Unicode 字母（包括英文字母和其他语言的字母），以及美元符号（<code>$</code>）和下划线（<code>_</code>）。</li>
+<li>第二个字符及后面的字符，除了 Unicode 字母、美元符号和下划线，还可以用数字<code>0-9</code>。</li>
+</ul>
+</blockquote>
+<p>所以9a不可以作为key，但是‘9a’可以作为key。使用person[‘9a’]</p>
+<blockquote>
+<p>对象的键为字符串类型，将其他类型作为key，会转为字符串类型。</p>
+</blockquote>
+<p>对象自己可以作为某个key的value，例如：</p>
+<p>var person = {age:18,self:person}，但是第一次定义后打印person是{age:18,self:undefined}</p>
+<p>再定义一次var person = {age:18,self:person}，</p>
+<p>然后打印就成了{age:18,self:{age:18,self:undefined}}，一次次的递归。</p>
+<p>对象中的方法</p>
+<p>delete person[‘name’] //把key和value都删除了，返回true说明删除成功</p>
+<p>‘name’ in person //成false了</p>
+<p>person.name = undefined //相当于只是把’name’对应的value删除了，key还在。</p>
+<blockquote>
+<p>for…in…</p>
+<p>可以遍历对象中的key，但注意输出的key是随即顺序不是固定顺序</p>
+<p>for(var key in person){console.log(key);}</p>
+<p>遍历对象中的value则用以下写法：</p>
+<p>for(var key in person){console.log(person[key]);}</p>
+<p>//注意不是person.key，因为key是获取到的字符串，person.key相当于person[‘key’]肯定是错误的</p>
+<p>一起打印使用:</p>
+<p>console.log(key,person[key])</p>
+</blockquote>
+<p>typeof 返回类型名字符串</p>
+<p>缺陷：</p>
+<ol>
+<li>typeof null //‘object’</li>
+<li>typeof function //‘function’</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2018/10/17/谈谈JS中的数据类型/">https://skr.dog/2018/10/17/谈谈JS中的数据类型/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/前端知识/">前端知识</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/10/18/聊聊JS中的数据类型转换和内存图/"><i class="fa fa-chevron-left">  </i><span>聊聊JS中的数据类型转换和内存图</span></a></div><div class="next-post pull-right"><a href="/2018/09/11/CSS布局-居中小贴士/"><span>CSS布局-居中小贴士</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
