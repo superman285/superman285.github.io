@@ -1255,6 +1255,21 @@ footer.is-mobile {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
+#content-inner h2 {
+  font-size: 1.6em;
+}
+#content-inner h3 {
+  font-size: 1.4em;
+}
+#content-inner h4 {
+  font-size: 1.3em;
+}
+#content-inner h5 {
+  font-size: 1.2em;
+}
+#content-inner h6 {
+  font-size: 1.1em;
+}
 #content-inner h1,
 #content-inner h2,
 #content-inner h3,
