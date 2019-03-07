@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="JavaScriptのES6☞Map&amp;Set"><meta name="keywords" content="JavaScript,ES6,数据结构"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>JavaScriptのES6☞Map&amp;Set | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Map映射-类似对象"><span class="toc-number">1.</span> <span class="toc-text">Map映射 类似对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">1.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set方法支持链式操作"><span class="toc-number">1.2.</span> <span class="toc-text">set方法支持链式操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历方式-具备Symbol-iterator接口"><span class="toc-number">1.3.</span> <span class="toc-text">遍历方式 (具备Symbol.iterator接口)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WeakMap"><span class="toc-number">1.4.</span> <span class="toc-text">WeakMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#坑🕳"><span class="toc-number">1.5.</span> <span class="toc-text">坑🕳</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set集合-类似数组"><span class="toc-number">2.</span> <span class="toc-text">Set集合 类似数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Set初始化"><span class="toc-number">2.1.</span> <span class="toc-text">Set初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组去重"><span class="toc-number">2.2.</span> <span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#add方法支持链式调用"><span class="toc-number">2.3.</span> <span class="toc-text">add方法支持链式调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历方式-具备Symbol-iterator接口-1"><span class="toc-number">2.4.</span> <span class="toc-text">遍历方式 (具备Symbol.iterator接口)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求交集，并集，差集"><span class="toc-number">2.5.</span> <span class="toc-text">求交集，并集，差集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意问题"><span class="toc-number">2.6.</span> <span class="toc-text">注意问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WeakSet"><span class="toc-number">2.7.</span> <span class="toc-text">WeakSet</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">44</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">43</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">21</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="80" src="//music.163.com/outchain/player?type=2&amp;id=583503&amp;auto=1&amp;height=66" style="margin-top: 2rem;"></iframe><div class="unit"><div class="heart"><div class="heart-piece-0"></div><div class="heart-piece-1"></div><div class="heart-piece-2"></div><div class="heart-piece-3"></div><div class="heart-piece-4"></div><div class="heart-piece-5"></div><div class="heart-piece-6"></div><div class="heart-piece-7"></div><div class="heart-piece-8"></div></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">JavaScriptのES6☞Map&amp;Set</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-05</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/">FrontEnd</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/FrontEnd/JavaScript/">JavaScript</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="Map映射-类似对象"><a href="#Map映射-类似对象" class="headerlink" title="Map映射 类似对象"></a>Map映射 类似对象</h3><p>对象的问题:</p>
+<p>var m = {}</p>
+<p>var x = {id:1},</p>
+<p>​    y = {id:2};</p>
+<p>m[x] = ‘foo’;m[y]=‘bar’</p>
+<p>console.log(m[x]);</p>
+<p>console.log(m[y]);</p>
+<p>打印出来啥? 这就是对象的问题</p>
+<p>所以有了Map</p>
+<p>Map不会将键转为string([object Object])</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>var map = new Map([‘name1’,‘zhangsan’],[‘name2’,‘lisi’]);</p>
+<p>//相当于 map.set(‘name1’,‘zhangsan’).set(‘name2’,‘lisi’);</p>
+<p>实现方式: 用到了对象解构/数组解构</p>
+<p>var items = [[‘name1’,‘zhangsan’],[‘name2’,‘lisi’]];</p>
+<p>var m = new Map;</p>
+<p>items.forEach(([key,value])=&gt;m.set(key,value));</p>
+<p>数组元素item为[xx,yy] 对应 [key,value] key value相当于解构</p>
+<h4 id="set方法支持链式操作"><a href="#set方法支持链式操作" class="headerlink" title="set方法支持链式操作"></a>set方法支持链式操作</h4><p>let map = new Map()</p>
+<p>map.set(‘key1’,‘value1’).set(‘key2’,’value2’)</p>
+<h4 id="遍历方式-具备Symbol-iterator接口"><a href="#遍历方式-具备Symbol-iterator接口" class="headerlink" title="遍历方式 (具备Symbol.iterator接口)"></a>遍历方式 (具备Symbol.iterator接口)</h4><p>for(let v of map){console.log(v)} v的格式是[key,value] 所以可解构</p>
+<p>相当于for(let [key,value] of map){console.log(key,value)}</p>
+<p>相当于for(let [key,value] of map.entries())</p>
+<p>v of map  用的迭代方式是 v of map.entries()</p>
+<p>Map.prototype[Symbol.iterator] === Map.prototype.entries //true</p>
+<p>注意对比 set用的是 set.values()方法 (因为set只需要值，map需要键值)</p>
+<blockquote>
+<h4 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h4></blockquote>
+<p><strong>特征</strong></p>
+<ul>
+<li>不存在遍历方法，无法遍历</li>
+<li>键名只能是对象，值可以是其他类型</li>
+<li>弱引用:如果没有其他地方引用WeakMap的键(对象)，就会被系统回收</li>
+</ul>
+<h4 id="坑🕳"><a href="#坑🕳" class="headerlink" title="坑🕳"></a>坑🕳</h4><p>注意对象和对象不相等，所以</p>
+<p>map.set([5],555);//map.get([5]) 得到的是undefined!</p>
+<p>map.set({k:‘v’},666); //map.get({k:‘v’}) 得到的是undefined!</p>
+<p>如果想拿到值，需要指定为同一地址</p>
+<p>var a = [5]; map.set(a,555); map.get(a) //这样就可以拿到555</p>
+<h3 id="Set集合-类似数组"><a href="#Set集合-类似数组" class="headerlink" title="Set集合 类似数组"></a>Set集合 类似数组</h3><h4 id="Set初始化"><a href="#Set初始化" class="headerlink" title="Set初始化"></a>Set初始化</h4><p>var set = new Set(); set.add(5); set.add(7);</p>
+<p>相当于 var set = new Set([5,7]); //将数组作为参数</p>
+<h4 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h4><p>var set = new Set(array);</p>
+<p>var newArray = Array.from(set);</p>
+<p>//var newArray = Array.from(new Set(array));</p>
+<p>或者</p>
+<p>var newArray = […new Set(array)];</p>
+<p>Set变数组的方法:</p>
+<ol>
+<li><p>Array.from(set)</p>
+</li>
+<li><p>[…set]</p>
+</li>
+</ol>
+<h4 id="add方法支持链式调用"><a href="#add方法支持链式调用" class="headerlink" title="add方法支持链式调用"></a>add方法支持链式调用</h4><p>var set = new Set();</p>
+<p>set.add(1).add(2); //add方法返回的仍然是set结构，所以可链式调用。</p>
+<p>注意💡</p>
+<p>delete和clear方法 不支持链式调用</p>
+<p>delete返回布尔值 删除成功或失败</p>
+<p>set.has(1) //判断是否含有元素1</p>
+<p>set.clear() //清空集合</p>
+<p>set.delete(v) //删除集合中某个元素</p>
+<h4 id="遍历方式-具备Symbol-iterator接口-1"><a href="#遍历方式-具备Symbol-iterator接口-1" class="headerlink" title="遍历方式 (具备Symbol.iterator接口)"></a>遍历方式 (具备Symbol.iterator接口)</h4><p>for(let i of set) //1 2 3 “g”</p>
+<p>for(let i of set.keys()) // 1 2 3 “g”</p>
+<p>for(let i of set.values()) // 1 2 3 “g”</p>
+<p>for(let i of set.entries()) //[1,1] [2,2] [3,3] [‘g’,‘g’]</p>
+<p>Set集合中 元素的键名和键值相当于是相同的 都是元素的值</p>
+<p>Set.prototype[Symbol.iterator] === Set.prototype.values //true</p>
+<p>说明i of set调用的是 set.values()的方法</p>
+<p>set.forEach((value,key,arr)=&gt;console.log(value,key,arr))</p>
+<p>value和key是一致的 而不是像数组索引(0,1,2,3)</p>
+<h4 id="求交集，并集，差集"><a href="#求交集，并集，差集" class="headerlink" title="求交集，并集，差集"></a>求交集，并集，差集</h4><p>let a = new Set([1,2,3])</p>
+<p>let b = new Set([2,3,4])</p>
+<p>并集:</p>
+<p>let union = new Set([…a,…b])</p>
+<p>交集:</p>
+<p>let intersect = new Set([…a].filter(v=&gt;b.has(v))) b有才丢入filter</p>
+<p>差集:</p>
+<p>a差b</p>
+<p>let difference = new Set([…a].filter(v=&gt;!b.has(v))) b没有丢入filter</p>
+<h4 id="注意问题"><a href="#注意问题" class="headerlink" title="注意问题"></a>注意问题</h4><p>var set = new Set([undefined,undefined,null,null,true,1,NaN,NaN,{},{},[],[]])</p>
+<p>es6中 认为两个NaN是相等的 </p>
+<p>注意{}和{},[]和[] 由于地址不同 是不相等的 所以都是唯一的</p>
+<p>所以set中含有</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>&#123;&#123;&#125;,&#123;&#125;,[],[]&#125;</span><br></pre></td></tr></table></figure>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">操作是实时的,例如在console.log打印后再删除元素，但是看控制台可能却是删除元素后的结果，说明操作是实时影响到结果的。</font>
+
+<p>所以后面的操作可能影响到前面使用时的结果，要注意。</p>
+<blockquote>
+<h4 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h4></blockquote>
+<p><strong>特征</strong></p>
+<ul>
+<li>没有遍历方法，无法遍历</li>
+<li>成员只能是对象，只能add对象</li>
+<li>弱引用:如果没有其他地方引用WeakSet的元素(对象)，就会被系统回收</li>
+</ul>
+<p><strong>冷</strong>🕳</p>
+<p>let arr = [1,2,3,4]</p>
+<p>console.log(arr.map(parseInt)) //打印出[1,NaN,NaN,NaN]</p>
+<p>接收的参数是 1,0 2,1 3,2 4,3</p>
+<p>即parseInt(1,0) | parseInt(2,1) 将1转为0进制</p>
+<p>将2转为1进制 将3转为2进制 将4转为3进制</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/03/05/JavaScriptのES6☞Map-Set/">https://skr.dog/2019/03/05/JavaScriptのES6☞Map-Set/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/ES6/">ES6</a><a class="post-meta__tags" href="/tags/数据结构/">数据结构</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/03/07/JavaScriptのES6☞Proxy/"><i class="fa fa-chevron-left">  </i><span>JavaScriptのES6☞Proxy</span></a></div><div class="next-post pull-right"><a href="/2019/02/22/永恒のOP/"><span>永恒のOP</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="please input what you want"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
