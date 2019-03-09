@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="「精通以太坊」第一章👉🏻what is Ethereum"><meta name="keywords" content="Ethereum,BlockChain,Mastering Ethereum"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>「精通以太坊」第一章👉🏻what is Ethereum | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是以太坊"><span class="toc-number">1.</span> <span class="toc-text">什么是以太坊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区块链的组件"><span class="toc-number">2.</span> <span class="toc-text">区块链的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以太坊开发的四个阶段"><span class="toc-number">3.</span> <span class="toc-text">以太坊开发的四个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以太坊的组件"><span class="toc-number">4.</span> <span class="toc-text">以太坊的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从通用区块链到去中心化应用-ÐApps"><span class="toc-number">6.</span> <span class="toc-text">从通用区块链到去中心化应用(ÐApps)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以太坊的开发文化"><span class="toc-number">7.</span> <span class="toc-text">以太坊的开发文化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么学习以太坊"><span class="toc-number">8.</span> <span class="toc-text">为什么学习以太坊?</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Thanks-for-reading-未完待续🌪"><span class="toc-number">8.0.0.1.</span> <span class="toc-text">Thanks for reading. 未完待续🌪</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">46</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">44</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">22</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:3000">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a></div></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="80" src="//music.163.com/outchain/player?type=2&amp;id=583503&amp;auto=1&amp;height=66" style="margin-top: 2rem;"></iframe><div class="unit"><div class="heart"><div class="heart-piece-0"></div><div class="heart-piece-1"></div><div class="heart-piece-2"></div><div class="heart-piece-3"></div><div class="heart-piece-4"></div><div class="heart-piece-5"></div><div class="heart-piece-6"></div><div class="heart-piece-7"></div><div class="heart-piece-8"></div></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">「精通以太坊」第一章👉🏻what is Ethereum</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-09</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/">BlockChain</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Ethereum/">Ethereum</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Ethereum/「精通以太坊」/">「精通以太坊」</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="什么是以太坊"><a href="#什么是以太坊" class="headerlink" title="什么是以太坊"></a>什么是以太坊</h3><p>以太网是“世界计算机”。</p>
+<p>以太坊是一个状态机,有两个基本功能</p>
+<ol>
+<li>全局可访问的单例状态</li>
+<li>将更改应用于该状态的虚拟机</li>
+</ol>
+<p>以太坊是一个开源的、全球的、去中心化的计算架构，执行智能合约程序。使用区块链来同步和存储系统状态，使用加密货币ether来计量和约束执行资源的成本。</p>
+<h3 id="区块链的组件"><a href="#区块链的组件" class="headerlink" title="区块链的组件"></a>区块链的组件</h3><p>公链通常包含以下组件:</p>
+<ul>
+<li>传播交易和包含已验证交易区块的点对点网络</li>
+<li>状态机中实现的一系列共识机制</li>
+<li>消息，已交易的形式表示，代表状态转移。</li>
+<li>根据共识机制处理交易的状态机</li>
+<li>分布式数据库，记录所有状态转移的日志</li>
+<li>共识算法，通过强制参与者竞争并使用共识机制约束他们。</li>
+<li>上述内容的一个或多个开源软件的实现。</li>
+</ul>
+<h3 id="以太坊开发的四个阶段"><a href="#以太坊开发的四个阶段" class="headerlink" title="以太坊开发的四个阶段"></a>以太坊开发的四个阶段</h3><p>前言Frontier =&gt; 家园Homestead =&gt; 大都会Metropolis =&gt; 宁静Serenity</p>
+<p>中间的硬分叉代号:</p>
+<ul>
+<li>冰河时代Ice Age</li>
+<li>DAO</li>
+<li>蜜桔前哨Tangerine Whistle</li>
+<li>假龙Spurious Dragon</li>
+<li>拜占庭Byzantium</li>
+<li>君士坦丁堡Constaninople</li>
+</ul>
+<p>Ice Age:引入指数级难度增长的一个难题，激励了到权益证明机制的过渡。</p>
+<p>DAO:恢复被破坏的DAO合约的硬分叉，导致以太坊分裂为以太坊经典和以太坊两个竞争系统。</p>
+<p>Tangerine Whistle:改变某些IO秘籍操作的燃气计算方法和清除拒绝服务攻击累计状态的硬分叉。</p>
+<p>Spurious Dragon:解决更多拒绝服务攻击向量和另一种状态清楚的硬分叉，包括转播攻击保护机制。</p>
+<blockquote>
+<p>以太坊不仅追踪货币所有权的状态，还追踪通用数据存储的状态转换。通常我们指的是任何可以表示为key-value tuple的数据。</p>
+</blockquote>
+<h3 id="以太坊的组件"><a href="#以太坊的组件" class="headerlink" title="以太坊的组件"></a>以太坊的组件</h3><p>Ethereum中包含的系统组件:</p>
+<ul>
+<li><p>P2P Network</p>
+</li>
+<li><p>Consensus rules</p>
+<p>以太坊的共识规则</p>
+</li>
+<li><p>Transactions</p>
+<p>以太坊交易，包括发送者，接受者，值和数据负载等。</p>
+</li>
+<li><p>State Machine</p>
+<p>状态机。以太坊的状态转移由Ethereum虚拟机(EVM)处理，这是一个执行bytecode(机器语言指令)的基于栈的虚拟机。智能合约以高级语言(如Solidity)编写，并编译为字节码以便在EVM上执行。</p>
+</li>
+<li><p>Blockchain</p>
+<p>以太坊的区块链作为database(Google的LevelDB)存储在每个节点上，该区块链在称为梅克尔帕特里夏树(MPT,Merkle Patricia Tree)的序列化哈希数据结构中 包含交易和系统状态。</p>
+</li>
+<li><p>Consensus Algorithm</p>
+<p>共识算法，以太坊目前使用Ethash的工作量证明算法，将来会过渡到称为Casper的权益证明(POS)系统。</p>
+</li>
+<li><p>Clients</p>
+<p>以太坊有几个可操作的客户端软件实现，最突出的是Go-Ethereum(Geth)和Parity。</p>
+</li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>以太坊黄皮书:<a href="https://ethereum.github.io/yellowpaper/paper.pdf" target="_blank" rel="noopener">https://ethereum.github.io/yellowpaper/paper.pdf</a></p>
+<p>以太坊褐皮书(为耿冠发的读者以不太正式的语言重写黄皮书):<a href="https://github.com/chronaeon/beigepaper" target="_blank" rel="noopener">https://github.com/chronaeon/beigepaper</a></p>
+<p>翻译版:<a href="http://www.fanyigou.net/doc/waitTranslateActivity.htm" target="_blank" rel="noopener">http://www.fanyigou.net/doc/waitTranslateActivity.htm</a></p>
+<p>以太坊状态机 —— 一个“Awesome”资源列表 <a href="https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List</a></p>
+<p>Merkle Patricia Trees: <a href="https://github.com/ethereum/wiki/wiki/Patricia-Tree" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Patricia-Tree</a></p>
+<p>Ethash 工作量证明共识算法： <a href="https://github.com/ethereum/wiki/wiki/Ethash" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Ethash</a></p>
+<p>Casper 权益证明 v1 实现指南: <a href="https://github.com/ethereum/research/wiki/Casper-Version-1-Implementation-Guide" target="_blank" rel="noopener">https://github.com/ethereum/research/wiki/Casper-Version-1-Implementation-Guide</a></p>
+<h3 id="从通用区块链到去中心化应用-ÐApps"><a href="#从通用区块链到去中心化应用-ÐApps" class="headerlink" title="从通用区块链到去中心化应用(ÐApps)"></a>从通用区块链到去中心化应用(ÐApps)</h3><p>以太坊作为一种可用于各种用途的通用区块链，但很快以太坊的愿景扩展为开发去中心化应用(DApps)的平台。DApps代表比智能合约更广阔的视角。</p>
+<p>DApp是基于开放的|去中心化的|点对点基础架构服务的Web应用程序。</p>
+<p>DApp至少包含以下部分:</p>
+<ul>
+<li>区块链上的智能合约</li>
+<li>一个Web前端用户界面</li>
+</ul>
+<p>此外，许多DApp还包括其他去中心化组件，例如:</p>
+<ul>
+<li>去中心化P2P存储协议和平台</li>
+<li>去中心化P2P消息传递协议和平台</li>
+</ul>
+<p>web3.js将js应用程序与以太坊区块链连接起来，web3.js库还包含换一个<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">名为Swarm的P2P存储网络接口</font>和一个<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">名为Whisper的P2P消息传递服务</font>。</p>
+<p><img src="web3suite.png" alt="jfx1387719327203632199"></p>
+<h3 id="以太坊的开发文化"><a href="#以太坊的开发文化" class="headerlink" title="以太坊的开发文化"></a>以太坊的开发文化</h3><ul>
+<li>在比特币中，开发以保守原则为指导：所有变化都经过仔细研究，以确保现有系统都不会中断。大部分情况下，只有在向后兼容时才会执行更改。允许现有客户“选择加入”，但如果他们决定不升级，将继续运作。</li>
+<li>在以太坊中，开发文化的重点是速度和创新。这个咒语是“快速行动，解决事情”。如果需要进行更改，即使这意味着使之前的假设失效，破坏兼容性或强制客户端进行更新，也会执行更改。以太坊的开发文化的特点是快速创新，快速进化和愿意参与实验。</li>
+</ul>
+<p>对开发者来说，意味着你必须保持灵活性和持续学习，随着一些潜在的假设变化，随时准备重建你的基础设施。以太坊开发人员面临的一个重大挑战是将代码部署到不可变账本与仍然在快速发展的开发平台之间的内在矛盾。</p>
+<p>你不能简单地“<strong>升级</strong>”你的智能合约，你必须准备部署新的智能合约、迁移用户、应用程序和资金，并重新开始😀</p>
+<p>最终以太坊核心协议的开发速度将会放慢，其接口将会变得固定。但与此同时创新是推动原则，你最好跟上脚步，没人会为你放慢速度!</p>
+<h3 id="为什么学习以太坊"><a href="#为什么学习以太坊" class="headerlink" title="为什么学习以太坊?"></a>为什么学习以太坊?</h3><p>区块链具有非常陡峭的学习曲线，因为他们将多个学科融合到了一个领域：编程，信息安全，密码学，经济学，分布式系统，对等网络，智能合约等。</p>
+<p>以太坊使这一学习曲线变得平缓，你马上就可以开始！</p>
+<p>但是当你学习并开始更深入的观察时，总会有另一层复杂性和奇迹！🔮</p>
+<p>以太坊是学习区块链的绝佳平台，它构建了一个庞大的开发者社区。</p>
+<p>以太坊是为开发者开发的<strong><em>开发者的区块链</em></strong>。</p>
+<h6 id="Thanks-for-reading-未完待续🌪"><a href="#Thanks-for-reading-未完待续🌪" class="headerlink" title="Thanks for reading. 未完待续🌪"></a>Thanks for reading. 未完待续🌪</h6><hr>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/03/09/「精通以太坊」☞第一章/">https://skr.dog/2019/03/09/「精通以太坊」☞第一章/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Ethereum/">Ethereum</a><a class="post-meta__tags" href="/tags/BlockChain/">BlockChain</a><a class="post-meta__tags" href="/tags/Mastering-Ethereum/">Mastering Ethereum</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="next-post pull-right"><a href="/2019/03/08/「精通以太坊」☞必备术语表/"><span>「精通以太坊」☞必备术语表</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="please input what you want"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
