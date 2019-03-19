@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="「精通以太坊」☞第二章👉🏻Ethereum Basics"><meta name="keywords" content="Ethereum,BlockChain,Mastering Ethereum"><meta name="author" content="superman285"><meta name="copyright" content="superman285"><title>「精通以太坊」☞第二章👉🏻Ethereum Basics | Superman285のBlog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f95f9792a34045b9d58c63113e1af8d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#以太坊基础"><span class="toc-number">1.</span> <span class="toc-text">以太坊基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#控制和责任"><span class="toc-number">1.1.</span> <span class="toc-text">控制和责任</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以太坊货币单位"><span class="toc-number">1.2.</span> <span class="toc-text">以太坊货币单位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以太坊钱包"><span class="toc-number">1.3.</span> <span class="toc-text">以太坊钱包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#世界计算机"><span class="toc-number">1.4.</span> <span class="toc-text">世界计算机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#外部所有账户和合约账户"><span class="toc-number">1.5.</span> <span class="toc-text">外部所有账户和合约账户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#区块链上创建合约"><span class="toc-number">1.6.</span> <span class="toc-text">区块链上创建合约</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#与合约交互"><span class="toc-number">1.7.</span> <span class="toc-text">与合约交互</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Thanks-for-reading-未完待续🌪"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">Thanks for reading. 未完待续🌪</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://i.loli.net/2019/02/21/5c6e32e5dbb4a.jpg"></div><div class="author-info__name text-center">superman285</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/superman285">Git Me Follow</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">47</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">44</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">22</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">FriendLinks</div><a class="author-info-links__name text-center" href="http://skrmemo.top:4001/">ETH-Notes</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Beauty Hexo-Theme</a><a class="author-info-links__name text-center" href="https://minimalwang.xyz">一个清新脱俗的前端</a></div></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="80" src="//music.163.com/outchain/player?type=2&amp;id=583503&amp;auto=1&amp;height=66" style="margin-top: 2rem;"></iframe><div class="unit"><div class="heart"><div class="heart-piece-0"></div><div class="heart-piece-1"></div><div class="heart-piece-2"></div><div class="heart-piece-3"></div><div class="heart-piece-4"></div><div class="heart-piece-5"></div><div class="heart-piece-6"></div><div class="heart-piece-7"></div><div class="heart-piece-8"></div></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Superman285のBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">首页</a><a class="site-page" href="/archives">时光机</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/categories/BlockChain">区块链</a><a class="site-page" href="/categories/Entertain">娱乐</a><a class="site-page" href="/Works">作品集</a></span></div><div id="post-info"><div id="post-title">「精通以太坊」☞第二章👉🏻Ethereum Basics</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-19</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/">BlockChain</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Ethereum/">Ethereum</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BlockChain/Ethereum/「精通以太坊」/">「精通以太坊」</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="以太坊基础"><a href="#以太坊基础" class="headerlink" title="以太坊基础"></a>以太坊基础</h3><h4 id="控制和责任"><a href="#控制和责任" class="headerlink" title="控制和责任"></a>控制和责任</h4><p>每个用户都能控制自己的密钥，密钥是专属于个人的，这种控制带来了很大的责任。如果你丢失了你的密钥，你将无法获得资金和合约。没有人可以帮助你重新获得访问权 - 你的资金将永远锁定。</p>
+<h4 id="以太坊货币单位"><a href="#以太坊货币单位" class="headerlink" title="以太坊货币单位"></a>以太坊货币单位</h4><p>以太 ether </p>
+<p>以太被细分为更小的单位，最小单位为wei。</p>
+<p>1 ether = 10^18^wei </p>
+<p>💡以太坊是制度(是公链),以太才是货币</p>
+<font style="color:white;background:mediumseagreen;padding:3px 6px;font-weight:bold;line-height:28px">单位名</font>
+
+<p>wei    =&gt; wei</p>
+<p>Kwei    =&gt; babbage</p>
+<p>Mwei    =&gt; lavelace</p>
+<p>Gwei    =&gt; shannon</p>
+<p>MicroEther =&gt; szabo</p>
+<p>MilliEther =&gt; finney</p>
+<p>ether    =&gt; ether</p>
+<p>Kether    =&gt; grand</p>
+<p>Mether</p>
+<h4 id="以太坊钱包"><a href="#以太坊钱包" class="headerlink" title="以太坊钱包"></a>以太坊钱包</h4><p>以太坊钱包是通往以太坊的门户。</p>
+<p>钱包管理你的密钥，并可代表你创建广播和交易。</p>
+<p>MetaMask 浏览器扩展钱包</p>
+<p>Jaxx 多平台 多币种 钱包</p>
+<p>MyEtherWallet(MEW) 基于web的钱包</p>
+<p>MainEthereumNetwork 以太坊主网 正式的 真正的ETH</p>
+<p>Ropsten Test Network 以太坊公开测试网 POW共识机制</p>
+<p>Kovan Test Network 以太坊公开测试网 “Aura”协议的权威证明POA(proof-of-authority) 共识机制</p>
+<p>Rinkeby Test Network 以太坊公开测试网 “Clique”协议的POA 共识机制</p>
+<p>localhost8545 连接到与浏览器在同一台计算机上运行的节点</p>
+<h4 id="世界计算机"><a href="#世界计算机" class="headerlink" title="世界计算机"></a>世界计算机</h4><p>事实上，加密货币功能是服务于以太坊作为世界计算机的功能 — 一个去中心化的智能合约平台。</p>
+<p>以太坊货币旨在用于支付 运行的智能合约(EVM上运行的计算机程序)。</p>
+<p>EVM是一个全球性单例，运作方式就是一个全球性的单实例计算机，无处不在。</p>
+<p>以太坊网络上的每个节点运行EVM的本地副本以验证合约执行，以太坊区块链记录该世界计算机在处理交易和智能合约时变化的状态。</p>
+<h4 id="外部所有账户和合约账户"><a href="#外部所有账户和合约账户" class="headerlink" title="外部所有账户和合约账户"></a>外部所有账户和合约账户</h4><p>钱包中创建的账户类型为EOA(Externally Owned Account)，管理私人密钥的账户，控制对资金或合约的访问。</p>
+<p>合约账户由以太坊区块链记录，由EVM执行的软件程序的逻辑所拥有和控制。</p>
+<blockquote>
+<p>这两种账户永远存在的重要区别在于:</p>
+<p>人们通过外部账户做出决定，而软件通过合约账户做出决定。</p>
+</blockquote>
+<p>EOA和合约共同点:都有一个地址，都可以发送和接收ether。</p>
+<p>当交易的目标地址(to)为合约地址时，会导致合约在EVM中运行，并将交易作为其输入。</p>
+<p>除了ether外，交易还可以包含数据，用于指示合约中要运行的<font color="dodgerblue" style="font-weight:bold">特定方法以及传递给该方法的参数</font>。通过这种方式，交易可调用合约方法。</p>
+<p>e.g. ethereumjs-tx库 构造的交易 value为ether,data为合约函数名转16进制+函数参数转16进制</p>
+<p>合约还可以产生调用其他合约的交易，建立更复杂的执行路径。</p>
+<h4 id="区块链上创建合约"><a href="#区块链上创建合约" class="headerlink" title="区块链上创建合约"></a>区块链上创建合约</h4><p>在区块链上注册合约 涉及一个特殊交易，其目标地址是0x0000000000000000000000000000000000000000，也称为zero address。零地址是一个特殊地址，告诉以太坊你想注册一个合约。</p>
+<h4 id="与合约交互"><a href="#与合约交互" class="headerlink" title="与合约交互"></a>与合约交互</h4><p>以太坊合约运行在名为EVM的虚拟机内。它们是由一个特殊的交易创建的，该交易提交它们的字节码以记录在区块链中。一旦他们在区块链上创建，他们就拥有一个以太坊地址，就像钱包一样。</p>
+<p>只要有人将交易发送到(to)合约地址，就会导致合约在EVM中运行，并将交易作为其输入。</p>
+<p>发送到合约地址的交易可能包含ether或数据。如果包含ether就将其存入合约余额，如果包含数据则代表指定一个命名函数并调用它，同时将参数传递给该函数。</p>
+<p>如果将交易发送到合约地址(向合约发ether)，不指定调用哪个函数的数据，将调用默认函数(fallback)。</p>
+<p>注意💡 需要在合约中声明fallback | function() external payable{//可不写函数体}</p>
+<p>否则无法直接给合约转账</p>
+<h6 id="Thanks-for-reading-未完待续🌪"><a href="#Thanks-for-reading-未完待续🌪" class="headerlink" title="Thanks for reading. 未完待续🌪"></a>Thanks for reading. 未完待续🌪</h6><hr>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">superman285</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://skr.dog/2019/03/19/「精通以太坊」☞第二章/">https://skr.dog/2019/03/19/「精通以太坊」☞第二章/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Ethereum/">Ethereum</a><a class="post-meta__tags" href="/tags/BlockChain/">BlockChain</a><a class="post-meta__tags" href="/tags/Mastering-Ethereum/">Mastering Ethereum</a></div><div class="social-share" data-disabled="douban,heart,tencent,qzone,linkedin,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="next-post pull-right"><a href="/2019/03/09/「精通以太坊」☞第一章/"><span>「精通以太坊」第一章👉🏻What is Ethereum</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'ab689454493850e68d9d',
+  clientSecret: '0f6ef510c8c9083679f478cadd47fed8361f3a51',
+  repo: 'superman285.github.io',
+  owner: 'superman285',
+  admin: 'superman285',
+  id: md5(decodeURI(location.pathname)),
+  language: ''
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://i.loli.net/2019/02/22/5c6f8ab4867b6.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By superman285</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="icp"><a><span>粤ICP备19022229号-1</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="please input what you want"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
