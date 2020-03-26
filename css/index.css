@@ -585,6 +585,10 @@ footer.is-mobile {
 #footer a:hover {
   color: #fff;
 }
+#footer img {
+  border: none;
+  vertical-align: bottom;
+}
 #footer .footer-separator {
   margin: 0 0.2rem;
 }
